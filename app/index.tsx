@@ -2,6 +2,7 @@ import { Link } from "expo-router";
 import { useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -21,6 +22,7 @@ const HERO_GRADIENT: [string, string] = ["#3D2A0E", "#1A140A"];
 
 export default function Home() {
   const { connected } = useWallet();
+  const { t } = useTranslation();
 
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["top", "bottom"]}>
@@ -30,36 +32,36 @@ export default function Home() {
 
         <Step
           n={1}
-          title="Connect your wallet"
-          body="Sign in once with Seed Vault. Your colony state is tied to your wallet."
+          title={t("home.step_connect_title")}
+          body={t("home.step_connect_desc")}
         >
           <WalletConnectButton />
         </Step>
 
         <Step
           n={2}
-          title="Build your colony"
-          body="Place buildings on a 3×3 grid. They produce honey, energy, food and water — even when the app is closed."
+          title={t("home.step_build_title")}
+          body={t("home.step_build_desc")}
         >
           <Link href="/colony" asChild>
-            <Button label="Open Colony" variant="primary" disabled={!connected} />
+            <Button label={t("home.step_build_cta")} variant="primary" disabled={!connected} />
           </Link>
         </Step>
 
         <Step
           n={3}
-          title="Claim daily rewards"
-          body="Resources accumulate up to 48 hours. Claim every 12 hours and unlock unique cNFT skins as you upgrade buildings."
+          title={t("home.step_claim_title")}
+          body={t("home.step_claim_desc")}
         >
           <View className="flex-row gap-3">
             <View className="flex-1">
               <Link href="/rewards" asChild>
-                <Button label="Rewards" variant="secondary" disabled={!connected} />
+                <Button label={t("home.rewards_button")} variant="secondary" disabled={!connected} />
               </Link>
             </View>
             <View className="flex-1">
               <Link href="/mint" asChild>
-                <Button label="Skins" variant="secondary" disabled={!connected} />
+                <Button label={t("home.skins_button")} variant="secondary" disabled={!connected} />
               </Link>
             </View>
           </View>
@@ -68,12 +70,12 @@ export default function Home() {
         <View className="flex-row gap-3 mt-2">
           <View className="flex-1">
             <Link href="/leaderboard" asChild>
-              <Button label="Leaderboard" variant="ghost" />
+              <Button label={t("home.leaderboard_button")} variant="ghost" />
             </Link>
           </View>
           <View className="flex-1">
             <Link href="/profile" asChild>
-              <Button label="Profile" variant="ghost" />
+              <Button label={t("home.profile_button")} variant="ghost" />
             </Link>
           </View>
         </View>
@@ -108,15 +110,16 @@ function Step({
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <GradientCard colors={HERO_GRADIENT} className="items-center pt-6 pb-8">
       <FloatingBees />
       <FloatingHeroBee />
       <Text className="text-ink text-3xl font-bold mt-2">
-        Passive Idle Colony
+        {t("app.title")}
       </Text>
       <Text className="text-ink-dim text-center mt-1 px-6">
-        A cozy idle game on Solana.{"\n"}Build, claim, mint.
+        {t("app.tagline")}
       </Text>
     </GradientCard>
   );

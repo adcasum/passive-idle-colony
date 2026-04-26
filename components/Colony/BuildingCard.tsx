@@ -1,5 +1,6 @@
 import { Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/UI/Button";
 import { Card } from "@/components/UI/Card";
@@ -7,7 +8,8 @@ import {
   BUILDINGS,
   RESOURCE_COLOR,
   RESOURCE_EMOJI,
-  RESOURCE_LABEL,
+  getBuildingDesc,
+  getBuildingName,
 } from "@/constants/buildings";
 import { fmtNum } from "@/lib/format";
 import {
@@ -106,13 +108,14 @@ function BuildPicker({
   const place = useColonyStore((s) => s.placeBuilding);
   const resources = useColonyStore((s) => s.resources);
   const kinds = useMemo(() => Object.keys(BUILDINGS) as BuildingKind[], []);
+  const { t } = useTranslation();
 
   return (
     <View>
-      <Text className="text-ink text-xl font-semibold mb-1">Build new</Text>
-      <Text className="text-ink-dim mb-4">
-        Choose a building to place in this slot.
+      <Text className="text-ink text-xl font-semibold mb-1">
+        {t("build_picker.title")}
       </Text>
+      <Text className="text-ink-dim mb-4">{t("build_picker.subtitle")}</Text>
       <ScrollView style={{ maxHeight: 420 }}>
         {kinds.map((k) => {
           const def = BUILDINGS[k];
@@ -123,50 +126,61 @@ function BuildPicker({
             water: def.baseCost.water ?? 0,
           };
           const ok = canAfford(resources, cost);
+          const name = t(getBuildingName(k));
           return (
             <Card key={k} className="mb-3">
               <View className="flex-row items-center mb-2">
                 <Text style={{ fontSize: 28 }}>{def.emoji}</Text>
                 <View className="ml-3 flex-1">
-                  <Text className="text-ink font-semibold">{def.name}</Text>
+                  <Text className="text-ink font-semibold">{name}</Text>
                   <Text className="text-ink-dim text-xs">
-                    {def.description}
+                    {t(getBuildingDesc(k))}
                   </Text>
                 </View>
               </View>
               <View className="mb-3">
-                <Text className="text-ink-mute text-xs mb-1">PRODUCTION</Text>
+                <Text className="text-ink-mute text-xs mb-1">
+                  {t("build_picker.production_label")}
+                </Text>
                 {def.produces ? (
                   <Text className="text-ink">
                     {RESOURCE_EMOJI[def.produces]}{" "}
-                    {fmtNum(def.baseProductionPerHour)} {RESOURCE_LABEL[def.produces]} / hr
+                    {fmtNum(def.baseProductionPerHour)}{" "}
+                    {t(`resources.${def.produces}`)}
+                    {t("header.production_per_hour")}
                   </Text>
                 ) : def.researchBoostPerLevel ? (
                   <Text className="text-ink">
-                    +{def.researchBoostPerLevel * 100}% colony production / level
+                    {t("build_picker.production_research", {
+                      percent: def.researchBoostPerLevel * 100,
+                    })}
                   </Text>
                 ) : def.storageBonusPerLevel ? (
                   <Text className="text-ink">
-                    +{def.storageBonusPerLevel} max cap / level
+                    {t("build_picker.production_storage", {
+                      cap: def.storageBonusPerLevel,
+                    })}
                   </Text>
                 ) : null}
               </View>
               <View className="mb-3">
-                <Text className="text-ink-mute text-xs mb-1">COST</Text>
+                <Text className="text-ink-mute text-xs mb-1">
+                  {t("build_picker.cost_label")}
+                </Text>
                 <ResourceCostRow cost={cost} resources={resources} />
               </View>
               <Button
-                label={ok ? "Build" : "Not enough resources"}
+                label={ok ? t("build_picker.build_button") : t("build_picker.not_enough")}
                 variant={ok ? "primary" : "secondary"}
                 disabled={!ok}
                 onPress={() => {
                   if (place(slotIndex, k)) {
                     haptic.build();
-                    toast.success(`Built ${def.name}`);
+                    toast.success(t("toast.built", { name }));
                     onClose();
                   } else {
                     haptic.error();
-                    toast.error("Not enough resources");
+                    toast.error(t("toast.not_enough_resources"));
                   }
                 }}
               />
@@ -177,7 +191,7 @@ function BuildPicker({
       <Button
         className="mt-2"
         variant="ghost"
-        label="Cancel"
+        label={t("common.cancel")}
         onPress={onClose}
       />
     </View>
@@ -197,6 +211,7 @@ function ExistingBuilding({
   const upgrade = useColonyStore((s) => s.upgrade);
   const demolish = useColonyStore((s) => s.demolish);
   const resources = useColonyStore((s) => s.resources);
+  const { t } = useTranslation();
 
   const isMax = building.level >= def.maxLevel;
   const cost = isMax
@@ -205,43 +220,53 @@ function ExistingBuilding({
   const ok = cost ? canAfford(resources, cost) : false;
   const prod = buildingProductionPerHour(building);
   const skinUnlocked = building.level >= def.skinUnlockLevel;
+  const name = t(getBuildingName(building.kind));
 
   return (
     <View>
       <View className="flex-row items-center mb-2">
         <Text style={{ fontSize: 32 }}>{def.emoji}</Text>
         <View className="ml-3 flex-1">
-          <Text className="text-ink text-xl font-semibold">{def.name}</Text>
+          <Text className="text-ink text-xl font-semibold">{name}</Text>
           <Text className="text-ink-dim text-xs">
-            Level {building.level}{isMax ? " (max)" : ""}
-            {building.skinMint ? "  •  ✨ skinned" : ""}
+            {t("build_picker.level_label", { level: building.level })}
+            {isMax ? ` ${t("build_picker.max_level")}` : ""}
+            {building.skinMint ? `  •  ${t("build_picker.skinned_badge")}` : ""}
           </Text>
         </View>
       </View>
-      <Text className="text-ink-dim mb-4">{def.description}</Text>
+      <Text className="text-ink-dim mb-4">{t(getBuildingDesc(building.kind))}</Text>
 
       <Card className="mb-3">
-        <Text className="text-ink-mute text-xs mb-1">CURRENT PRODUCTION</Text>
+        <Text className="text-ink-mute text-xs mb-1">
+          {t("build_picker.current_production_label")}
+        </Text>
         {prod.resource ? (
           <Text className="text-ink">
             {RESOURCE_EMOJI[prod.resource]} {fmtNum(prod.amount)}{" "}
-            {RESOURCE_LABEL[prod.resource]} / hr
+            {t(`resources.${prod.resource}`)}
+            {t("header.production_per_hour")}
           </Text>
         ) : def.researchBoostPerLevel ? (
           <Text className="text-ink">
-            +{(def.researchBoostPerLevel * building.level * 100).toFixed(0)}%
-            global production
+            {t("build_picker.current_research", {
+              percent: (def.researchBoostPerLevel * building.level * 100).toFixed(0),
+            })}
           </Text>
         ) : def.storageBonusPerLevel ? (
           <Text className="text-ink">
-            +{def.storageBonusPerLevel * building.level} max cap
+            {t("build_picker.current_storage", {
+              cap: def.storageBonusPerLevel * building.level,
+            })}
           </Text>
         ) : null}
       </Card>
 
       {!isMax ? (
         <Card className="mb-3">
-          <Text className="text-ink-mute text-xs mb-1">UPGRADE COST</Text>
+          <Text className="text-ink-mute text-xs mb-1">
+            {t("build_picker.upgrade_cost_label")}
+          </Text>
           {cost ? (
             <ResourceCostRow cost={cost} resources={resources} />
           ) : null}
@@ -252,16 +277,22 @@ function ExistingBuilding({
         {!isMax ? (
           <View className="flex-1">
             <Button
-              label={ok ? `Upgrade to ${building.level + 1}` : "Need resources"}
+              label={
+                ok
+                  ? t("build_picker.upgrade_button", { level: building.level + 1 })
+                  : t("toast.not_enough_resources")
+              }
               disabled={!ok}
               onPress={() => {
                 if (upgrade(slotIndex)) {
                   haptic.upgrade();
-                  toast.success(`${def.name} → L${building.level + 1}`);
+                  toast.success(
+                    t("toast.upgraded", { name, level: building.level + 1 }),
+                  );
                   onClose();
                 } else {
                   haptic.error();
-                  toast.error("Not enough resources");
+                  toast.error(t("toast.not_enough_resources"));
                 }
               }}
             />
@@ -269,11 +300,13 @@ function ExistingBuilding({
         ) : null}
         <Button
           variant="secondary"
-          label={skinUnlocked ? "Mint Skin" : `Skin @ L${def.skinUnlockLevel}`}
+          label={
+            skinUnlocked
+              ? t("build_picker.skin_unlocked")
+              : t("build_picker.skin_locked", { level: def.skinUnlockLevel })
+          }
           disabled={!skinUnlocked}
           onPress={() => {
-            // navigation handled by caller via deep-link;
-            // for simplicity here we just close so the user can press Mint tab.
             onClose();
           }}
         />
@@ -282,18 +315,18 @@ function ExistingBuilding({
       <Button
         className="mt-3"
         variant="ghost"
-        label="Demolish"
+        label={t("build_picker.demolish_button")}
         onPress={() => {
           haptic.demolish();
           demolish(slotIndex);
-          toast.info(`${def.name} demolished`);
+          toast.info(t("toast.demolished", { name }));
           onClose();
         }}
       />
       <Button
         className="mt-2"
         variant="ghost"
-        label="Close"
+        label={t("common.close")}
         onPress={onClose}
       />
     </View>

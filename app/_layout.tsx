@@ -1,16 +1,19 @@
 import "@/lib/polyfills";
 import "@/global.css";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 import { useWalletStore } from "@/store/walletStore";
 import { ensureNotificationPermissions } from "@/lib/notifications";
 import { setAnalyticsWallet, track } from "@/lib/analytics";
+import { initI18n } from "@/lib/i18n";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { Onboarding } from "@/components/Onboarding/Onboarding";
 import { ToastHost } from "@/components/UI/ToastHost";
@@ -21,13 +24,41 @@ const queryClient = new QueryClient({
   },
 });
 
+function Screens() {
+  const { t } = useTranslation();
+  return (
+    <Stack
+      screenOptions={{
+        headerStyle: { backgroundColor: "#1A140A" },
+        headerTintColor: "#FFF4D6",
+        headerTitleStyle: { fontWeight: "700" },
+        contentStyle: { backgroundColor: "#1A140A" },
+      }}
+    >
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="colony/index" options={{ title: t("colony.title") }} />
+      <Stack.Screen name="rewards/index" options={{ title: t("rewards.title") }} />
+      <Stack.Screen
+        name="leaderboard/index"
+        options={{ title: t("leaderboard.title") }}
+      />
+      <Stack.Screen name="mint/index" options={{ title: t("mint.title") }} />
+      <Stack.Screen name="profile/index" options={{ title: t("profile.title") }} />
+    </Stack>
+  );
+}
+
 export default function RootLayout() {
   const hydrate = useWalletStore((s) => s.hydrate);
   const account = useWalletStore((s) => s.selectedAccount);
+  const [i18nReady, setI18nReady] = useState(false);
 
   useCloudSync();
 
   useEffect(() => {
+    initI18n()
+      .catch(() => undefined)
+      .finally(() => setI18nReady(true));
     hydrate().catch(() => undefined);
     ensureNotificationPermissions().catch(() => undefined);
     track("app_open");
@@ -44,22 +75,22 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <StatusBar style="light" />
-          <Stack
-            screenOptions={{
-              headerStyle: { backgroundColor: "#1A140A" },
-              headerTintColor: "#FFF4D6",
-              headerTitleStyle: { fontWeight: "700" },
-              contentStyle: { backgroundColor: "#1A140A" },
-            }}
-          >
-            <Stack.Screen name="index" options={{ headerShown: false }} />
-            <Stack.Screen name="colony/index" options={{ title: "Colony" }} />
-            <Stack.Screen name="rewards/index" options={{ title: "Rewards" }} />
-            <Stack.Screen name="leaderboard/index" options={{ title: "Leaderboard" }} />
-            <Stack.Screen name="mint/index" options={{ title: "Mint Skin" }} />
-            <Stack.Screen name="profile/index" options={{ title: "Profile" }} />
-          </Stack>
-          <Onboarding />
+          {i18nReady ? (
+            <>
+              <Screens />
+              {/* Onboarding uses useTranslation, so it MUST be inside the
+                  i18nReady gate to avoid the modal flashing raw keys (e.g.
+                  "onboarding.page1_title") on first launch when AsyncStorage
+                  resolves before initI18n finishes. */}
+              <Onboarding />
+            </>
+          ) : (
+            // Hold the splash background while i18n loads its initial bundle.
+            // This is at most a few hundred milliseconds on first launch.
+            <View style={{ flex: 1, backgroundColor: "#1A140A" }} />
+          )}
+          {/* ToastHost does not use useTranslation, so it is safe to mount
+              outside the gate (and lets very-early toasts still surface). */}
           <ToastHost />
         </QueryClientProvider>
       </SafeAreaProvider>

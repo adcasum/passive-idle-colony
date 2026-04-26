@@ -1,0 +1,235 @@
+{
+  "app": {
+    "title": "最后的蜂场",
+    "tagline": "Solana 上的温馨放置殖民地。"
+  },
+  "common": {
+    "cancel": "取消",
+    "close": "关闭",
+    "save": "保存",
+    "loading": "加载中…",
+    "retry": "重试",
+    "back": "返回",
+    "yes": "是",
+    "no": "否"
+  },
+  "wallet": {
+    "connect": "连接钱包",
+    "disconnect": "断开",
+    "connected": "已连接",
+    "title": "向蜂后效忠",
+    "description": "通过 Seed Vault 登录一次。你的殖民地与钱包绑定。"
+  },
+  "home": {
+    "step_connect_title": "连接你的钱包",
+    "step_connect_desc": "通过 Seed Vault 登录一次。你的殖民地与钱包绑定。",
+    "step_build_title": "建立你的殖民地",
+    "step_build_desc": "在 3×3 网格上放置蜂巢。它们能产出蜂蜜、能量、食物和水 — 应用关闭时也照样运行。",
+    "step_build_cta": "进入蜂巢",
+    "step_claim_title": "领取每日奖励",
+    "step_claim_desc": "资源最多累积 48 小时。每 12 小时领取,升级建筑可解锁独特的 cNFT 皮肤。",
+    "rewards_button": "蜂蜜库",
+    "skins_button": "锻造徽章",
+    "leaderboard_button": "皇家排行榜",
+    "profile_button": "个人资料",
+    "rank_label": "你的排名",
+    "rank_unranked": "未上榜",
+    "rank_delta_up": "▲ 本周 {{n}}",
+    "rank_delta_down": "▼ 本周 {{n}}",
+    "rank_delta_same": "— 与上周持平",
+    "colony_level": "殖民地等级 {{level}}",
+    "colony_level_progress": "下一级:{{title}}(等级 {{level}})",
+    "colony_tier_worker": "工蜂蜂场",
+    "colony_tier_artisan": "工匠蜂巢",
+    "colony_tier_royal": "皇家庭院",
+    "next_action_title": "下一步",
+    "next_action_first_hive": "放置你的第一个蜂巢 — 点击任意空格。",
+    "next_action_solar": "建造太阳能板 — 蜂巢需要能量。",
+    "next_action_food": "建造小农场 — 蜜蜂饿了。",
+    "next_action_water": "建造集水器 — 水快用完了。",
+    "next_action_upgrade": "升级 {{name}} 到等级 {{level}} — {{cost}}。",
+    "next_action_claim": "蜂蜜准备好了 — 来领取。",
+    "next_action_storage_full": "仓库快满了 — 领取或升级仓库。",
+    "next_action_idle": "等待下一周期或继续建造。",
+    "intro_story_title": "最后的蜂场",
+    "intro_story_body": "世界上的传粉者正在消失。一位幸存的蜂后选中了你,逐格重建她的殖民地。很快其他蜂后会听闻你的蜂场,并在皇家排行榜上展开竞争。"
+  },
+  "colony": {
+    "title": "蜂巢",
+    "built_count": "已建造 {{built}}/{{total}}",
+    "empty_hint_title": "🐝 点击任意格子建造你的第一个蜂巢",
+    "empty_hint_body": "蜂巢被动产蜜。先放太阳能板供能,再放农场和集水器养蜂。"
+  },
+  "header": {
+    "production_per_hour": "/小时"
+  },
+  "claim": {
+    "ready": "可以领取",
+    "ready_hint": "点击领取今天的蜂蜜",
+    "waiting": "下次领取倒计时",
+    "production_per_hour": "/小时产量",
+    "claim_button": "领取",
+    "claim_again_in": "下次领取:{{time}}",
+    "cooldown_hours": "冷却:每 {{hours}} 小时",
+    "cooldown_remaining_label": "剩余冷却"
+  },
+  "rewards": {
+    "title": "蜂蜜库",
+    "total_claimed_all_time": "累计领取(总计)",
+    "history_title": "历史 ({{count}})",
+    "history_empty": "还没有领取记录 — 你的第一次领取会显示在这里。"
+  },
+  "leaderboard": {
+    "title": "皇家排行榜",
+    "loading": "加载排行榜…",
+    "no_data": "暂无殖民地。成为第一个。",
+    "header_rank": "排名",
+    "header_address": "蜂后",
+    "header_honey": "蜂蜜",
+    "header_slots": "蜂巢",
+    "you_label": "你",
+    "error": "无法加载排行榜。"
+  },
+  "mint": {
+    "title": "锻造皇家徽章",
+    "intro": "为建筑铸造独特的 cNFT 皮肤。皮肤提升产量,永久保存在你的钱包。",
+    "no_eligible": "暂无可铸造皮肤的建筑。升级到等级 3 以上才能锻造徽章。",
+    "select_building": "选择一个建筑",
+    "mint_button": "锻造皮肤",
+    "minting": "锻造中…",
+    "minted_local": "✨ 已装备(本地)",
+    "minted_chain": "✨ 已链上铸造",
+    "mint_failed": "铸造失败:{{reason}}",
+    "current_skin": "当前装备:{{id}}",
+    "no_skin_yet": "尚未装备皮肤。",
+    "mode_label": "模式",
+    "mode_onchain": "链上 (Bubblegum)",
+    "mode_local": "本地占位"
+  },
+  "profile": {
+    "title": "个人资料",
+    "wallet_section": "钱包",
+    "language_section": "语言",
+    "language_subtitle": "应用语言。首次启动时自动检测。",
+    "ml_disclaimer": "标记(机翻)的翻译为自动生成,可能存在小错误。我们会逐步优化。",
+    "ml_tag": "(机翻)",
+    "danger_section": "危险区域",
+    "reset_button": "重置殖民地",
+    "reset_confirm_title": "重置殖民地?",
+    "reset_confirm_body": "这会清除你的本地进度。钱包仍保持连接。云端将在下次同步时被覆盖。",
+    "reset_confirm_yes": "重置",
+    "address_label": "地址",
+    "balance_label": "SOL 余额",
+    "network_label": "网络",
+    "rpc_label": "RPC",
+    "about_section": "关于",
+    "copied_title": "已复制"
+  },
+  "buildings": {
+    "bee_hive_name": "蜂巢",
+    "bee_hive_desc": "嗡嗡作响的甜蜜生产者。",
+    "solar_panel_name": "太阳能板",
+    "solar_panel_desc": "把阳光转化为能量。",
+    "small_farm_name": "小农场",
+    "small_farm_desc": "手工种植养活殖民地。",
+    "water_collector_name": "集水器",
+    "water_collector_desc": "从空气中提取淡水。",
+    "storage_name": "仓库",
+    "storage_desc": "提高资源上限。",
+    "research_lab_name": "研究实验室",
+    "research_lab_desc": "提升整个殖民地的产量。"
+  },
+  "resources": {
+    "honey": "蜂蜜",
+    "energy": "能量",
+    "food": "食物",
+    "water": "水"
+  },
+  "build_picker": {
+    "title": "新建建筑",
+    "subtitle": "为这个格子选择一座建筑。",
+    "production_label": "产量",
+    "cost_label": "花费",
+    "current_production_label": "当前产量",
+    "upgrade_cost_label": "升级花费",
+    "build_button": "建造",
+    "not_enough": "资源不足",
+    "upgrade_button": "升级到 {{level}}",
+    "max_level": "(已满)",
+    "skin_unlocked": "铸造皮肤",
+    "skin_locked": "等级 {{level}} 起可铸",
+    "demolish_button": "拆除",
+    "level_label": "等级 {{level}}",
+    "skinned_badge": "✨ 已上皮肤",
+    "production_research": "每级 +{{percent}}% 殖民地产量",
+    "production_storage": "每级 +{{cap}} 上限",
+    "current_research": "+{{percent}}% 全局产量",
+    "current_storage": "+{{cap}} 上限"
+  },
+  "slot_preview": {
+    "empty": "空格 — 点击建造",
+    "max_label": "满"
+  },
+  "toast": {
+    "built": "已建造:{{name}}",
+    "upgraded": "{{name}} → 等级 {{level}}",
+    "demolished": "已拆除 {{name}}",
+    "not_enough_resources": "资源不足",
+    "claimed": "已领取 {{parts}}",
+    "claimed_nothing": "已领取(暂无产出)",
+    "claim_cooldown": "尚在冷却中",
+    "synced": "已与云端同步",
+    "sync_failed": "同步失败 — 请重试",
+    "skin_equipped": "✨ 已装备皮肤",
+    "skin_minted": "✨ 已链上铸造皮肤",
+    "mint_failed": "铸造失败:{{reason}}",
+    "storage_warn": "🍯 仓库快满 — 尽快领取以免损失。",
+    "starvation_warn": "⚠️ 蜂群挨饿 — 能量或水不足。",
+    "rank_up": "🏆 你升至第 {{rank}} 名!",
+    "streak_extended": "🔥 连续 {{days}} 天!",
+    "quest_complete": "🎯 任务完成:{{name}}(+{{reward}})"
+  },
+  "onboarding": {
+    "skip": "跳过",
+    "next": "下一步",
+    "get_started": "开始",
+    "page1_title": "欢迎,蜂后的承载者。",
+    "page1_body": "蜂后选中你重建蜂巢。在 3×3 网格上放置建筑;它们在你睡觉时也会产蜜。",
+    "page2_title": "每 12 小时领取一次。",
+    "page2_body": "资源最多累积 48 小时。长按格子查看产量,点击建造或升级。",
+    "page3_title": "竞争与锻造。",
+    "page3_body": "登顶皇家排行榜,完成每日任务,为你的蜂巢锻造永久存放在钱包中的 cNFT 皮肤。"
+  },
+  "tutorial": {
+    "first_build_hint": "点击这个发光格子放置你的第一个蜂巢。",
+    "first_build_done": "你的第一个蜂巢嗡嗡作响。欢迎来到蜂场。"
+  },
+  "quests": {
+    "section_title": "今日任务",
+    "build_any": "建造任意一座建筑",
+    "upgrade_any": "升级任意一座建筑",
+    "claim_today": "领取今日蜂蜜",
+    "beat_record": "刷新你的领取记录",
+    "reward_label": "奖励",
+    "completed": "完成",
+    "resets_at": "{{time}} 重置",
+    "all_done": "全部完成 — 明天会有奖励。"
+  },
+  "streak": {
+    "label": "🔥 连续 {{days}} 天",
+    "label_zero": "今天开始连续打卡",
+    "day_short": "第{{day}}天",
+    "next_reward": "第 {{day}} 天:奖励宝箱"
+  },
+  "urgency": {
+    "storage_full_badge": "仓库 {{percent}}%",
+    "starvation_badge": "蜜蜂挨饿",
+    "bloom_event_title": "🌸 春日花期",
+    "bloom_event_body": "全部产量 ×{{mult}},持续 {{hours}} 小时。趁活动建造。",
+    "bloom_event_remaining": "花期剩余 {{time}}"
+  },
+  "errors": {
+    "cloud_disabled": "云端未配置。",
+    "wallet_required": "请先连接钱包以继续。"
+  }
+}

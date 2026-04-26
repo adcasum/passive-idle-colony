@@ -1,9 +1,10 @@
 import { Alert, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/UI/Button";
 import { Card } from "@/components/UI/Card";
-import { BUILDINGS } from "@/constants/buildings";
+import { BUILDINGS, getBuildingName } from "@/constants/buildings";
 import { useColonyStore } from "@/store/colonyStore";
 import { useMintSkin } from "@/hooks/useMintSkin";
 import { useWallet } from "@/hooks/useWallet";
@@ -15,6 +16,7 @@ export default function MintScreen() {
   const slots = useColonyStore((s) => s.slots);
   const { mint, minting } = useMintSkin();
   const { connected } = useWallet();
+  const { t } = useTranslation();
 
   const eligible: { idx: number; b: Building }[] = [];
   slots.forEach((s, i) => {
@@ -25,19 +27,16 @@ export default function MintScreen() {
 
   const handleMint = async (idx: number, b: Building) => {
     if (!connected) {
-      Alert.alert(
-        "Wallet required",
-        "Connect a Solana Mobile wallet first to receive the cNFT skin.",
-      );
+      Alert.alert(t("errors.wallet_required"), t("wallet.description"));
       return;
     }
     const result = await mint(idx, b);
     if (result) {
       Alert.alert(
-        "Skin minted!",
+        t("toast.skin_minted"),
         result.onChain
-          ? `cNFT minted on-chain.\n\n${ellipsify(result.mint, 6, 6)}`
-          : `Skin equipped (local). On-chain mint will activate once a Bubblegum tree is configured.`,
+          ? `${t("mint.minted_chain")}\n\n${ellipsify(result.mint, 6, 6)}`
+          : t("mint.minted_local"),
       );
     }
   };
@@ -47,53 +46,39 @@ export default function MintScreen() {
       <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
         <Card>
           <Text className="text-ink text-lg font-semibold mb-1">
-            Cosmetic Skins (cNFT)
+            {t("mint.title")}
           </Text>
-          <Text className="text-ink-dim mb-2">
-            Compressed NFTs you collect for upgraded buildings. Each skin grants
-            a +5–15% production bonus and is stored in your Seed Vault wallet.
-          </Text>
+          <Text className="text-ink-dim mb-2">{t("mint.intro")}</Text>
           <Text className="text-ink-mute text-xs">
-            Mode: {BUBBLEGUM_TREE ? "On-chain (Bubblegum)" : "Local placeholder"}
+            {t("mint.mode_label")}:{" "}
+            {BUBBLEGUM_TREE ? t("mint.mode_onchain") : t("mint.mode_local")}
           </Text>
         </Card>
 
         {eligible.length === 0 ? (
           <Card>
-            <Text className="text-ink-dim">
-              No buildings eligible yet. Upgrade a building to its skin-unlock
-              level (typically L3) to mint a skin.
-            </Text>
+            <Text className="text-ink-dim">{t("mint.no_eligible")}</Text>
           </Card>
         ) : (
           eligible.map(({ idx, b }) => {
             const def = BUILDINGS[b.kind];
+            const name = t(getBuildingName(b.kind));
             return (
               <Card key={idx}>
                 <View className="flex-row items-center mb-3">
                   <Text style={{ fontSize: 32 }}>{def.emoji}</Text>
                   <View className="ml-3 flex-1">
-                    <Text className="text-ink font-semibold">{def.name}</Text>
+                    <Text className="text-ink font-semibold">{name}</Text>
                     <Text className="text-ink-dim text-xs">
-                      Level {b.level}
+                      {t("build_picker.level_label", { level: b.level })}
                       {b.skinMint
-                        ? `  •  Equipped: ${ellipsify(b.skinMint, 4, 4)}`
-                        : "  •  No skin"}
+                        ? `  •  ${t("mint.current_skin", { id: ellipsify(b.skinMint, 4, 4) })}`
+                        : `  •  ${t("mint.no_skin_yet")}`}
                     </Text>
                   </View>
                 </View>
-                <Text className="text-ink-dim mb-3">
-                  Bonus: +{(def.skinBonus * 100).toFixed(0)}% to{" "}
-                  {def.produces ?? "this building's effect"}.
-                </Text>
                 <Button
-                  label={
-                    b.skinMint
-                      ? "Re-mint (replaces current)"
-                      : minting
-                        ? "Minting..."
-                        : "Mint Unique Skin"
-                  }
+                  label={minting ? t("mint.minting") : t("mint.mint_button")}
                   loading={minting}
                   onPress={() => handleMint(idx, b)}
                 />

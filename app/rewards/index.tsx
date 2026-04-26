@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { RefreshControl, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import { ClaimCard } from "@/components/Colony/ClaimCard";
 import { ColonyHeader } from "@/components/Colony/ColonyHeader";
@@ -10,7 +11,7 @@ import { pullColonyFromCloud } from "@/hooks/useCloudSync";
 import { useRewardsStore } from "@/store/rewardsStore";
 import { fmtNum } from "@/lib/format";
 import { toast } from "@/lib/toast";
-import { RESOURCE_COLOR, RESOURCE_EMOJI, RESOURCE_LABEL } from "@/constants/buildings";
+import { RESOURCE_COLOR, RESOURCE_EMOJI } from "@/constants/buildings";
 import type { ResourceKind } from "@/types";
 
 const RESOURCES: ResourceKind[] = ["honey", "energy", "food", "water"];
@@ -20,13 +21,14 @@ export default function RewardsScreen() {
   const totalClaimed = useRewardsStore((s) => s.totalClaimed);
   const history = useRewardsStore((s) => s.history);
   const [refreshing, setRefreshing] = useState(false);
+  const { t } = useTranslation();
 
   const onRefresh = async () => {
     setRefreshing(true);
     const result = await pullColonyFromCloud();
     setRefreshing(false);
-    if (result === "updated") toast.success("Synced from cloud");
-    else if (result === "error") toast.error("Sync failed — try again");
+    if (result === "updated") toast.success(t("toast.synced"));
+    else if (result === "error") toast.error(t("toast.sync_failed"));
     // "current" / "no-cloud" / "disabled" don't need user-facing feedback.
   };
 
@@ -52,7 +54,7 @@ export default function RewardsScreen() {
 
         <Card>
           <Text className="text-ink-mute text-xs mb-3 tracking-widest">
-            TOTAL CLAIMED (ALL TIME)
+            {t("rewards.total_claimed_all_time")}
           </Text>
           <View className="flex-row flex-wrap gap-y-3">
             {RESOURCES.map((k) => (
@@ -63,7 +65,7 @@ export default function RewardsScreen() {
                     {fmtNum(totalClaimed[k])}
                   </Text>
                   <Text className="text-ink-mute text-[10px] uppercase tracking-wider">
-                    {RESOURCE_LABEL[k]}
+                    {t(`resources.${k}`)}
                   </Text>
                 </View>
               </View>
@@ -73,10 +75,10 @@ export default function RewardsScreen() {
 
         <Card>
           <Text className="text-ink-mute text-xs mb-3 tracking-widest">
-            HISTORY ({history.length})
+            {t("rewards.history_title", { count: history.length })}
           </Text>
           {history.length === 0 ? (
-            <Text className="text-ink-dim">No claims yet — your first claim will appear here.</Text>
+            <Text className="text-ink-dim">{t("rewards.history_empty")}</Text>
           ) : (
             history.map((h, i) => (
               <View

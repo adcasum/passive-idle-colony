@@ -122,3 +122,13 @@ export const BUILDINGS: Record<BuildingKind, BuildingDefinition> = {
 export const ALL_BUILDING_KINDS: BuildingKind[] = Object.keys(
   BUILDINGS,
 ) as BuildingKind[];
+
+/** Translation key for a building's display name (e.g. `buildings.bee_hive_name`). */
+export function getBuildingName(kind: BuildingKind): string {
+  return `buildings.${kind}_name`;
+}
+
+/** Translation key for a building's flavor description. */
+export function getBuildingDesc(kind: BuildingKind): string {
+  return `buildings.${kind}_desc`;
+}

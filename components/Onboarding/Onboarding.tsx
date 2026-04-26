@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Dimensions,
   FlatList,
@@ -9,6 +9,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/UI/Button";
 
@@ -20,27 +21,18 @@ interface Slide {
   body: string;
 }
 
-const SLIDES: Slide[] = [
-  {
-    emoji: "🐝",
-    title: "Welcome to your colony",
-    body: "Place buildings on a 3×3 grid. Each one produces honey, energy, food or water — even while the app is closed.",
-  },
-  {
-    emoji: "⏳",
-    title: "Resources accrue offline",
-    body: "Production runs continuously. Resources cap at ~48 hours so you don't lose progress, but check in every 12 hours to claim.",
-  },
-  {
-    emoji: "✨",
-    title: "Mint cosmetic skins",
-    body: "Upgrade a building to unlock a unique cNFT skin. Skins live in your wallet and add a small production bonus.",
-  },
-];
-
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export function Onboarding() {
+  const { t } = useTranslation();
+  const SLIDES: Slide[] = useMemo(
+    () => [
+      { emoji: "🐝", title: t("onboarding.page1_title"), body: t("onboarding.page1_body") },
+      { emoji: "⏳", title: t("onboarding.page2_title"), body: t("onboarding.page2_body") },
+      { emoji: "✨", title: t("onboarding.page3_title"), body: t("onboarding.page3_body") },
+    ],
+    [t],
+  );
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const listRef = useRef<FlatList<Slide>>(null);
@@ -130,10 +122,10 @@ export function Onboarding() {
               />
             ))}
           </View>
-          <Button label={isLast ? "Get started" : "Next"} onPress={next} />
+          <Button label={isLast ? t("onboarding.get_started") : t("onboarding.next")} onPress={next} />
           {!isLast ? (
             <View className="mt-2">
-              <Button label="Skip" variant="ghost" onPress={dismiss} />
+              <Button label={t("onboarding.skip")} variant="ghost" onPress={dismiss} />
             </View>
           ) : null}
         </View>

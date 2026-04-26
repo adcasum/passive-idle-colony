@@ -13,7 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#0B0F1A"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "ai.passive.idle.colony"
@@ -24,7 +26,10 @@
         "backgroundColor": "#0B0F1A"
       },
       "package": "ai.passive.idle.colony",
-      "permissions": ["NOTIFICATIONS", "POST_NOTIFICATIONS"]
+      "permissions": [
+        "NOTIFICATIONS",
+        "POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -46,7 +51,14 @@
     },
     "extra": {
       "rpcUrl": "https://api.devnet.solana.com",
-      "cluster": "devnet"
-    }
+      "cluster": "devnet",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "1f40161c-20ba-42a9-a03d-6c59caa3d61d"
+      }
+    },
+    "owner": "casuad"
   }
 }

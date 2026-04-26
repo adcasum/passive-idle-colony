@@ -21,8 +21,10 @@ module.exports = {
         },
         accent: {
           DEFAULT: "#A78BFA", // Phantom purple
+          deep: "#7C5CF7",
           green: "#34D399",
-          orange: "#F59E0B",
+          warn: "#F59E0B",
+          danger: "#EF4444",
           honey: "#FACC15",
           water: "#60A5FA",
           food: "#84CC16",

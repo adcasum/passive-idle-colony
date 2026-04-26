@@ -7,7 +7,9 @@ import { ColonyHeader } from "@/components/Colony/ColonyHeader";
 import { Grid } from "@/components/Colony/Grid";
 import { Button } from "@/components/UI/Button";
 import { Card } from "@/components/UI/Card";
+import { HoneycombPattern } from "@/components/UI/HoneycombPattern";
 import { useColonyData } from "@/hooks/useColonyData";
+import { useColonyStore } from "@/store/colonyStore";
 import { fmtNum } from "@/lib/format";
 import { RESOURCE_COLOR, RESOURCE_EMOJI, RESOURCE_LABEL } from "@/constants/buildings";
 import type { ResourceKind } from "@/types";
@@ -17,9 +19,12 @@ const RESOURCES: ResourceKind[] = ["honey", "energy", "food", "water"];
 export default function ColonyScreen() {
   const { resources, perHour, pending, storageCap, researchBoost } =
     useColonyData();
+  const slots = useColonyStore((s) => s.slots);
+  const allEmpty = slots.every((s) => s === null);
 
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["bottom"]}>
+      <HoneycombPattern />
       <ColonyHeader
         resources={resources}
         pending={pending.produced}
@@ -60,7 +65,23 @@ export default function ColonyScreen() {
         </Card>
 
         <Card>
-          <Text className="text-ink text-lg font-semibold mb-3">Colony</Text>
+          <View className="flex-row items-center justify-between mb-3">
+            <Text className="text-ink text-lg font-semibold">Colony</Text>
+            <Text className="text-ink-mute text-[10px] tracking-widest">
+              {slots.filter((s) => s !== null).length}/9 BUILT
+            </Text>
+          </View>
+          {allEmpty ? (
+            <View className="mb-3 px-3 py-3 rounded-xl bg-accent/10 border border-accent/30">
+              <Text className="text-accent font-semibold mb-1">
+                🐝 Tap any tile to build your first hive
+              </Text>
+              <Text className="text-ink-dim text-xs">
+                Hives produce honey passively. Add Solar to power them, then a
+                Farm and Water Collector to keep your bees fed.
+              </Text>
+            </View>
+          ) : null}
           <Grid />
           <Text className="text-ink-mute text-xs mt-3">
             Tap empty slot to build • tap building to upgrade or mint skin

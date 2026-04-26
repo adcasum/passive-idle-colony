@@ -70,7 +70,7 @@ export default function LeaderboardScreen() {
     <SafeAreaView className="flex-1 bg-bg" edges={["bottom"]}>
       <ScrollView
         contentContainerStyle={{ padding: 16, gap: 14 }}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#A78BFA" />}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#FFC940" />}
       >
         <Card>
           <Text className="text-ink text-lg font-semibold mb-1">Top Colonies</Text>
@@ -81,7 +81,7 @@ export default function LeaderboardScreen() {
 
         {rows === null ? (
           <View className="items-center py-12">
-            <ActivityIndicator color="#A78BFA" />
+            <ActivityIndicator color="#FFC940" />
           </View>
         ) : error ? (
           <Card>

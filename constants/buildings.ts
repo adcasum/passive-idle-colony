@@ -15,10 +15,10 @@ export const RESOURCE_EMOJI: Record<keyof Resources, string> = {
 };
 
 export const RESOURCE_COLOR: Record<keyof Resources, string> = {
-  honey: "#FACC15",
-  energy: "#F97316",
-  food: "#84CC16",
-  water: "#60A5FA",
+  honey: "#FFC940",
+  energy: "#FFAA3A",
+  food: "#A5E36F",
+  water: "#7DD3FC",
 };
 
 /** Base cap shared by all resources. Storage buildings add to this. */

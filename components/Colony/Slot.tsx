@@ -15,12 +15,12 @@ import type { Slot as SlotType } from "@/types";
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const KIND_GLOW: Record<string, string> = {
-  bee_hive: "#FACC15",
-  solar_panel: "#F97316",
-  small_farm: "#84CC16",
-  water_collector: "#60A5FA",
-  storage: "#A6B0C3",
-  research_lab: "#A78BFA",
+  bee_hive: "#FFC940",
+  solar_panel: "#FFAA3A",
+  small_farm: "#A5E36F",
+  water_collector: "#7DD3FC",
+  storage: "#E2C99A",
+  research_lab: "#FFD580",
 };
 
 interface Props {
@@ -50,7 +50,7 @@ export function Slot({ slot, index, onPress }: Props) {
     transform: [{ scale: scale.value }, { rotate: `${wiggle.value}rad` }],
   }));
 
-  const glow = slot ? KIND_GLOW[slot.kind] ?? "#A78BFA" : null;
+  const glow = slot ? KIND_GLOW[slot.kind] ?? "#FFC940" : null;
   const def = slot ? BUILDINGS[slot.kind] : null;
 
   return (
@@ -71,7 +71,7 @@ export function Slot({ slot, index, onPress }: Props) {
     >
       {slot && glow ? (
         <LinearGradient
-          colors={[`${glow}33`, "#1A2233"]}
+          colors={[`${glow}55`, "#2A1F12"]}
           start={{ x: 0.5, y: 0 }}
           end={{ x: 0.5, y: 1 }}
           style={{
@@ -91,7 +91,7 @@ export function Slot({ slot, index, onPress }: Props) {
           <View className="mt-1 flex-row items-center gap-1 px-2 py-0.5 rounded-full bg-black/30">
             <Text
               style={{
-                color: glow ?? "#F4F6FB",
+                color: glow ?? "#FFF4D6",
                 fontSize: 10,
                 fontWeight: "700",
               }}
@@ -99,7 +99,7 @@ export function Slot({ slot, index, onPress }: Props) {
               L{slot.level}
             </Text>
             {slot.skinMint ? (
-              <Text style={{ color: "#FACC15", fontSize: 10 }}>★</Text>
+              <Text style={{ color: "#FFC940", fontSize: 10 }}>★</Text>
             ) : null}
           </View>
           {def.produces ? (
@@ -114,8 +114,12 @@ export function Slot({ slot, index, onPress }: Props) {
           className="items-center justify-center"
           pointerEvents="none"
         >
-          <Text className="text-ink-mute text-4xl" style={{ opacity: 0.4 }}>
-            ＋
+          <Text style={{ fontSize: 26, opacity: 0.5 }}>⬢</Text>
+          <Text
+            className="text-ink-mute text-2xl mt-0.5"
+            style={{ opacity: 0.7, fontWeight: "600" }}
+          >
+            +
           </Text>
         </View>
       )}

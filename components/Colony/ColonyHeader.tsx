@@ -22,10 +22,10 @@ export function ColonyHeader({ resources, pending, storageCap }: Props) {
         <Text className="text-ink-mute text-[10px]">CAP {storageCap}</Text>
       </View>
       <View className="flex-row flex-wrap gap-2">
-        <ResourceChip kind="honey" value={resources.honey} pending={pending.honey} />
-        <ResourceChip kind="energy" value={resources.energy} pending={pending.energy} />
-        <ResourceChip kind="food" value={resources.food} pending={pending.food} />
-        <ResourceChip kind="water" value={resources.water} pending={pending.water} />
+        <ResourceChip kind="honey" value={resources.honey} pending={pending.honey} cap={storageCap} />
+        <ResourceChip kind="energy" value={resources.energy} pending={pending.energy} cap={storageCap} />
+        <ResourceChip kind="food" value={resources.food} pending={pending.food} cap={storageCap} />
+        <ResourceChip kind="water" value={resources.water} pending={pending.water} cap={storageCap} />
       </View>
     </View>
   );

@@ -39,16 +39,16 @@ export default function RootLayout() {
   }, [account]);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#0B0F1A" }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#1A140A" }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <StatusBar style="light" />
           <Stack
             screenOptions={{
-              headerStyle: { backgroundColor: "#0B0F1A" },
-              headerTintColor: "#F4F6FB",
+              headerStyle: { backgroundColor: "#1A140A" },
+              headerTintColor: "#FFF4D6",
               headerTitleStyle: { fontWeight: "700" },
-              contentStyle: { backgroundColor: "#0B0F1A" },
+              contentStyle: { backgroundColor: "#1A140A" },
             }}
           >
             <Stack.Screen name="index" options={{ headerShown: false }} />

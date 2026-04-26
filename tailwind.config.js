@@ -8,31 +8,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Phantom-inspired dark palette
+        // Warm honey-themed palette. Replaces the cold Phantom-style dark.
+        // Background tones lean toward toasted brown / espresso so honey-gold
+        // accents read as glowing rather than sterile.
         bg: {
-          DEFAULT: "#0B0F1A",
-          elevated: "#121826",
-          card: "#1A2233",
+          DEFAULT: "#1A140A", // toasted espresso base
+          elevated: "#241A0E",
+          card: "#2A1F12", // warm dark card surface
+          tile: "#3A2C1A", // empty slot tint
         },
         ink: {
-          DEFAULT: "#F4F6FB",
-          dim: "#A6B0C3",
-          mute: "#6B7388",
+          DEFAULT: "#FFF4D6", // soft cream
+          dim: "#E2C99A", // muted honey
+          mute: "#9C8868", // dim parchment
         },
         accent: {
-          DEFAULT: "#A78BFA", // Phantom purple
-          deep: "#7C5CF7",
-          green: "#34D399",
-          warn: "#F59E0B",
-          danger: "#EF4444",
-          honey: "#FACC15",
-          water: "#60A5FA",
-          food: "#84CC16",
-          energy: "#F97316",
+          DEFAULT: "#FFC940", // golden honey (primary)
+          deep: "#E0A810", // pressed / darker
+          green: "#7BD96A", // food
+          warn: "#FFB445",
+          danger: "#FF6F61",
+          honey: "#FFC940",
+          water: "#7DD3FC",
+          food: "#A5E36F",
+          energy: "#FFAA3A",
         },
         border: {
-          DEFAULT: "#2A3346",
-          strong: "#3A445A",
+          DEFAULT: "#3D2C18",
+          strong: "#5A4220",
         },
       },
       fontFamily: {

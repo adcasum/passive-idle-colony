@@ -10,6 +10,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { useWalletStore } from "@/store/walletStore";
 import { ensureNotificationPermissions } from "@/lib/notifications";
+import { setAnalyticsWallet, track } from "@/lib/analytics";
+import { useCloudSync } from "@/hooks/useCloudSync";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +21,21 @@ const queryClient = new QueryClient({
 
 export default function RootLayout() {
   const hydrate = useWalletStore((s) => s.hydrate);
+  const account = useWalletStore((s) => s.selectedAccount);
+
+  useCloudSync();
 
   useEffect(() => {
     hydrate().catch(() => undefined);
     ensureNotificationPermissions().catch(() => undefined);
+    track("app_open");
   }, [hydrate]);
+
+  useEffect(() => {
+    const addr = account?.publicKey.toBase58() ?? null;
+    setAnalyticsWallet(addr);
+    if (addr) track("wallet_connect", { address: addr });
+  }, [account]);
 
   return (
     <GestureHandlerRootView style={{ flex: 1, backgroundColor: "#0B0F1A" }}>
@@ -41,6 +53,7 @@ export default function RootLayout() {
             <Stack.Screen name="index" options={{ headerShown: false }} />
             <Stack.Screen name="colony/index" options={{ title: "Colony" }} />
             <Stack.Screen name="rewards/index" options={{ title: "Rewards" }} />
+            <Stack.Screen name="leaderboard/index" options={{ title: "Leaderboard" }} />
             <Stack.Screen name="mint/index" options={{ title: "Mint Skin" }} />
             <Stack.Screen name="profile/index" options={{ title: "Profile" }} />
           </Stack>

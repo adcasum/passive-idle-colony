@@ -63,10 +63,17 @@ export default function Home() {
           </View>
         </Step>
 
-        <View className="items-center mt-2">
-          <Link href="/profile" asChild>
-            <Button label="Profile" variant="ghost" />
-          </Link>
+        <View className="flex-row gap-3 mt-2">
+          <View className="flex-1">
+            <Link href="/leaderboard" asChild>
+              <Button label="Leaderboard" variant="ghost" />
+            </Link>
+          </View>
+          <View className="flex-1">
+            <Link href="/profile" asChild>
+              <Button label="Profile" variant="ghost" />
+            </Link>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

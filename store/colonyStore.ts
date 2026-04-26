@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 
 import { BUILDINGS } from "@/constants/buildings";
+import { track } from "@/lib/analytics";
 import {
   applyClaim,
   canAfford,
@@ -85,16 +86,19 @@ export const useColonyStore = create<ColonyStore>()(
           slots,
           resources: subResources(state.resources, cost),
         });
+        track("build", { kind, slot_index: slotIndex });
         return true;
       },
 
       demolish: (slotIndex) => {
         const state = get();
         if (slotIndex < 0 || slotIndex >= state.slots.length) return;
-        if (state.slots[slotIndex] === null) return;
+        const b = state.slots[slotIndex];
+        if (b === null) return;
         const slots = state.slots.slice();
         slots[slotIndex] = null;
         set({ slots });
+        track("demolish", { kind: b.kind, level: b.level });
       },
 
       upgrade: (slotIndex) => {
@@ -111,6 +115,7 @@ export const useColonyStore = create<ColonyStore>()(
           slots,
           resources: subResources(state.resources, cost),
         });
+        track("upgrade", { kind: b.kind, new_level: b.level + 1 });
         return true;
       },
 
@@ -131,6 +136,13 @@ export const useColonyStore = create<ColonyStore>()(
           resources: next.resources,
           lastClaimAt: next.lastClaimAt,
         });
+        track("claim", {
+          hours: result.hours,
+          honey: result.cappedAt.honey,
+          energy: result.cappedAt.energy,
+          food: result.cappedAt.food,
+          water: result.cappedAt.water,
+        });
         return result;
       },
 
@@ -140,7 +152,10 @@ export const useColonyStore = create<ColonyStore>()(
           now,
         ),
 
-      reset: () => set({ ...initialState, hydrated: true }),
+      reset: () => {
+        set({ ...initialState, hydrated: true });
+        track("colony_reset");
+      },
     }),
     {
       name: "passive-idle-colony:v1",

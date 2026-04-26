@@ -16,6 +16,7 @@ import {
   upgradeCost,
 } from "@/lib/colonyMath";
 import { haptic } from "@/lib/haptics";
+import { toast } from "@/lib/toast";
 import { useColonyStore } from "@/store/colonyStore";
 import type { Building, BuildingKind, ResourceKind } from "@/types";
 
@@ -32,12 +33,26 @@ export function BuildingCard({ visible, slotIndex, building, onClose }: Props) {
     <Modal
       visible={visible}
       transparent
-      animationType="fade"
+      animationType="slide"
       onRequestClose={onClose}
     >
+      {/* Backdrop fades in via a separate fade Modal-less view; the content
+          slides up via the Modal's own slide animation. The Pressable on the
+          backdrop only catches taps that aren't on the sheet itself. */}
       <Pressable className="flex-1 bg-black/70" onPress={onClose}>
         <Pressable className="mt-auto" onPress={(e) => e.stopPropagation()}>
-          <View className="rounded-t-3xl bg-bg-elevated p-5 pb-8 border-t border-border">
+          <View className="rounded-t-3xl bg-bg-elevated px-5 pt-3 pb-8 border-t border-border-strong">
+            {/* Drag handle */}
+            <View className="items-center mb-3">
+              <View
+                style={{
+                  width: 44,
+                  height: 4,
+                  borderRadius: 2,
+                  backgroundColor: "#5A4220",
+                }}
+              />
+            </View>
             {building ? (
               <ExistingBuilding
                 building={building}
@@ -147,9 +162,11 @@ function BuildPicker({
                 onPress={() => {
                   if (place(slotIndex, k)) {
                     haptic.build();
+                    toast.success(`Built ${def.name}`);
                     onClose();
                   } else {
                     haptic.error();
+                    toast.error("Not enough resources");
                   }
                 }}
               />
@@ -240,9 +257,11 @@ function ExistingBuilding({
               onPress={() => {
                 if (upgrade(slotIndex)) {
                   haptic.upgrade();
+                  toast.success(`${def.name} → L${building.level + 1}`);
                   onClose();
                 } else {
                   haptic.error();
+                  toast.error("Not enough resources");
                 }
               }}
             />
@@ -267,6 +286,7 @@ function ExistingBuilding({
         onPress={() => {
           haptic.demolish();
           demolish(slotIndex);
+          toast.info(`${def.name} demolished`);
           onClose();
         }}
       />

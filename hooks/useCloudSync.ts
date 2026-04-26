@@ -17,6 +17,53 @@ interface CloudColony {
 }
 
 /**
+ * One-shot manual pull from the cloud. Used by pull-to-refresh on the
+ * Rewards screen so users can force a sync after claiming on another
+ * device without waiting for the next mount.
+ *
+ * Returns "updated" if cloud state was strictly newer and was applied,
+ * "current" if local was already up-to-date, "no-cloud" if there's no
+ * cloud row yet, "disabled" if Supabase isn't configured, or "error"
+ * on any failure.
+ */
+export async function pullColonyFromCloud(): Promise<
+  "updated" | "current" | "no-cloud" | "disabled" | "error"
+> {
+  if (!supabaseEnabled()) return "disabled";
+  const account = useWalletStore.getState().selectedAccount;
+  const walletAddress = account?.publicKey.toBase58() ?? null;
+  if (!walletAddress) return "disabled";
+  try {
+    const sb = getSupabase(walletAddress);
+    if (!sb) return "disabled";
+    const { data, error } = await sb
+      .from("colonies")
+      .select("*")
+      .eq("wallet_address", walletAddress)
+      .maybeSingle();
+    if (error) return "error";
+    if (!data) return "no-cloud";
+    const cloud = data as CloudColony;
+    const colony = useColonyStore.getState();
+    if ((cloud.last_claim_at ?? 0) > colony.lastClaimAt) {
+      useColonyStore.setState({
+        slots: cloud.slots as never,
+        resources: cloud.resources as never,
+        lastClaimAt: cloud.last_claim_at,
+        hasPersistedState: true,
+      });
+      useRewardsStore.setState({
+        totalClaimed: cloud.total_claimed as never,
+      });
+      return "updated";
+    }
+    return "current";
+  } catch {
+    return "error";
+  }
+}
+
+/**
  * Bidirectional cloud sync (Phase A — wallet-claimed, no signature).
  *
  * Sequencing invariant: for any wallet, the very first PUSH must not run

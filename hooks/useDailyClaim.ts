@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { CLAIM_COOLDOWN_HOURS } from "@/constants/buildings";
+import { CLAIM_COOLDOWN_HOURS, RESOURCE_EMOJI } from "@/constants/buildings";
+import { fmtNum } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
 import { scheduleClaimReadyNotification } from "@/lib/notifications";
+import { toast } from "@/lib/toast";
+import type { ResourceKind } from "@/types";
 import { useColonyStore } from "@/store/colonyStore";
 import { useRewardsStore } from "@/store/rewardsStore";
 
@@ -38,11 +41,19 @@ export function useDailyClaim() {
   const doClaim = async () => {
     if (!canClaim) {
       haptic.error();
+      toast.error("Claim still on cooldown");
       return null;
     }
     const result = claim();
     recordClaim(result);
     haptic.claim();
+    // Surface the actual amounts that were just credited so the UI feels alive.
+    const parts = (Object.keys(result.produced) as ResourceKind[])
+      .filter((k) => result.produced[k] > 0)
+      .map((k) => `${RESOURCE_EMOJI[k]}+${fmtNum(result.produced[k])}`);
+    toast.success(
+      parts.length ? `Claimed ${parts.join(" ")}` : "Claimed (nothing yet)",
+    );
     // Schedule the next reminder.
     scheduleClaimReadyNotification(CLAIM_COOLDOWN_HOURS).catch(() => undefined);
     return result;

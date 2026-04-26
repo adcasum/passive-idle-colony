@@ -13,6 +13,7 @@ import { ensureNotificationPermissions } from "@/lib/notifications";
 import { setAnalyticsWallet, track } from "@/lib/analytics";
 import { useCloudSync } from "@/hooks/useCloudSync";
 import { Onboarding } from "@/components/Onboarding/Onboarding";
+import { ToastHost } from "@/components/UI/ToastHost";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -59,6 +60,7 @@ export default function RootLayout() {
             <Stack.Screen name="profile/index" options={{ title: "Profile" }} />
           </Stack>
           <Onboarding />
+          <ToastHost />
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

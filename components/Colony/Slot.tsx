@@ -9,7 +9,15 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-import { BUILDINGS, RESOURCE_COLOR } from "@/constants/buildings";
+import {
+  BUILDINGS,
+  RESOURCE_COLOR,
+  RESOURCE_EMOJI,
+  RESOURCE_LABEL,
+} from "@/constants/buildings";
+import { fmtNum } from "@/lib/format";
+import { buildingProductionPerHour, upgradeCost } from "@/lib/colonyMath";
+import { toast } from "@/lib/toast";
 import type { Slot as SlotType } from "@/types";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -53,10 +61,44 @@ export function Slot({ slot, index, onPress }: Props) {
   const glow = slot ? KIND_GLOW[slot.kind] ?? "#FFC940" : null;
   const def = slot ? BUILDINGS[slot.kind] : null;
 
+  // Long-press preview: surface the building's stats without forcing the user
+  // through the full bottom-sheet (and without triggering build/upgrade).
+  const handleLongPress = () => {
+    if (!slot || !def) {
+      toast.info("Empty slot — tap to build");
+      return;
+    }
+    const prod = buildingProductionPerHour(slot);
+    const isMax = slot.level >= def.maxLevel;
+    const next = isMax ? null : upgradeCost(slot.kind, slot.level);
+    const prodLabel = prod.resource
+      ? `${RESOURCE_EMOJI[prod.resource]} +${fmtNum(prod.amount)} ${RESOURCE_LABEL[prod.resource]}/hr`
+      : def.researchBoostPerLevel
+        ? `+${(def.researchBoostPerLevel * slot.level * 100).toFixed(0)}% global`
+        : def.storageBonusPerLevel
+          ? `+${def.storageBonusPerLevel * slot.level} cap`
+          : "";
+    const costLabel = next
+      ? Object.entries(next)
+          .filter(([, v]) => (v ?? 0) > 0)
+          .map(
+            ([k, v]) =>
+              `${RESOURCE_EMOJI[k as keyof typeof RESOURCE_EMOJI]}${fmtNum(v ?? 0)}`,
+          )
+          .join(" ")
+      : "MAX";
+    toast.info(
+      `${def.name} L${slot.level}  •  ${prodLabel}  •  next ${costLabel}`,
+      3500,
+    );
+  };
+
   return (
     <AnimatedPressable
       style={animStyle}
       onPress={() => onPress(index)}
+      onLongPress={handleLongPress}
+      delayLongPress={350}
       onPressIn={() => {
         scale.value = withSpring(0.93, { damping: 14, stiffness: 220 });
       }}

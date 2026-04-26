@@ -1,32 +1,52 @@
 {
   "expo": {
-    "name": "solana-mobile-expo-template",
-    "slug": "solana-mobile-expo-template",
-    "version": "1.0.0",
+    "name": "Passive Idle Colony",
+    "slug": "passive-idle-colony",
+    "scheme": "passiveidlecolony",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0B0F1A"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.solana.mobile.expo.template"
+      "supportsTablet": false,
+      "bundleIdentifier": "ai.passive.idle.colony"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#0B0F1A"
       },
-      "package": "com.solana.mobile.expo.template"
+      "package": "ai.passive.idle.colony",
+      "permissions": ["NOTIFICATIONS", "POST_NOTIFICATIONS"]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-notifications",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0B0F1A",
+          "image": "./assets/splash.png",
+          "imageWidth": 200
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "rpcUrl": "https://api.devnet.solana.com",
+      "cluster": "devnet"
     }
   }
 }

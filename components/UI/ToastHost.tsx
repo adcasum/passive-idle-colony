@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, {
@@ -45,6 +45,14 @@ function ToastItem({
   const opacity = useSharedValue(0);
   const translateY = useSharedValue(-12);
 
+  // Hold onDone in a ref so we can call the latest version from the
+  // animation completion without making it a useEffect dependency. If we
+  // listed onDone in the deps array, every parent re-render (e.g. when a
+  // new toast is appended) would re-create the inline arrow at the call
+  // site, restart this effect, and reset the dismiss timer indefinitely.
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
+
   useEffect(() => {
     const dur = ev.durationMs ?? (ev.kind === "error" ? 3000 : 2200);
     // Reanimated cancels the previous animation when a shared value is
@@ -59,7 +67,7 @@ function ToastItem({
           0,
           { duration: 220, easing: Easing.in(Easing.quad) },
           (finished) => {
-            if (finished) runOnJS(onDone)();
+            if (finished) runOnJS(() => onDoneRef.current())();
           },
         ),
       ),
@@ -71,7 +79,10 @@ function ToastItem({
         withTiming(-12, { duration: 220, easing: Easing.in(Easing.quad) }),
       ),
     );
-  }, [ev, opacity, translateY, onDone]);
+    // Intentionally only depends on ev.id — not onDone — so a parent
+    // re-render appending another toast does not restart this animation.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ev.id]);
 
   const animStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -129,6 +140,12 @@ export function ToastHost() {
     });
   }, []);
 
+  // Stable removeToast — defensive even though ToastItem internally pins
+  // onDone to a ref, so animations would not restart anyway.
+  const removeToast = useCallback((id: number) => {
+    setItems((prev) => prev.filter((p) => p.ev.id !== id));
+  }, []);
+
   if (items.length === 0) return null;
 
   return (
@@ -141,9 +158,7 @@ export function ToastHost() {
           key={it.ev.id}
           ev={it.ev}
           topOffset={insets.top + 8 + i * 64}
-          onDone={() =>
-            setItems((prev) => prev.filter((p) => p.ev.id !== it.ev.id))
-          }
+          onDone={() => removeToast(it.ev.id)}
         />
       ))}
     </View>

@@ -65,7 +65,7 @@ export const BUILDINGS: Record<BuildingKind, BuildingDefinition> = {
     emoji: "🌾",
     description: "Hand-tended crops feed the colony.",
     produces: "food",
-    baseProductionPerHour: 7,
+    baseProductionPerHour: 8,
     levelMultiplier: 1.4,
     baseCost: { water: 6, energy: 4 },
     costMultiplier: 1.7,
@@ -79,7 +79,7 @@ export const BUILDINGS: Record<BuildingKind, BuildingDefinition> = {
     emoji: "💧",
     description: "Pulls fresh water from the air.",
     produces: "water",
-    baseProductionPerHour: 7,
+    baseProductionPerHour: 12,
     levelMultiplier: 1.4,
     baseCost: { energy: 6, food: 4 },
     costMultiplier: 1.7,
@@ -110,7 +110,7 @@ export const BUILDINGS: Record<BuildingKind, BuildingDefinition> = {
     produces: null,
     baseProductionPerHour: 0,
     levelMultiplier: 1,
-    researchBoostPerLevel: 0.1, // +10% per level
+    researchBoostPerLevel: 0.05, // +5% per level
     baseCost: { honey: 12, energy: 12, food: 8, water: 8 },
     costMultiplier: 1.9,
     maxLevel: 5,

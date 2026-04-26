@@ -1,17 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Text, View } from "react-native";
 import Animated, {
-  useAnimatedProps,
+  useAnimatedStyle,
   useSharedValue,
-  withTiming,
-  Easing,
+  withSpring,
 } from "react-native-reanimated";
 
 import { fmtNum } from "@/lib/format";
 import { RESOURCE_COLOR, RESOURCE_EMOJI, RESOURCE_LABEL } from "@/constants/buildings";
 import type { ResourceKind } from "@/types";
-
-const AnimatedText = Animated.createAnimatedComponent(Text);
 
 interface Props {
   kind: ResourceKind;
@@ -23,8 +20,10 @@ interface Props {
 }
 
 /**
- * Smoothly tweens the displayed amount whenever `value + pending` changes,
- * giving idle resources a satisfying "ticking up" feel.
+ * Resource counter with a subtle pulse animation each time the value changes.
+ * Text content updates via React state (driven by a parent tick) — animating
+ * the actual text content of a <Text> component is not supported in RN 0.76 +
+ * Reanimated 3, so we keep the visible value plain and animate scale instead.
  */
 export function AnimatedResource({
   kind,
@@ -35,18 +34,23 @@ export function AnimatedResource({
   small = false,
 }: Props) {
   const target = value + pending;
-  const animated = useSharedValue(target);
+  const displayed = fmtNum(target);
+  const scale = useSharedValue(1);
+  const lastDisplayed = useRef(displayed);
 
+  // Pulse only when the formatted number actually changes (avoids running on
+  // every 1s tick when nothing visible changed).
   useEffect(() => {
-    animated.value = withTiming(target, {
-      duration: 700,
-      easing: Easing.out(Easing.quad),
-    });
-  }, [animated, target]);
+    if (lastDisplayed.current !== displayed) {
+      lastDisplayed.current = displayed;
+      scale.value = 1.06;
+      scale.value = withSpring(1, { damping: 14, stiffness: 220 });
+    }
+  }, [displayed, scale]);
 
-  const animatedProps = useAnimatedProps(() => {
-    return { text: fmtNum(animated.value) } as unknown as object;
-  });
+  const animStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
 
   return (
     <View className="flex-row items-center gap-2">
@@ -61,16 +65,18 @@ export function AnimatedResource({
           </Text>
         ) : null}
         <View className="flex-row items-baseline gap-1">
-          <AnimatedText
-            animatedProps={animatedProps}
-            style={{
-              color: RESOURCE_COLOR[kind],
-              fontSize: small ? 14 : 18,
-              fontWeight: "700",
-            }}
+          <Animated.Text
+            style={[
+              {
+                color: RESOURCE_COLOR[kind],
+                fontSize: small ? 14 : 18,
+                fontWeight: "700",
+              },
+              animStyle,
+            ]}
           >
-            {fmtNum(target)}
-          </AnimatedText>
+            {displayed}
+          </Animated.Text>
           {cap !== undefined ? (
             <Text className="text-ink-mute" style={{ fontSize: small ? 10 : 12 }}>
               / {fmtNum(cap)}

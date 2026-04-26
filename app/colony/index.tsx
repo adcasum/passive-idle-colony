@@ -2,14 +2,14 @@ import { ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 
-import { AnimatedResource } from "@/components/UI/AnimatedResource";
+import { ClaimCard } from "@/components/Colony/ClaimCard";
+import { ColonyHeader } from "@/components/Colony/ColonyHeader";
+import { Grid } from "@/components/Colony/Grid";
 import { Button } from "@/components/UI/Button";
 import { Card } from "@/components/UI/Card";
-import { Grid } from "@/components/Colony/Grid";
 import { useColonyData } from "@/hooks/useColonyData";
-import { useDailyClaim } from "@/hooks/useDailyClaim";
 import { fmtNum } from "@/lib/format";
-import { RESOURCE_EMOJI } from "@/constants/buildings";
+import { RESOURCE_COLOR, RESOURCE_EMOJI, RESOURCE_LABEL } from "@/constants/buildings";
 import type { ResourceKind } from "@/types";
 
 const RESOURCES: ResourceKind[] = ["honey", "energy", "food", "water"];
@@ -17,47 +17,43 @@ const RESOURCES: ResourceKind[] = ["honey", "energy", "food", "water"];
 export default function ColonyScreen() {
   const { resources, perHour, pending, storageCap, researchBoost } =
     useColonyData();
-  const { canClaim, remainingLabel, doClaim, cooldownHours } = useDailyClaim();
 
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["bottom"]}>
-      <ScrollView contentContainerStyle={{ padding: 16, gap: 16 }}>
-        <Card>
-          <Text className="text-ink-mute text-xs mb-3 tracking-widest">
-            RESOURCES
-          </Text>
-          <View className="flex-row flex-wrap gap-y-3">
-            {RESOURCES.map((k) => (
-              <View key={k} className="w-1/2">
-                <AnimatedResource
-                  kind={k}
-                  value={resources[k]}
-                  pending={pending.produced[k]}
-                  cap={storageCap}
-                />
-              </View>
-            ))}
-          </View>
-        </Card>
+      <ColonyHeader
+        resources={resources}
+        pending={pending.produced}
+        storageCap={storageCap}
+      />
+
+      <ScrollView contentContainerStyle={{ padding: 16, gap: 14 }}>
+        <ClaimCard />
 
         <Card>
-          <View className="flex-row justify-between mb-2">
+          <View className="flex-row justify-between items-center mb-3">
             <Text className="text-ink-mute text-xs tracking-widest">
-              PRODUCTION
+              PRODUCTION / HR
             </Text>
             {researchBoost > 0 ? (
-              <Text className="text-accent text-xs">
-                +{(researchBoost * 100).toFixed(0)}% research bonus
-              </Text>
+              <View className="px-2 py-0.5 rounded-full bg-accent/20 border border-accent/40">
+                <Text className="text-accent text-[10px] font-semibold">
+                  +{(researchBoost * 100).toFixed(0)}% research
+                </Text>
+              </View>
             ) : null}
           </View>
           <View className="flex-row flex-wrap gap-y-2">
             {RESOURCES.map((k) => (
               <View key={k} className="w-1/2 flex-row items-center gap-2">
-                <Text>{RESOURCE_EMOJI[k]}</Text>
-                <Text className="text-ink">
-                  {fmtNum(perHour[k])} <Text className="text-ink-dim">/hr</Text>
-                </Text>
+                <Text style={{ fontSize: 18 }}>{RESOURCE_EMOJI[k]}</Text>
+                <View>
+                  <Text style={{ color: RESOURCE_COLOR[k], fontWeight: "700" }}>
+                    +{fmtNum(perHour[k])}
+                  </Text>
+                  <Text className="text-ink-mute text-[10px] uppercase tracking-wider">
+                    {RESOURCE_LABEL[k]}/hr
+                  </Text>
+                </View>
               </View>
             ))}
           </View>
@@ -71,25 +67,9 @@ export default function ColonyScreen() {
           </Text>
         </Card>
 
-        <Card>
-          <Text className="text-ink-mute text-xs mb-2 tracking-widest">
-            DAILY CLAIM
-          </Text>
-          <Text className="text-ink mb-3">
-            Pending: {fmtNum(pending.hours)} hrs of accumulation
-          </Text>
-          <Button
-            label={canClaim ? "Claim Rewards" : `Cooldown ${remainingLabel}`}
-            disabled={!canClaim}
-            onPress={() => doClaim()}
-          />
-          <Text className="text-ink-mute text-xs mt-2">
-            Claim every {cooldownHours}h. Max accumulation 48h.
-          </Text>
-          <Link href="/rewards" asChild>
-            <Button label="View claim history" variant="ghost" />
-          </Link>
-        </Card>
+        <Link href="/rewards" asChild>
+          <Button label="View claim history" variant="ghost" />
+        </Link>
       </ScrollView>
     </SafeAreaView>
   );

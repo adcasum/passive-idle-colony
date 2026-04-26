@@ -45,14 +45,29 @@ create index if not exists events_event_idx on public.events (event, created_at 
 create index if not exists events_wallet_idx on public.events (wallet_address, created_at desc);
 
 -- 4. Leaderboard view: rough "colony power" ranking based on claimed honey.
-create or replace view public.leaderboard as
+--
+-- security_invoker=on makes the view enforce the *querying* user's RLS policies
+-- on `colonies`, not the view creator's. Without this Postgres treats views as
+-- SECURITY DEFINER by default, which Supabase's lint flags as critical.
+--
+-- slot_count counts only non-null slot entries: the colonies.slots column always
+-- holds a 9-element array with `null` for empty slots, so a naive
+-- jsonb_array_length would always return 9.
+drop view if exists public.leaderboard;
+create view public.leaderboard
+  with (security_invoker = on)
+  as
 select
   c.wallet_address,
   coalesce((c.total_claimed->>'honey')::numeric, 0) as honey_total,
   coalesce((c.total_claimed->>'energy')::numeric, 0) as energy_total,
   coalesce((c.total_claimed->>'food')::numeric, 0) as food_total,
   coalesce((c.total_claimed->>'water')::numeric, 0) as water_total,
-  jsonb_array_length(c.slots) as slot_count,
+  (
+    select count(*)::int
+    from jsonb_array_elements(c.slots) elem
+    where elem is not null and elem <> 'null'::jsonb
+  ) as slot_count,
   c.updated_at
 from public.colonies c
 order by honey_total desc;

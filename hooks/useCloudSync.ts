@@ -30,6 +30,7 @@ export function useCloudSync() {
   const account = useWalletStore((s) => s.selectedAccount);
   const walletAddress = account?.publicKey.toBase58() ?? null;
 
+  // PUSH effect needs to subscribe to these so it re-fires on every change.
   const slots = useColonyStore((s) => s.slots);
   const resources = useColonyStore((s) => s.resources);
   const lastClaimAt = useColonyStore((s) => s.lastClaimAt);
@@ -39,7 +40,12 @@ export function useCloudSync() {
   const lastPushRef = useRef<number>(0);
   const pulledForRef = useRef<string | null>(null);
 
-  // PULL on wallet change
+  // PULL on wallet change.
+  //
+  // Depends ONLY on walletAddress so the effect doesn't re-run (and cancel its
+  // own in-flight fetch) when zustand/persist hydrates colonyStore/rewardsStore
+  // from AsyncStorage shortly after mount. We read the latest local state
+  // directly from getState() at the moment we actually need it.
   useEffect(() => {
     if (!supabaseEnabled() || !walletAddress) return;
     if (pulledForRef.current === walletAddress) return;
@@ -59,8 +65,9 @@ export function useCloudSync() {
 
         if (data) {
           const cloud = data as CloudColony;
+          const localLastClaimAt = useColonyStore.getState().lastClaimAt;
           // Pull cloud → local if cloud last_claim_at > local lastClaimAt.
-          if ((cloud.last_claim_at ?? 0) > lastClaimAt) {
+          if ((cloud.last_claim_at ?? 0) > localLastClaimAt) {
             useColonyStore.setState({
               slots: cloud.slots as never,
               resources: cloud.resources as never,
@@ -71,13 +78,15 @@ export function useCloudSync() {
             });
           }
         } else {
-          // No cloud row — create one with local state.
+          // No cloud row — create one with current local state.
+          const colonyState = useColonyStore.getState();
+          const rewardsState = useRewardsStore.getState();
           await sb.from("colonies").insert({
             wallet_address: walletAddress,
-            slots,
-            resources,
-            last_claim_at: lastClaimAt,
-            total_claimed: totalClaimed,
+            slots: colonyState.slots,
+            resources: colonyState.resources,
+            last_claim_at: colonyState.lastClaimAt,
+            total_claimed: rewardsState.totalClaimed,
           });
         }
       } catch {
@@ -87,7 +96,7 @@ export function useCloudSync() {
     return () => {
       cancelled = true;
     };
-  }, [walletAddress, lastClaimAt, slots, resources, totalClaimed]);
+  }, [walletAddress]);
 
   // PUSH (debounced) on any local change while connected
   useEffect(() => {

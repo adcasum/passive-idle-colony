@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
+  withSequence,
   withTiming,
 } from "react-native-reanimated";
 
@@ -46,27 +47,29 @@ function ToastItem({
 
   useEffect(() => {
     const dur = ev.durationMs ?? (ev.kind === "error" ? 3000 : 2200);
-    opacity.value = withTiming(1, {
-      duration: 180,
-      easing: Easing.out(Easing.quad),
-    });
-    translateY.value = withTiming(0, {
-      duration: 220,
-      easing: Easing.out(Easing.quad),
-    });
-    opacity.value = withDelay(
-      dur,
-      withTiming(
-        0,
-        { duration: 220, easing: Easing.in(Easing.quad) },
-        (finished) => {
-          if (finished) runOnJS(onDone)();
-        },
+    // Reanimated cancels the previous animation when a shared value is
+    // reassigned, so the fade-in and the delayed fade-out must be chained
+    // through withSequence — otherwise the second assignment in the same
+    // tick wipes out the fade-in and the toast stays invisible.
+    opacity.value = withSequence(
+      withTiming(1, { duration: 180, easing: Easing.out(Easing.quad) }),
+      withDelay(
+        dur,
+        withTiming(
+          0,
+          { duration: 220, easing: Easing.in(Easing.quad) },
+          (finished) => {
+            if (finished) runOnJS(onDone)();
+          },
+        ),
       ),
     );
-    translateY.value = withDelay(
-      dur,
-      withTiming(-12, { duration: 220, easing: Easing.in(Easing.quad) }),
+    translateY.value = withSequence(
+      withTiming(0, { duration: 220, easing: Easing.out(Easing.quad) }),
+      withDelay(
+        dur,
+        withTiming(-12, { duration: 220, easing: Easing.in(Easing.quad) }),
+      ),
     );
   }, [ev, opacity, translateY, onDone]);
 

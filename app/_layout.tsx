@@ -12,6 +12,7 @@ import { useWalletStore } from "@/store/walletStore";
 import { ensureNotificationPermissions } from "@/lib/notifications";
 import { setAnalyticsWallet, track } from "@/lib/analytics";
 import { useCloudSync } from "@/hooks/useCloudSync";
+import { Onboarding } from "@/components/Onboarding/Onboarding";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -57,6 +58,7 @@ export default function RootLayout() {
             <Stack.Screen name="mint/index" options={{ title: "Mint Skin" }} />
             <Stack.Screen name="profile/index" options={{ title: "Profile" }} />
           </Stack>
+          <Onboarding />
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

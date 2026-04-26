@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { CLAIM_COOLDOWN_HOURS } from "@/constants/buildings";
+import { haptic } from "@/lib/haptics";
 import { scheduleClaimReadyNotification } from "@/lib/notifications";
 import { useColonyStore } from "@/store/colonyStore";
 import { useRewardsStore } from "@/store/rewardsStore";
@@ -35,9 +36,13 @@ export function useDailyClaim() {
   }, [canClaim, remainingMs]);
 
   const doClaim = async () => {
-    if (!canClaim) return null;
+    if (!canClaim) {
+      haptic.error();
+      return null;
+    }
     const result = claim();
     recordClaim(result);
+    haptic.claim();
     // Schedule the next reminder.
     scheduleClaimReadyNotification(CLAIM_COOLDOWN_HOURS).catch(() => undefined);
     return result;

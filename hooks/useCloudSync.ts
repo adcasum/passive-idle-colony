@@ -46,8 +46,16 @@ export function useCloudSync() {
   // own in-flight fetch) when zustand/persist hydrates colonyStore/rewardsStore
   // from AsyncStorage shortly after mount. We read the latest local state
   // directly from getState() at the moment we actually need it.
+  //
+  // We must reset `pulledForRef` on disconnect: otherwise reconnecting with
+  // the *same* wallet skips the cloud→local pull, while the PUSH effect still
+  // fires after the debounce and would clobber any newer cloud state with
+  // stale local state.
   useEffect(() => {
-    if (!supabaseEnabled() || !walletAddress) return;
+    if (!supabaseEnabled() || !walletAddress) {
+      pulledForRef.current = null;
+      return;
+    }
     if (pulledForRef.current === walletAddress) return;
     pulledForRef.current = walletAddress;
 

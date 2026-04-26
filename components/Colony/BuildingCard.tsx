@@ -15,6 +15,7 @@ import {
   canAfford,
   upgradeCost,
 } from "@/lib/colonyMath";
+import { haptic } from "@/lib/haptics";
 import { useColonyStore } from "@/store/colonyStore";
 import type { Building, BuildingKind, ResourceKind } from "@/types";
 
@@ -144,7 +145,12 @@ function BuildPicker({
                 variant={ok ? "primary" : "secondary"}
                 disabled={!ok}
                 onPress={() => {
-                  if (place(slotIndex, k)) onClose();
+                  if (place(slotIndex, k)) {
+                    haptic.build();
+                    onClose();
+                  } else {
+                    haptic.error();
+                  }
                 }}
               />
             </Card>
@@ -232,7 +238,12 @@ function ExistingBuilding({
               label={ok ? `Upgrade to ${building.level + 1}` : "Need resources"}
               disabled={!ok}
               onPress={() => {
-                if (upgrade(slotIndex)) onClose();
+                if (upgrade(slotIndex)) {
+                  haptic.upgrade();
+                  onClose();
+                } else {
+                  haptic.error();
+                }
               }}
             />
           </View>
@@ -254,6 +265,7 @@ function ExistingBuilding({
         variant="ghost"
         label="Demolish"
         onPress={() => {
+          haptic.demolish();
           demolish(slotIndex);
           onClose();
         }}

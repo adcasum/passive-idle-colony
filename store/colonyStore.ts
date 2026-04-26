@@ -23,6 +23,13 @@ import type {
 
 interface ColonyStore extends ColonyState {
   hydrated: boolean;
+  /**
+   * True if zustand/persist found a saved colony in AsyncStorage at startup.
+   * Stays false after a fresh install / wipe even once hydration completes,
+   * which lets useCloudSync know it's safe to restore from the cloud without
+   * losing real local progress.
+   */
+  hasPersistedState: boolean;
   /** Place a new level-1 building into a slot if cost can be afforded. */
   placeBuilding: (slotIndex: number, kind: BuildingKind) => boolean;
   /** Remove a building from a slot (no refund in MVP). */
@@ -59,6 +66,7 @@ export const useColonyStore = create<ColonyStore>()(
     (set, get) => ({
       ...initialState,
       hydrated: false,
+      hasPersistedState: false,
 
       placeBuilding: (slotIndex, kind) => {
         const state = get();
@@ -153,7 +161,7 @@ export const useColonyStore = create<ColonyStore>()(
         ),
 
       reset: () => {
-        set({ ...initialState, hydrated: true });
+        set({ ...initialState, hydrated: true, hasPersistedState: false });
         track("colony_reset");
       },
     }),
@@ -168,14 +176,23 @@ export const useColonyStore = create<ColonyStore>()(
       }),
       onRehydrateStorage: () => (state) => {
         if (state) {
-          // mark hydrated on next tick
+          // Mark hydrated on next tick. `hasPersistedState` was set true by
+          // the merge fn below when a real saved blob was found.
           setTimeout(() => useColonyStore.setState({ hydrated: true }), 0);
         } else {
-          useColonyStore.setState({ hydrated: true });
+          useColonyStore.setState({
+            hydrated: true,
+            hasPersistedState: false,
+          });
         }
       },
       merge: (persisted, current) => {
         const p = (persisted as Partial<ColonyState>) || {};
+        const hasPersistedState =
+          !!persisted &&
+          (p.slots !== undefined ||
+            p.resources !== undefined ||
+            p.lastClaimAt !== undefined);
         return {
           ...current,
           ...p,
@@ -183,6 +200,7 @@ export const useColonyStore = create<ColonyStore>()(
           resources: p.resources ?? current.resources,
           lastClaimAt: p.lastClaimAt ?? current.lastClaimAt,
           createdAt: p.createdAt ?? current.createdAt,
+          hasPersistedState,
         };
       },
     },

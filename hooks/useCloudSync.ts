@@ -19,12 +19,20 @@ interface CloudColony {
 /**
  * Bidirectional cloud sync (Phase A — wallet-claimed, no signature).
  *
- *  - On wallet connect: fetch the cloud row. If newer than local
- *    (`updated_at` cloud > `lastClaimAt` local from rehydration), prompt-less
- *    pull (we trust cloud over local because cloud claim already debited
- *    rewards). If no cloud row, push current local state.
- *  - On any subsequent local change to slots/resources/lastClaimAt: push to
- *    cloud after a debounced delay.
+ * Sequencing invariant: for any wallet, the very first PUSH must not run
+ * until the PULL for that wallet has finished. Otherwise a slow network
+ * could let the debounced PUSH overwrite newer cloud state with stale local
+ * state. See `pullDoneFor`.
+ *
+ *  - On wallet connect (after AsyncStorage hydration): fetch the cloud row.
+ *      - If we have no real persisted local state (`hasPersistedState`
+ *        is false) we always overwrite local with whatever cloud has.
+ *        That's the "reinstall the app, restore from cloud" path.
+ *      - Otherwise we only overwrite when cloud `last_claim_at` is strictly
+ *        newer than local — local progress is preferred.
+ *      - If cloud has no row yet, we insert one from local.
+ *  - On any subsequent local change while connected: push to cloud after
+ *    a debounced delay.
  */
 export function useCloudSync() {
   const account = useWalletStore((s) => s.selectedAccount);
@@ -38,24 +46,29 @@ export function useCloudSync() {
   const totalClaimed = useRewardsStore((s) => s.totalClaimed);
 
   const lastPushRef = useRef<number>(0);
+  // Wallet for which a PULL has been kicked off (prevents duplicate pulls).
   const pulledForRef = useRef<string | null>(null);
+  // Wallet for which a PULL has *completed* (success, error, or "no row")
+  // — this gates the PUSH effect so it can't race past the PULL.
+  const pullDoneForRef = useRef<string | null>(null);
 
   // PULL on wallet change.
   //
-  // Depends ONLY on walletAddress so the effect doesn't re-run (and cancel its
-  // own in-flight fetch) when zustand/persist hydrates colonyStore/rewardsStore
-  // from AsyncStorage shortly after mount. We read the latest local state
-  // directly from getState() at the moment we actually need it.
+  // Waits for AsyncStorage hydration before running so we know whether the
+  // user has real local progress or is on a fresh install. Depends ONLY on
+  // walletAddress + hydrated; reads everything else through getState() so
+  // ordinary store mutations don't cancel the in-flight fetch.
   //
-  // We must reset `pulledForRef` on disconnect: otherwise reconnecting with
-  // the *same* wallet skips the cloud→local pull, while the PUSH effect still
-  // fires after the debounce and would clobber any newer cloud state with
-  // stale local state.
+  // Resets `pulledForRef`/`pullDoneForRef` on disconnect: reconnecting with
+  // the same wallet must re-pull, otherwise the unconditional PUSH could
+  // clobber newer cloud state.
   useEffect(() => {
     if (!supabaseEnabled() || !walletAddress) {
       pulledForRef.current = null;
+      pullDoneForRef.current = null;
       return;
     }
+    if (!hydrated) return;
     if (pulledForRef.current === walletAddress) return;
     pulledForRef.current = walletAddress;
 
@@ -73,13 +86,19 @@ export function useCloudSync() {
 
         if (data) {
           const cloud = data as CloudColony;
-          const localLastClaimAt = useColonyStore.getState().lastClaimAt;
-          // Pull cloud → local if cloud last_claim_at > local lastClaimAt.
-          if ((cloud.last_claim_at ?? 0) > localLastClaimAt) {
+          const colony = useColonyStore.getState();
+          // Restore from cloud when:
+          //   - we have no real local progress (fresh install / reinstall), or
+          //   - cloud's last_claim_at is strictly newer than local's.
+          const shouldRestore =
+            !colony.hasPersistedState ||
+            (cloud.last_claim_at ?? 0) > colony.lastClaimAt;
+          if (shouldRestore) {
             useColonyStore.setState({
               slots: cloud.slots as never,
               resources: cloud.resources as never,
               lastClaimAt: cloud.last_claim_at,
+              hasPersistedState: true,
             });
             useRewardsStore.setState({
               totalClaimed: cloud.total_claimed as never,
@@ -99,18 +118,29 @@ export function useCloudSync() {
         }
       } catch {
         // swallow — cloud sync failures must not break gameplay
+      } finally {
+        // Mark the PULL done for this wallet so PUSH may now run.
+        // We do this even on error so the user can still keep playing offline
+        // — at worst the next change pushes stale local state, but only after
+        // we genuinely tried (and failed) to read the cloud first.
+        if (!cancelled) {
+          pullDoneForRef.current = walletAddress;
+        }
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [walletAddress]);
+  }, [walletAddress, hydrated]);
 
-  // PUSH (debounced) on any local change while connected
+  // PUSH (debounced) on any local change while connected.
+  // Gated on the PULL having completed for this wallet so the PUSH can never
+  // race ahead and overwrite cloud state with stale local state.
   useEffect(() => {
     if (!supabaseEnabled() || !walletAddress || !hydrated) return;
     const id = setTimeout(async () => {
       try {
+        if (pullDoneForRef.current !== walletAddress) return;
         const now = Date.now();
         if (now - lastPushRef.current < 1500) return;
         lastPushRef.current = now;

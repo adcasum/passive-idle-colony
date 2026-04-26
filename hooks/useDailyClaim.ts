@@ -48,9 +48,11 @@ export function useDailyClaim() {
     recordClaim(result);
     haptic.claim();
     // Surface the actual amounts that were just credited so the UI feels alive.
-    const parts = (Object.keys(result.produced) as ResourceKind[])
-      .filter((k) => result.produced[k] > 0)
-      .map((k) => `${RESOURCE_EMOJI[k]}+${fmtNum(result.produced[k])}`);
+    // Use cappedAt (post-cap delta) — produced is the uncapped raw figure and
+    // would overstate gains when storage is near full.
+    const parts = (Object.keys(result.cappedAt) as ResourceKind[])
+      .filter((k) => result.cappedAt[k] > 0)
+      .map((k) => `${RESOURCE_EMOJI[k]}+${fmtNum(result.cappedAt[k])}`);
     toast.success(
       parts.length ? `Claimed ${parts.join(" ")}` : "Claimed (nothing yet)",
     );

@@ -43,9 +43,12 @@ export default function LeaderboardScreen() {
       setRows([]);
       return;
     }
+    // PostgREST doesn't preserve the view's internal ORDER BY, so we have to
+    // sort explicitly here or the leaderboard could come back unordered.
     const { data, error: err } = await sb
       .from("leaderboard")
       .select("*")
+      .order("honey_total", { ascending: false })
       .limit(LIMIT);
     if (err) {
       setError(err.message);

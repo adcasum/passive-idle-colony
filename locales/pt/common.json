@@ -1,0 +1,226 @@
+{
+  "app": {
+    "title": "O Último Apiário",
+    "tagline": "Uma colônia idle aconchegante na Solana."
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "close": "Fechar",
+    "save": "Salvar",
+    "loading": "Carregando…",
+    "retry": "Tentar novamente",
+    "back": "Voltar",
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "wallet": {
+    "connect": "Conectar carteira",
+    "disconnect": "Desconectar",
+    "connected": "Conectado",
+    "title": "Jure lealdade à Rainha",
+    "description": "Entre uma vez com a Seed Vault. Sua colônia está vinculada à sua carteira."
+  },
+  "home": {
+    "step_connect_title": "Conecte sua carteira",
+    "step_connect_desc": "Entre uma vez com a Seed Vault. Sua colônia está vinculada à sua carteira.",
+    "step_build_title": "Construa sua colônia",
+    "step_build_desc": "Posicione colmeias numa grade 3×3. Produzem mel, energia, comida e água — mesmo com o app fechado.",
+    "step_build_cta": "Entrar na colmeia",
+    "step_claim_title": "Receba recompensas diárias",
+    "step_claim_desc": "Recursos acumulam até 48 horas. Receba a cada 12 horas e desbloqueie skins cNFT únicos ao melhorar prédios.",
+    "rewards_button": "Cofre de mel",
+    "skins_button": "Forjar regalia",
+    "leaderboard_button": "Ranking real",
+    "profile_button": "Perfil",
+    "rank_label": "Sua posição",
+    "rank_unranked": "Sem ranking",
+    "rank_delta_up": "▲ {{n}} esta semana",
+    "rank_delta_down": "▼ {{n}} esta semana",
+    "rank_delta_same": "— igual à semana passada",
+    "colony_level": "Nível da colônia {{level}}",
+    "colony_level_progress": "Próximo: {{title}} (nv. {{level}})",
+    "colony_tier_worker": "Apiário operário",
+    "colony_tier_artisan": "Colmeia artesã",
+    "colony_tier_royal": "Corte real",
+    "next_action_title": "Próximo passo",
+    "next_action_first_hive": "Posicione sua primeira colmeia — toque qualquer célula vazia.",
+    "next_action_solar": "Adicione um Painel solar — suas colmeias precisam de energia.",
+    "next_action_food": "Adicione uma Pequena fazenda — suas abelhas estão com fome.",
+    "next_action_water": "Adicione um Coletor de água — o suprimento está acabando.",
+    "next_action_upgrade": "Melhore {{name}} para nv. {{level}} — {{cost}}.",
+    "next_action_claim": "Seu mel está pronto — colete.",
+    "next_action_storage_full": "Estoque quase cheio — colete ou melhore o Estoque.",
+    "next_action_idle": "Espere o próximo ciclo ou construa mais.",
+    "intro_story_title": "O Último Apiário",
+    "intro_story_body": "Os polinizadores do mundo estão desaparecendo. Uma rainha sobrevivente escolheu você para reconstruir sua colônia, hex por hex. Em breve outras rainhas ouvirão sobre seu apiário e virão competir no Ranking real."
+  },
+  "colony": {
+    "title": "Colmeia",
+    "built_count": "{{built}}/{{total}} CONSTRUÍDOS",
+    "empty_hint_title": "🐝 Toque qualquer célula para construir sua primeira colmeia",
+    "empty_hint_body": "Colmeias produzem mel passivamente. Adicione um Painel solar para alimentá-las, depois uma Fazenda e um Coletor de água para suas abelhas."
+  },
+  "header": {
+    "production_per_hour": "/h"
+  },
+  "claim": {
+    "ready": "Pronto para coletar",
+    "ready_hint": "Toque para coletar o mel de hoje",
+    "waiting": "Próxima coleta em",
+    "production_per_hour": "/h produção",
+    "claim_button": "Coletar",
+    "claim_again_in": "Próxima coleta em {{time}}",
+    "cooldown_hours": "Cooldown: a cada {{hours}} h",
+    "cooldown_remaining_label": "Tempo restante"
+  },
+  "rewards": {
+    "title": "Cofre de mel",
+    "total_claimed_all_time": "TOTAL COLETADO",
+    "history_title": "HISTÓRICO ({{count}})",
+    "history_empty": "Nenhuma coleta ainda — a primeira aparecerá aqui."
+  },
+  "leaderboard": {
+    "title": "Ranking real",
+    "loading": "Carregando ranking…",
+    "no_data": "Nenhuma colônia ainda. Seja o primeiro.",
+    "header_rank": "POS.",
+    "header_address": "RAINHA",
+    "header_honey": "MEL",
+    "header_slots": "COLMEIAS",
+    "you_label": "você",
+    "error": "Não foi possível carregar o ranking."
+  },
+  "mint": {
+    "title": "Forjar regalia real",
+    "intro": "Cunhe um skin cNFT único para seus prédios. Skins aumentam a produção e ficam na sua carteira para sempre.",
+    "no_eligible": "Nenhum prédio pronto para skin. Melhore para nv. 3+ para forjar regalia.",
+    "select_building": "Escolha um prédio",
+    "mint_button": "Forjar skin",
+    "minting": "Forjando…",
+    "minted_local": "✨ Skin equipado (local)",
+    "minted_chain": "✨ Skin cunhado on-chain",
+    "mint_failed": "Cunhagem falhou: {{reason}}",
+    "current_skin": "Usando: {{id}}",
+    "no_skin_yet": "Nenhum skin equipado."
+  },
+  "profile": {
+    "title": "Perfil",
+    "wallet_section": "Carteira",
+    "language_section": "Idioma",
+    "language_subtitle": "Idioma do app. Detectado automaticamente no início.",
+    "ml_disclaimer": "Traduções marcadas (máquina) são automáticas e podem ter pequenos erros. Refinamos com o tempo.",
+    "ml_tag": "(máquina)",
+    "danger_section": "Zona de perigo",
+    "reset_button": "Reiniciar colônia",
+    "reset_confirm_title": "Reiniciar colônia?",
+    "reset_confirm_body": "Isso apaga seu progresso local. Sua carteira continua conectada. A nuvem será sobrescrita na próxima sync.",
+    "reset_confirm_yes": "Reiniciar"
+  },
+  "buildings": {
+    "bee_hive_name": "Colmeia",
+    "bee_hive_desc": "Produtora zumbidora de mel doce.",
+    "solar_panel_name": "Painel solar",
+    "solar_panel_desc": "Captura a luz do sol como energia.",
+    "small_farm_name": "Pequena fazenda",
+    "small_farm_desc": "Plantações alimentam a colônia.",
+    "water_collector_name": "Coletor de água",
+    "water_collector_desc": "Tira água fresca do ar.",
+    "storage_name": "Estoque",
+    "storage_desc": "Aumenta o limite máximo de recursos.",
+    "research_lab_name": "Laboratório",
+    "research_lab_desc": "Aumenta a produção de toda a colônia."
+  },
+  "resources": {
+    "honey": "Mel",
+    "energy": "Energia",
+    "food": "Comida",
+    "water": "Água"
+  },
+  "build_picker": {
+    "title": "Construir novo",
+    "subtitle": "Escolha um prédio para esta célula.",
+    "production_label": "PRODUÇÃO",
+    "cost_label": "CUSTO",
+    "current_production_label": "PRODUÇÃO ATUAL",
+    "upgrade_cost_label": "CUSTO DE MELHORIA",
+    "build_button": "Construir",
+    "not_enough": "Recursos insuficientes",
+    "upgrade_button": "Melhorar para {{level}}",
+    "max_level": "(máx.)",
+    "skin_unlocked": "Cunhar skin",
+    "skin_locked": "Skin a partir de nv. {{level}}",
+    "demolish_button": "Demolir",
+    "level_label": "Nível {{level}}",
+    "skinned_badge": "✨ com skin",
+    "production_research": "+{{percent}}% produção da colônia / nível",
+    "production_storage": "+{{cap}} cap. máx. / nível",
+    "current_research": "+{{percent}}% produção global",
+    "current_storage": "+{{cap}} cap. máx."
+  },
+  "slot_preview": {
+    "empty": "Célula vazia — toque para construir",
+    "max_label": "MÁX"
+  },
+  "toast": {
+    "built": "Construído: {{name}}",
+    "upgraded": "{{name}} → nv. {{level}}",
+    "demolished": "{{name}} demolido",
+    "not_enough_resources": "Recursos insuficientes",
+    "claimed": "Coletado {{parts}}",
+    "claimed_nothing": "Coletado (nada ainda)",
+    "claim_cooldown": "Ainda em cooldown",
+    "synced": "Sincronizado com a nuvem",
+    "sync_failed": "Sync falhou — tente novamente",
+    "skin_equipped": "✨ Skin equipado",
+    "skin_minted": "✨ Skin cunhado on-chain",
+    "mint_failed": "Cunhagem falhou: {{reason}}",
+    "storage_warn": "🍯 Cofre quase cheio — colete antes de perder rendimento.",
+    "starvation_warn": "⚠️ Colmeias com fome — energia ou água baixas.",
+    "rank_up": "🏆 Você subiu para #{{rank}}!",
+    "streak_extended": "🔥 Sequência de {{days}} dias!",
+    "quest_complete": "🎯 Missão completa: {{name}} (+{{reward}})"
+  },
+  "onboarding": {
+    "skip": "Pular",
+    "next": "Próximo",
+    "get_started": "Começar",
+    "page1_title": "Bem-vindo, portador da rainha.",
+    "page1_body": "Sua rainha escolheu você para reconstruir a colmeia dela. Coloque prédios numa grade 3×3; produzem mel mesmo enquanto você dorme.",
+    "page2_title": "Colete a cada 12 horas.",
+    "page2_body": "Recursos acumulam até 48 horas. Mantenha pressionada qualquer célula para ver produção. Toque para construir ou melhorar.",
+    "page3_title": "Compita e forje.",
+    "page3_body": "Suba no Ranking real, complete missões diárias e forje skins cNFT para suas colmeias que vivem na sua carteira."
+  },
+  "tutorial": {
+    "first_build_hint": "Toque esta célula brilhante para colocar sua primeira colmeia.",
+    "first_build_done": "Sua primeira colmeia já zumbe. Bem-vindo ao apiário."
+  },
+  "quests": {
+    "section_title": "Missões de hoje",
+    "build_any": "Construa 1 prédio qualquer",
+    "upgrade_any": "Melhore qualquer prédio",
+    "claim_today": "Colete o mel de hoje",
+    "beat_record": "Supere seu recorde",
+    "reward_label": "Recompensa",
+    "completed": "Pronto",
+    "resets_at": "Reinicia às {{time}}",
+    "all_done": "Missões completas — bônus amanhã."
+  },
+  "streak": {
+    "label": "🔥 sequência {{days}} dias",
+    "label_zero": "Comece uma sequência hoje",
+    "day_short": "D{{day}}",
+    "next_reward": "Dia {{day}}: baú extra"
+  },
+  "urgency": {
+    "storage_full_badge": "Estoque {{percent}}%",
+    "starvation_badge": "Abelhas com fome",
+    "bloom_event_title": "🌸 Florada da primavera",
+    "bloom_event_body": "Toda a produção ×{{mult}} por {{hours}} h. Construa enquanto dura.",
+    "bloom_event_remaining": "Florada termina em {{time}}"
+  },
+  "errors": {
+    "cloud_disabled": "A nuvem não está configurada.",
+    "wallet_required": "Conecte sua carteira para continuar."
+  }
+}

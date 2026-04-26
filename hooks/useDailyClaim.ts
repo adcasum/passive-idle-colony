@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { CLAIM_COOLDOWN_HOURS, RESOURCE_EMOJI } from "@/constants/buildings";
 import { fmtNum } from "@/lib/format";
@@ -15,6 +16,7 @@ export function useDailyClaim() {
   const lastClaimAt = useColonyStore((s) => s.lastClaimAt);
   const claim = useColonyStore((s) => s.claim);
   const recordClaim = useRewardsStore((s) => s.recordClaim);
+  const { t } = useTranslation();
 
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
@@ -28,7 +30,7 @@ export function useDailyClaim() {
   const remainingMs = Math.max(0, cooldownMs - elapsedMs);
 
   const remainingLabel = useMemo(() => {
-    if (canClaim) return "Ready!";
+    if (canClaim) return t("claim.ready");
     const totalSec = Math.floor(remainingMs / 1000);
     const h = Math.floor(totalSec / 3600);
     const m = Math.floor((totalSec % 3600) / 60);
@@ -36,12 +38,12 @@ export function useDailyClaim() {
     return `${h.toString().padStart(2, "0")}:${m
       .toString()
       .padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  }, [canClaim, remainingMs]);
+  }, [canClaim, remainingMs, t]);
 
   const doClaim = async () => {
     if (!canClaim) {
       haptic.error();
-      toast.error("Claim still on cooldown");
+      toast.error(t("toast.claim_cooldown"));
       return null;
     }
     const result = claim();
@@ -54,7 +56,9 @@ export function useDailyClaim() {
       .filter((k) => result.cappedAt[k] > 0)
       .map((k) => `${RESOURCE_EMOJI[k]}+${fmtNum(result.cappedAt[k])}`);
     toast.success(
-      parts.length ? `Claimed ${parts.join(" ")}` : "Claimed (nothing yet)",
+      parts.length
+        ? t("toast.claimed", { parts: parts.join(" ") })
+        : t("toast.claimed_nothing"),
     );
     // Schedule the next reminder.
     scheduleClaimReadyNotification(CLAIM_COOLDOWN_HOURS).catch(() => undefined);

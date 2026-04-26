@@ -1,0 +1,226 @@
+{
+  "app": {
+    "title": "The Last Apiary",
+    "tagline": "A cozy idle colony on Solana."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "loading": "Loading…",
+    "retry": "Retry",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "wallet": {
+    "connect": "Connect wallet",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "title": "Pledge to the Queen",
+    "description": "Sign in once with Seed Vault. Your colony state is tied to your wallet."
+  },
+  "home": {
+    "step_connect_title": "Connect your wallet",
+    "step_connect_desc": "Sign in once with Seed Vault. Your colony state is tied to your wallet.",
+    "step_build_title": "Build your colony",
+    "step_build_desc": "Place hives on a 3×3 grid. They produce honey, energy, food and water — even when the app is closed.",
+    "step_build_cta": "Enter the Hive",
+    "step_claim_title": "Claim daily rewards",
+    "step_claim_desc": "Resources accumulate up to 48 hours. Claim every 12 hours and unlock unique cNFT skins as you upgrade buildings.",
+    "rewards_button": "Honey Vault",
+    "skins_button": "Forge Regalia",
+    "leaderboard_button": "Royal Leaderboard",
+    "profile_button": "Profile",
+    "rank_label": "Your rank",
+    "rank_unranked": "Unranked",
+    "rank_delta_up": "▲ {{n}} this week",
+    "rank_delta_down": "▼ {{n}} this week",
+    "rank_delta_same": "— same as last week",
+    "colony_level": "Colony level {{level}}",
+    "colony_level_progress": "Next: {{title}} (lvl {{level}})",
+    "colony_tier_worker": "Worker Apiary",
+    "colony_tier_artisan": "Artisan Hive",
+    "colony_tier_royal": "Royal Court",
+    "next_action_title": "What's next",
+    "next_action_first_hive": "Place your first Bee Hive — tap any empty cell.",
+    "next_action_solar": "Add a Solar Panel — your hives need power.",
+    "next_action_food": "Add a Small Farm — your bees are hungry.",
+    "next_action_water": "Add a Water Collector — supply is running low.",
+    "next_action_upgrade": "Upgrade {{name}} to L{{level}} — {{cost}}.",
+    "next_action_claim": "Your honey is ready — claim it.",
+    "next_action_storage_full": "Storage is almost full — claim or upgrade Storage.",
+    "next_action_idle": "Wait for the next cycle, or build more.",
+    "intro_story_title": "The Last Apiary",
+    "intro_story_body": "The world's pollinators are vanishing. A surviving queen has chosen you to rebuild her colony, hex by hex. Soon other queens will hear of your apiary and come to compete on the Royal Leaderboard."
+  },
+  "colony": {
+    "title": "Hive",
+    "built_count": "{{built}}/{{total}} BUILT",
+    "empty_hint_title": "🐝 Tap any tile to build your first hive",
+    "empty_hint_body": "Hives produce honey passively. Add Solar to power them, then a Farm and Water Collector to keep your bees fed."
+  },
+  "header": {
+    "production_per_hour": "/hr"
+  },
+  "claim": {
+    "ready": "Ready to claim",
+    "ready_hint": "Tap to collect today's honey",
+    "waiting": "Next claim in",
+    "production_per_hour": "/hr production",
+    "claim_button": "Claim",
+    "claim_again_in": "Next claim in {{time}}",
+    "cooldown_hours": "Cooldown: every {{hours}} hours",
+    "cooldown_remaining_label": "Remaining cooldown"
+  },
+  "rewards": {
+    "title": "Honey Vault",
+    "total_claimed_all_time": "TOTAL CLAIMED (ALL TIME)",
+    "history_title": "HISTORY ({{count}})",
+    "history_empty": "No claims yet — your first claim will appear here."
+  },
+  "leaderboard": {
+    "title": "Royal Leaderboard",
+    "loading": "Loading leaderboard…",
+    "no_data": "No colonies on the board yet. Be the first.",
+    "header_rank": "RANK",
+    "header_address": "QUEEN",
+    "header_honey": "HONEY",
+    "header_slots": "HIVES",
+    "you_label": "you",
+    "error": "Could not load leaderboard."
+  },
+  "mint": {
+    "title": "Forge Royal Regalia",
+    "intro": "Mint a unique cNFT skin onto your buildings. Skins boost production and stay in your wallet forever.",
+    "no_eligible": "No buildings are at skin-unlock level yet. Upgrade a building to L3+ to forge regalia.",
+    "select_building": "Choose a building",
+    "mint_button": "Forge Skin",
+    "minting": "Forging…",
+    "minted_local": "✨ Skin equipped (local)",
+    "minted_chain": "✨ Skin minted on-chain",
+    "mint_failed": "Mint failed: {{reason}}",
+    "current_skin": "Currently wearing: {{id}}",
+    "no_skin_yet": "No skin equipped yet."
+  },
+  "profile": {
+    "title": "Profile",
+    "wallet_section": "Wallet",
+    "language_section": "Language",
+    "language_subtitle": "App language. Auto-detected from device on first launch.",
+    "ml_disclaimer": "Translations marked (machine) are auto-translated and may have small errors. We refine them over time.",
+    "ml_tag": "(machine)",
+    "danger_section": "Danger zone",
+    "reset_button": "Reset colony",
+    "reset_confirm_title": "Reset colony?",
+    "reset_confirm_body": "This wipes your local progress. Your wallet stays connected. Cloud save will be overwritten on next sync.",
+    "reset_confirm_yes": "Reset"
+  },
+  "buildings": {
+    "bee_hive_name": "Bee Hive",
+    "bee_hive_desc": "Buzzing producer of sweet honey.",
+    "solar_panel_name": "Solar Panel",
+    "solar_panel_desc": "Captures sunlight as energy.",
+    "small_farm_name": "Small Farm",
+    "small_farm_desc": "Hand-tended crops feed the colony.",
+    "water_collector_name": "Water Collector",
+    "water_collector_desc": "Pulls fresh water from the air.",
+    "storage_name": "Storage",
+    "storage_desc": "Increases your max resource cap.",
+    "research_lab_name": "Research Lab",
+    "research_lab_desc": "Boosts colony-wide production."
+  },
+  "resources": {
+    "honey": "Honey",
+    "energy": "Energy",
+    "food": "Food",
+    "water": "Water"
+  },
+  "build_picker": {
+    "title": "Build new",
+    "subtitle": "Choose a building to place in this slot.",
+    "production_label": "PRODUCTION",
+    "cost_label": "COST",
+    "current_production_label": "CURRENT PRODUCTION",
+    "upgrade_cost_label": "UPGRADE COST",
+    "build_button": "Build",
+    "not_enough": "Not enough resources",
+    "upgrade_button": "Upgrade to {{level}}",
+    "max_level": "(max)",
+    "skin_unlocked": "Mint Skin",
+    "skin_locked": "Skin @ L{{level}}",
+    "demolish_button": "Demolish",
+    "level_label": "Level {{level}}",
+    "skinned_badge": "✨ skinned",
+    "production_research": "+{{percent}}% colony production / level",
+    "production_storage": "+{{cap}} max cap / level",
+    "current_research": "+{{percent}}% global production",
+    "current_storage": "+{{cap}} max cap"
+  },
+  "slot_preview": {
+    "empty": "Empty slot — tap to build",
+    "max_label": "MAX"
+  },
+  "toast": {
+    "built": "Built {{name}}",
+    "upgraded": "{{name}} → L{{level}}",
+    "demolished": "{{name}} demolished",
+    "not_enough_resources": "Not enough resources",
+    "claimed": "Claimed {{parts}}",
+    "claimed_nothing": "Claimed (nothing yet)",
+    "claim_cooldown": "Claim still on cooldown",
+    "synced": "Synced from cloud",
+    "sync_failed": "Sync failed — try again",
+    "skin_equipped": "✨ Skin equipped",
+    "skin_minted": "✨ Minted on-chain skin",
+    "mint_failed": "Mint failed: {{reason}}",
+    "storage_warn": "🍯 Vault almost full — claim before you lose income.",
+    "starvation_warn": "⚠️ Hives starving — energy or water is too low.",
+    "rank_up": "🏆 You climbed to #{{rank}}!",
+    "streak_extended": "🔥 {{days}}-day streak!",
+    "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})"
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "get_started": "Get started",
+    "page1_title": "Welcome, queen-bearer.",
+    "page1_body": "Your queen has chosen you to rebuild her hive. Place buildings on a 3×3 grid; they produce honey even when you sleep.",
+    "page2_title": "Claim every 12 hours.",
+    "page2_body": "Resources accumulate up to 48 hours. Long-press any cell to preview production. Tap any cell to build or upgrade.",
+    "page3_title": "Compete & forge.",
+    "page3_body": "Climb the Royal Leaderboard, complete daily quests, and forge cNFT skins for your hives that live in your wallet."
+  },
+  "tutorial": {
+    "first_build_hint": "Tap this glowing tile to place your first Bee Hive.",
+    "first_build_done": "Your first hive is humming. Welcome to the apiary."
+  },
+  "quests": {
+    "section_title": "Today's quests",
+    "build_any": "Build any 1 building",
+    "upgrade_any": "Upgrade any building",
+    "claim_today": "Claim today's honey",
+    "beat_record": "Beat your previous claim record",
+    "reward_label": "Reward",
+    "completed": "Done",
+    "resets_at": "Resets at {{time}}",
+    "all_done": "All quests done — bonus tomorrow."
+  },
+  "streak": {
+    "label": "🔥 {{days}}-day streak",
+    "label_zero": "Start a streak today",
+    "day_short": "D{{day}}",
+    "next_reward": "Day {{day}}: bonus chest"
+  },
+  "urgency": {
+    "storage_full_badge": "Storage {{percent}}%",
+    "starvation_badge": "Bees hungry",
+    "bloom_event_title": "🌸 Spring Bloom",
+    "bloom_event_body": "All production ×{{mult}} for {{hours}}h. Build now while it lasts.",
+    "bloom_event_remaining": "Bloom ends in {{time}}"
+  },
+  "errors": {
+    "cloud_disabled": "Cloud is not configured.",
+    "wallet_required": "Connect your wallet to continue."
+  }
+}

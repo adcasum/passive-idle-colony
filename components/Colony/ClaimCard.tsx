@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/UI/Button";
 import { GradientCard } from "@/components/UI/Card";
@@ -24,6 +25,7 @@ export function ClaimCard({ onClaimed }: Props) {
   const { canClaim, remainingLabel, doClaim, cooldownHours } = useDailyClaim();
   const { pending } = useColonyData();
   const [bursting, setBursting] = useState(false);
+  const { t } = useTranslation();
 
   const handleClaim = async () => {
     const r = await doClaim();
@@ -40,25 +42,29 @@ export function ClaimCard({ onClaimed }: Props) {
         <Text
           className={`${canClaim ? "text-[#1A140A]" : "text-ink-mute"} text-xs tracking-widest font-bold ${canClaim ? "ml-1" : ""}`}
         >
-          {canClaim ? "READY TO CLAIM" : "DAILY CLAIM"}
+          {canClaim ? t("claim.ready").toUpperCase() : t("claim.waiting").toUpperCase()}
         </Text>
       </View>
 
       <Text className={`${canClaim ? "text-[#1A140A]" : "text-ink"} text-2xl font-bold mb-1`}>
         {canClaim
-          ? `+${fmtNum(pending.hours)} hrs accumulated`
-          : `Cooldown ${remainingLabel}`}
+          ? `+${fmtNum(pending.hours)}h`
+          : remainingLabel}
       </Text>
 
       <Text className={`${canClaim ? "text-[#1A140A]/70" : "text-ink-dim"} mb-4 text-xs`}>
         {canClaim
-          ? "Tap to harvest your colony's production."
-          : `Claim every ${cooldownHours}h. Max accumulation 48h.`}
+          ? t("claim.ready_hint")
+          : t("claim.cooldown_hours", { hours: cooldownHours })}
       </Text>
 
       <View>
         <Button
-          label={canClaim ? "Claim Rewards" : `Cooldown ${remainingLabel}`}
+          label={
+            canClaim
+              ? t("claim.claim_button")
+              : t("claim.claim_again_in", { time: remainingLabel })
+          }
           variant={canClaim ? "primary" : "secondary"}
           disabled={!canClaim}
           onPress={handleClaim}

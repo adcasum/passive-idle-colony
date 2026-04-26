@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, RefreshControl, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useTranslation } from "react-i18next";
 
 import { Card } from "@/components/UI/Card";
 import { fmtNum } from "@/lib/format";
@@ -30,10 +31,11 @@ export default function LeaderboardScreen() {
   const [rows, setRows] = useState<Row[] | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const load = async () => {
     if (!supabaseEnabled()) {
-      setError("Cloud is not configured.");
+      setError(t("errors.cloud_disabled"));
       setRows([]);
       return;
     }
@@ -76,10 +78,7 @@ export default function LeaderboardScreen() {
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor="#FFC940" />}
       >
         <Card>
-          <Text className="text-ink text-lg font-semibold mb-1">Top Colonies</Text>
-          <Text className="text-ink-dim text-xs">
-            Ranked by total honey claimed. Pull to refresh.
-          </Text>
+          <Text className="text-ink text-lg font-semibold mb-1">{t("leaderboard.title")}</Text>
         </Card>
 
         {rows === null ? (
@@ -93,7 +92,7 @@ export default function LeaderboardScreen() {
         ) : rows.length === 0 ? (
           <Card>
             <Text className="text-ink-dim text-center">
-              No colonies on the leaderboard yet — be the first to claim.
+              {t("leaderboard.no_data")}
             </Text>
           </Card>
         ) : (
@@ -118,10 +117,10 @@ export default function LeaderboardScreen() {
                       className={isMe ? "text-accent" : "text-ink"}
                       style={{ fontWeight: "600" }}
                     >
-                      {isMe ? "You" : shortAddr(r.wallet_address)}
+                      {isMe ? t("leaderboard.you_label") : shortAddr(r.wallet_address)}
                     </Text>
                     <Text className="text-ink-mute text-[10px]">
-                      {r.slot_count}/9 slots filled
+                      {r.slot_count}/9
                     </Text>
                   </View>
                   <View className="items-end">

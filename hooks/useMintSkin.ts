@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { BUILDINGS } from "@/constants/buildings";
 import { BUBBLEGUM_TREE } from "@/lib/metaplex";
@@ -32,6 +33,7 @@ export function useMintSkin() {
   const equipSkin = useColonyStore((s) => s.equipSkin);
   const [minting, setMinting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const mint = async (
     slotIndex: number,
@@ -78,7 +80,7 @@ export function useMintSkin() {
       });
       haptic.mint();
       toast.success(
-        onChain ? `✨ Minted on-chain skin` : `✨ Skin equipped`,
+        onChain ? t("toast.skin_minted") : t("toast.skin_equipped"),
       );
       return { mint: mintAddress, onChain };
     } catch (e) {
@@ -90,7 +92,7 @@ export function useMintSkin() {
         reason: msg.slice(0, 200),
       });
       haptic.error();
-      toast.error(`Mint failed: ${msg.slice(0, 80)}`);
+      toast.error(t("toast.mint_failed", { reason: msg.slice(0, 80) }));
       return null;
     } finally {
       setMinting(false);

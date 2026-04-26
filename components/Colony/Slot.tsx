@@ -1,6 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect } from "react";
 import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -13,7 +14,7 @@ import {
   BUILDINGS,
   RESOURCE_COLOR,
   RESOURCE_EMOJI,
-  RESOURCE_LABEL,
+  getBuildingName,
 } from "@/constants/buildings";
 import { fmtNum } from "@/lib/format";
 import { buildingProductionPerHour, upgradeCost } from "@/lib/colonyMath";
@@ -40,6 +41,7 @@ interface Props {
 export function Slot({ slot, index, onPress }: Props) {
   const scale = useSharedValue(1);
   const wiggle = useSharedValue(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (slot) {
@@ -65,18 +67,19 @@ export function Slot({ slot, index, onPress }: Props) {
   // through the full bottom-sheet (and without triggering build/upgrade).
   const handleLongPress = () => {
     if (!slot || !def) {
-      toast.info("Empty slot — tap to build");
+      toast.info(t("slot_preview.empty"));
       return;
     }
     const prod = buildingProductionPerHour(slot);
     const isMax = slot.level >= def.maxLevel;
     const next = isMax ? null : upgradeCost(slot.kind, slot.level);
+    const name = t(getBuildingName(slot.kind));
     const prodLabel = prod.resource
-      ? `${RESOURCE_EMOJI[prod.resource]} +${fmtNum(prod.amount)} ${RESOURCE_LABEL[prod.resource]}/hr`
+      ? `${RESOURCE_EMOJI[prod.resource]} +${fmtNum(prod.amount)} ${t(`resources.${prod.resource}`)}${t("header.production_per_hour")}`
       : def.researchBoostPerLevel
-        ? `+${(def.researchBoostPerLevel * slot.level * 100).toFixed(0)}% global`
+        ? `+${(def.researchBoostPerLevel * slot.level * 100).toFixed(0)}%`
         : def.storageBonusPerLevel
-          ? `+${def.storageBonusPerLevel * slot.level} cap`
+          ? `+${def.storageBonusPerLevel * slot.level}`
           : "";
     const costLabel = next
       ? Object.entries(next)
@@ -86,9 +89,9 @@ export function Slot({ slot, index, onPress }: Props) {
               `${RESOURCE_EMOJI[k as keyof typeof RESOURCE_EMOJI]}${fmtNum(v ?? 0)}`,
           )
           .join(" ")
-      : "MAX";
+      : t("slot_preview.max_label");
     toast.info(
-      `${def.name} L${slot.level}  •  ${prodLabel}  •  next ${costLabel}`,
+      `${name} L${slot.level}  •  ${prodLabel}  •  ${costLabel}`,
       3500,
     );
   };

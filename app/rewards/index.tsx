@@ -1,12 +1,15 @@
-import { ScrollView, Text, View } from "react-native";
+import { useState } from "react";
+import { RefreshControl, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { ClaimCard } from "@/components/Colony/ClaimCard";
 import { ColonyHeader } from "@/components/Colony/ColonyHeader";
 import { Card } from "@/components/UI/Card";
 import { useColonyData } from "@/hooks/useColonyData";
+import { pullColonyFromCloud } from "@/hooks/useCloudSync";
 import { useRewardsStore } from "@/store/rewardsStore";
 import { fmtNum } from "@/lib/format";
+import { toast } from "@/lib/toast";
 import { RESOURCE_COLOR, RESOURCE_EMOJI, RESOURCE_LABEL } from "@/constants/buildings";
 import type { ResourceKind } from "@/types";
 
@@ -16,6 +19,16 @@ export default function RewardsScreen() {
   const { resources, pending, storageCap } = useColonyData();
   const totalClaimed = useRewardsStore((s) => s.totalClaimed);
   const history = useRewardsStore((s) => s.history);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    const result = await pullColonyFromCloud();
+    setRefreshing(false);
+    if (result === "updated") toast.success("Synced from cloud");
+    else if (result === "error") toast.error("Sync failed — try again");
+    // "current" / "no-cloud" / "disabled" don't need user-facing feedback.
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["bottom"]}>
@@ -24,7 +37,17 @@ export default function RewardsScreen() {
         pending={pending.produced}
         storageCap={storageCap}
       />
-      <ScrollView contentContainerStyle={{ padding: 16, gap: 14 }}>
+      <ScrollView
+        contentContainerStyle={{ padding: 16, gap: 14 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor="#FFC940"
+            colors={["#FFC940"]}
+          />
+        }
+      >
         <ClaimCard />
 
         <Card>

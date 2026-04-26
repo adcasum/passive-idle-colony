@@ -16,7 +16,7 @@ interface Props {
 /**
  * Pulsing dot. Used to signal "claim ready" or any time-sensitive state.
  */
-export function PulseDot({ color = "#A78BFA", size = 8 }: Props) {
+export function PulseDot({ color = "#FFC940", size = 8 }: Props) {
   const pulse = useSharedValue(0);
 
   useEffect(() => {

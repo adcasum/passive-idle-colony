@@ -13,16 +13,18 @@ import Animated, {
 
 import { Button } from "@/components/UI/Button";
 import { Card, GradientCard } from "@/components/UI/Card";
+import { HoneycombPattern } from "@/components/UI/HoneycombPattern";
 import { WalletConnectButton } from "@/components/Shared/WalletConnectButton";
 import { useWallet } from "@/hooks/useWallet";
 
-const HERO_GRADIENT: [string, string] = ["#1A1233", "#0B0F1A"];
+const HERO_GRADIENT: [string, string] = ["#3D2A0E", "#1A140A"];
 
 export default function Home() {
   const { connected } = useWallet();
 
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["top", "bottom"]}>
+      <HoneycombPattern />
       <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
         <Hero />
 
@@ -63,10 +65,17 @@ export default function Home() {
           </View>
         </Step>
 
-        <View className="items-center mt-2">
-          <Link href="/profile" asChild>
-            <Button label="Profile" variant="ghost" />
-          </Link>
+        <View className="flex-row gap-3 mt-2">
+          <View className="flex-1">
+            <Link href="/leaderboard" asChild>
+              <Button label="Leaderboard" variant="ghost" />
+            </Link>
+          </View>
+          <View className="flex-1">
+            <Link href="/profile" asChild>
+              <Button label="Profile" variant="ghost" />
+            </Link>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

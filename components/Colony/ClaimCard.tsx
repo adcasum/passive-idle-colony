@@ -9,8 +9,10 @@ import { useDailyClaim } from "@/hooks/useDailyClaim";
 import { useColonyData } from "@/hooks/useColonyData";
 import { fmtNum } from "@/lib/format";
 
-const READY_GRADIENT: [string, string] = ["#7C5CF7", "#F59E0B"];
-const WAITING_GRADIENT: [string, string] = ["#1A2233", "#121826"];
+// Honey-glow gradient for the active "claim ready" state.
+const READY_GRADIENT: [string, string] = ["#FFC940", "#E0710A"];
+// Subtle warm dark for the cooldown waiting state.
+const WAITING_GRADIENT: [string, string] = ["#2A1F12", "#1A140A"];
 
 interface Props {
   /** Show the link to history at the bottom (default true). */
@@ -34,21 +36,21 @@ export function ClaimCard({ onClaimed }: Props) {
   return (
     <GradientCard colors={canClaim ? READY_GRADIENT : WAITING_GRADIENT}>
       <View className="flex-row items-center mb-2">
-        {canClaim ? <PulseDot color="#FACC15" size={10} /> : null}
+        {canClaim ? <PulseDot color="#FFF4D6" size={10} /> : null}
         <Text
-          className={`${canClaim ? "text-white" : "text-ink-mute"} text-xs tracking-widest ${canClaim ? "ml-1" : ""}`}
+          className={`${canClaim ? "text-[#1A140A]" : "text-ink-mute"} text-xs tracking-widest font-bold ${canClaim ? "ml-1" : ""}`}
         >
           {canClaim ? "READY TO CLAIM" : "DAILY CLAIM"}
         </Text>
       </View>
 
-      <Text className={`${canClaim ? "text-white" : "text-ink"} text-2xl font-bold mb-1`}>
+      <Text className={`${canClaim ? "text-[#1A140A]" : "text-ink"} text-2xl font-bold mb-1`}>
         {canClaim
           ? `+${fmtNum(pending.hours)} hrs accumulated`
           : `Cooldown ${remainingLabel}`}
       </Text>
 
-      <Text className={`${canClaim ? "text-white/80" : "text-ink-dim"} mb-4 text-xs`}>
+      <Text className={`${canClaim ? "text-[#1A140A]/70" : "text-ink-dim"} mb-4 text-xs`}>
         {canClaim
           ? "Tap to harvest your colony's production."
           : `Claim every ${cooldownHours}h. Max accumulation 48h.`}

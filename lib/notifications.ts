@@ -24,7 +24,7 @@ export async function ensureNotificationPermissions(): Promise<boolean> {
     await Notifications.setNotificationChannelAsync("daily-claim", {
       name: "Daily Claim",
       importance: Notifications.AndroidImportance.DEFAULT,
-      lightColor: "#A78BFA",
+      lightColor: "#FFC940",
     });
   }
 

@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import { BUILDINGS } from "@/constants/buildings";
 import { BUBBLEGUM_TREE } from "@/lib/metaplex";
+import { track } from "@/lib/analytics";
+import { haptic } from "@/lib/haptics";
+import { toast } from "@/lib/toast";
 import { useColonyStore } from "@/store/colonyStore";
 import type { Building } from "@/types";
 
@@ -68,10 +71,26 @@ export function useMintSkin() {
       onChain = false;
 
       equipSkin(slotIndex, mintAddress);
+      track("mint_skin", {
+        kind: building.kind,
+        level: building.level,
+        on_chain: onChain,
+      });
+      haptic.mint();
+      toast.success(
+        onChain ? `✨ Minted on-chain skin` : `✨ Skin equipped`,
+      );
       return { mint: mintAddress, onChain };
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       setError(msg);
+      track("mint_skin_failed", {
+        kind: building.kind,
+        level: building.level,
+        reason: msg.slice(0, 200),
+      });
+      haptic.error();
+      toast.error(`Mint failed: ${msg.slice(0, 80)}`);
       return null;
     } finally {
       setMinting(false);

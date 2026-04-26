@@ -24,7 +24,8 @@ const VARIANT_BG: Record<Variant, string> = {
 };
 
 const VARIANT_TEXT: Record<Variant, string> = {
-  primary: "text-white",
+  // primary is golden honey; dark cocoa text reads cleanly on it.
+  primary: "text-[#1A140A]",
   secondary: "text-ink",
   ghost: "text-ink",
   danger: "text-white",
@@ -97,7 +98,7 @@ export function Button({
       } ${className}`}
     >
       {loading ? (
-        <ActivityIndicator color={variant === "primary" ? "#fff" : "#A6B0C3"} />
+        <ActivityIndicator color={variant === "primary" ? "#1A140A" : "#E2C99A"} />
       ) : children ? (
         children
       ) : (

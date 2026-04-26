@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Text, View } from "react-native";
 import Animated, {
   Easing,
@@ -70,7 +70,9 @@ function FlyingEmoji({
   const ty = useSharedValue(0);
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.7);
-  const x = (Math.random() - 0.5) * 120;
+  // Stable random offset — must be computed once per emoji, not on every render,
+  // because parent ClaimCard re-renders every second from useColonyData / useDailyClaim.
+  const x = useRef((Math.random() - 0.5) * 120).current;
 
   useEffect(() => {
     opacity.value = withDelay(delay, withTiming(1, { duration: 120 }));

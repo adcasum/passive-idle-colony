@@ -101,7 +101,10 @@
     "minted_chain": "✨ 已链上铸造",
     "mint_failed": "铸造失败:{{reason}}",
     "current_skin": "当前装备:{{id}}",
-    "no_skin_yet": "尚未装备皮肤。"
+    "no_skin_yet": "尚未装备皮肤。",
+    "mode_label": "模式",
+    "mode_onchain": "链上 (Bubblegum)",
+    "mode_local": "本地占位"
   },
   "profile": {
     "title": "个人资料",
@@ -114,7 +117,13 @@
     "reset_button": "重置殖民地",
     "reset_confirm_title": "重置殖民地?",
     "reset_confirm_body": "这会清除你的本地进度。钱包仍保持连接。云端将在下次同步时被覆盖。",
-    "reset_confirm_yes": "重置"
+    "reset_confirm_yes": "重置",
+    "address_label": "地址",
+    "balance_label": "SOL 余额",
+    "network_label": "网络",
+    "rpc_label": "RPC",
+    "about_section": "关于",
+    "copied_title": "已复制"
   },
   "buildings": {
     "bee_hive_name": "蜂巢",

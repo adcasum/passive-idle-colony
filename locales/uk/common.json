@@ -101,7 +101,10 @@
     "minted_chain": "✨ Скін викувано on-chain",
     "mint_failed": "Не вдалося викувати: {{reason}}",
     "current_skin": "Зараз на будівлі: {{id}}",
-    "no_skin_yet": "Скін ще не одягнено."
+    "no_skin_yet": "Скін ще не одягнено.",
+    "mode_label": "Режим",
+    "mode_onchain": "У мережі (Bubblegum)",
+    "mode_local": "Локальний плейсхолдер"
   },
   "profile": {
     "title": "Профіль",
@@ -114,7 +117,13 @@
     "reset_button": "Скинути колонію",
     "reset_confirm_title": "Скинути колонію?",
     "reset_confirm_body": "Локальний прогрес буде видалено. Гаманець залишається підключеним. Хмару буде перезаписано при наступній синхронізації.",
-    "reset_confirm_yes": "Скинути"
+    "reset_confirm_yes": "Скинути",
+    "address_label": "Адреса",
+    "balance_label": "Баланс SOL",
+    "network_label": "Мережа",
+    "rpc_label": "RPC",
+    "about_section": "Про застосунок",
+    "copied_title": "Скопійовано"
   },
   "buildings": {
     "bee_hive_name": "Бджолиний вулик",

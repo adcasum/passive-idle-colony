@@ -101,7 +101,10 @@
     "minted_chain": "✨ Skin minted on-chain",
     "mint_failed": "Mint failed: {{reason}}",
     "current_skin": "Currently wearing: {{id}}",
-    "no_skin_yet": "No skin equipped yet."
+    "no_skin_yet": "No skin equipped yet.",
+    "mode_label": "Mode",
+    "mode_onchain": "On-chain (Bubblegum)",
+    "mode_local": "Local placeholder"
   },
   "profile": {
     "title": "Profile",
@@ -114,7 +117,13 @@
     "reset_button": "Reset colony",
     "reset_confirm_title": "Reset colony?",
     "reset_confirm_body": "This wipes your local progress. Your wallet stays connected. Cloud save will be overwritten on next sync.",
-    "reset_confirm_yes": "Reset"
+    "reset_confirm_yes": "Reset",
+    "address_label": "Address",
+    "balance_label": "SOL balance",
+    "network_label": "Network",
+    "rpc_label": "RPC",
+    "about_section": "About",
+    "copied_title": "Copied"
   },
   "buildings": {
     "bee_hive_name": "Bee Hive",

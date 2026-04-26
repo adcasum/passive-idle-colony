@@ -50,7 +50,8 @@ export default function MintScreen() {
           </Text>
           <Text className="text-ink-dim mb-2">{t("mint.intro")}</Text>
           <Text className="text-ink-mute text-xs">
-            Mode: {BUBBLEGUM_TREE ? "On-chain (Bubblegum)" : "Local placeholder"}
+            {t("mint.mode_label")}:{" "}
+            {BUBBLEGUM_TREE ? t("mint.mode_onchain") : t("mint.mode_local")}
           </Text>
         </Card>
 

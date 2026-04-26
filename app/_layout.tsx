@@ -76,13 +76,21 @@ export default function RootLayout() {
         <QueryClientProvider client={queryClient}>
           <StatusBar style="light" />
           {i18nReady ? (
-            <Screens />
+            <>
+              <Screens />
+              {/* Onboarding uses useTranslation, so it MUST be inside the
+                  i18nReady gate to avoid the modal flashing raw keys (e.g.
+                  "onboarding.page1_title") on first launch when AsyncStorage
+                  resolves before initI18n finishes. */}
+              <Onboarding />
+            </>
           ) : (
             // Hold the splash background while i18n loads its initial bundle.
             // This is at most a few hundred milliseconds on first launch.
             <View style={{ flex: 1, backgroundColor: "#1A140A" }} />
           )}
-          <Onboarding />
+          {/* ToastHost does not use useTranslation, so it is safe to mount
+              outside the gate (and lets very-early toasts still surface). */}
           <ToastHost />
         </QueryClientProvider>
       </SafeAreaProvider>

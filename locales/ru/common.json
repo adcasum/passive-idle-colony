@@ -101,7 +101,10 @@
     "minted_chain": "✨ Скин выкован on-chain",
     "mint_failed": "Не удалось выковать: {{reason}}",
     "current_skin": "Сейчас на здании: {{id}}",
-    "no_skin_yet": "Скин ещё не надет."
+    "no_skin_yet": "Скин ещё не надет.",
+    "mode_label": "Режим",
+    "mode_onchain": "В сети (Bubblegum)",
+    "mode_local": "Локальный плейсхолдер"
   },
   "profile": {
     "title": "Профиль",
@@ -114,7 +117,13 @@
     "reset_button": "Сбросить колонию",
     "reset_confirm_title": "Сбросить колонию?",
     "reset_confirm_body": "Локальный прогресс будет удалён. Кошелёк остаётся подключённым. Облако перепишется при следующей синхронизации.",
-    "reset_confirm_yes": "Сбросить"
+    "reset_confirm_yes": "Сбросить",
+    "address_label": "Адрес",
+    "balance_label": "Баланс SOL",
+    "network_label": "Сеть",
+    "rpc_label": "RPC",
+    "about_section": "О приложении",
+    "copied_title": "Скопировано"
   },
   "buildings": {
     "bee_hive_name": "Пчелиный улей",

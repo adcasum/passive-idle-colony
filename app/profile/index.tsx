@@ -30,19 +30,19 @@ export default function ProfileScreen() {
           {address ? (
             <View className="mt-4 gap-2">
               <View className="flex-row justify-between">
-                <Text className="text-ink-mute">Address</Text>
+                <Text className="text-ink-mute">{t("profile.address_label")}</Text>
                 <Text
                   className="text-ink"
                   onPress={() => {
                     Clipboard.setStringAsync(address);
-                    Alert.alert("Copied", address);
+                    Alert.alert(t("profile.copied_title"), address);
                   }}
                 >
                   {ellipsify(address, 6, 6)}
                 </Text>
               </View>
               <View className="flex-row justify-between">
-                <Text className="text-ink-mute">SOL balance</Text>
+                <Text className="text-ink-mute">{t("profile.balance_label")}</Text>
                 <Text className="text-ink">
                   {balanceLoading
                     ? "…"
@@ -52,11 +52,11 @@ export default function ProfileScreen() {
                 </Text>
               </View>
               <View className="flex-row justify-between">
-                <Text className="text-ink-mute">Network</Text>
+                <Text className="text-ink-mute">{t("profile.network_label")}</Text>
                 <Text className="text-ink">{CLUSTER}</Text>
               </View>
               <View className="flex-row justify-between">
-                <Text className="text-ink-mute">RPC</Text>
+                <Text className="text-ink-mute">{t("profile.rpc_label")}</Text>
                 <Text className="text-ink-dim text-xs">
                   {ellipsify(RPC_URL, 18, 14)}
                 </Text>
@@ -100,7 +100,9 @@ export default function ProfileScreen() {
         </Card>
 
         <Card>
-          <Text className="text-ink text-lg font-semibold mb-2">About</Text>
+          <Text className="text-ink text-lg font-semibold mb-2">
+            {t("profile.about_section")}
+          </Text>
           <Text className="text-ink-dim">{t("app.tagline")}</Text>
         </Card>
       </ScrollView>

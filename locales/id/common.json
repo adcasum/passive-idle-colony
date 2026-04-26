@@ -101,7 +101,10 @@
     "minted_chain": "✨ Skin dicetak on-chain",
     "mint_failed": "Cetak gagal: {{reason}}",
     "current_skin": "Memakai: {{id}}",
-    "no_skin_yet": "Belum ada skin terpasang."
+    "no_skin_yet": "Belum ada skin terpasang.",
+    "mode_label": "Mode",
+    "mode_onchain": "On-chain (Bubblegum)",
+    "mode_local": "Placeholder lokal"
   },
   "profile": {
     "title": "Profil",
@@ -114,7 +117,13 @@
     "reset_button": "Reset koloni",
     "reset_confirm_title": "Reset koloni?",
     "reset_confirm_body": "Ini menghapus progres lokalmu. Dompet tetap terhubung. Cloud akan ditimpa pada sync berikutnya.",
-    "reset_confirm_yes": "Reset"
+    "reset_confirm_yes": "Reset",
+    "address_label": "Alamat",
+    "balance_label": "Saldo SOL",
+    "network_label": "Jaringan",
+    "rpc_label": "RPC",
+    "about_section": "Tentang",
+    "copied_title": "Disalin"
   },
   "buildings": {
     "bee_hive_name": "Sarang Lebah",

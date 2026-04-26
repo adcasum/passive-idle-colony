@@ -101,7 +101,10 @@
     "minted_chain": "✨ Skin acuñado on-chain",
     "mint_failed": "Acuñado fallido: {{reason}}",
     "current_skin": "Llevando: {{id}}",
-    "no_skin_yet": "Sin skin equipado todavía."
+    "no_skin_yet": "Sin skin equipado todavía.",
+    "mode_label": "Modo",
+    "mode_onchain": "En cadena (Bubblegum)",
+    "mode_local": "Marcador local"
   },
   "profile": {
     "title": "Perfil",
@@ -114,7 +117,13 @@
     "reset_button": "Reiniciar colonia",
     "reset_confirm_title": "¿Reiniciar colonia?",
     "reset_confirm_body": "Esto borra tu progreso local. Tu billetera permanece conectada. La nube se sobrescribirá en la próxima sincronización.",
-    "reset_confirm_yes": "Reiniciar"
+    "reset_confirm_yes": "Reiniciar",
+    "address_label": "Dirección",
+    "balance_label": "Saldo SOL",
+    "network_label": "Red",
+    "rpc_label": "RPC",
+    "about_section": "Acerca de",
+    "copied_title": "Copiado"
   },
   "buildings": {
     "bee_hive_name": "Colmena",

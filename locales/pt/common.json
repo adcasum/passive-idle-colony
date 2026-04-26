@@ -101,7 +101,10 @@
     "minted_chain": "✨ Skin cunhado on-chain",
     "mint_failed": "Cunhagem falhou: {{reason}}",
     "current_skin": "Usando: {{id}}",
-    "no_skin_yet": "Nenhum skin equipado."
+    "no_skin_yet": "Nenhum skin equipado.",
+    "mode_label": "Modo",
+    "mode_onchain": "Em cadeia (Bubblegum)",
+    "mode_local": "Marcador local"
   },
   "profile": {
     "title": "Perfil",
@@ -114,7 +117,13 @@
     "reset_button": "Reiniciar colônia",
     "reset_confirm_title": "Reiniciar colônia?",
     "reset_confirm_body": "Isso apaga seu progresso local. Sua carteira continua conectada. A nuvem será sobrescrita na próxima sync.",
-    "reset_confirm_yes": "Reiniciar"
+    "reset_confirm_yes": "Reiniciar",
+    "address_label": "Endereço",
+    "balance_label": "Saldo SOL",
+    "network_label": "Rede",
+    "rpc_label": "RPC",
+    "about_section": "Sobre",
+    "copied_title": "Copiado"
   },
   "buildings": {
     "bee_hive_name": "Colmeia",

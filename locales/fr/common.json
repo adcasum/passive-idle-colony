@@ -200,7 +200,9 @@
     "streak_extended": "🔥 série de {{days}} jours!",
     "quest_complete": "🎯 Quête terminée: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} en soignant",
-    "tend_capped": "Stock de {{resource}} plein"
+    "tend_capped": "Stock de {{resource}} plein",
+    "tend_sparkle": "✨ Étincelle !",
+    "tend_chain": "Chaîne ×{{length}} !"
   },
   "onboarding": {
     "skip": "Passer",
@@ -261,6 +263,75 @@
     "ends_in": "Se termine dans {{time}}",
     "fmt_dh": "{{d}}j {{h}}h",
     "fmt_hm": "{{h}}h {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Ouvre {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Une clairière vide. Touchez une case et recommençons.",
+      "2": "Choisissez un hex, souverain. Même une fleur est un début.",
+      "3": "Les rayons se taisent. Posez la première ruche, je vous prie.",
+      "4": "Sans une ruche, point de royaume. Que mémoire."
+    },
+    "bloom_active": {
+      "1": "La Floraison est là — chaque rayon chante ×{{mult}} plus fort.",
+      "2": "Du pollen partout. Les ruches en boivent tout.",
+      "3": "Tant que dure la Floraison, chaque heure est généreuse.",
+      "4": "Je n'avais pas senti saison aussi riche depuis longtemps.",
+      "5": "Soignez maintenant, souverain — l'air même est doux."
+    },
+    "near_bloom": {
+      "1": "Je sens les premières fleurs. La Floraison vient dans quelques heures.",
+      "2": "Bientôt les pétales s'ouvrent. Préparez la récolte.",
+      "3": "Le vent change — la Floraison de Printemps approche.",
+      "4": "Préparez les rayons. La Floraison est proche."
+    },
+    "claim_ready": {
+      "1": "Les coffres pèsent de miel. Le récolterez-vous ?",
+      "2": "Des heures de pollen attendent votre main, souverain.",
+      "3": "Les ruches ont fait leur œuvre. À votre tour.",
+      "4": "Une récolte est prête. Ne la laissez pas fermenter.",
+      "5": "Les rayons sont pleins. Videz-les et grandissez."
+    },
+    "low_water": {
+      "1": "Nos rayons s'assèchent. Construisez une Source ou tout est perdu.",
+      "2": "L'eau. Sans elle, point de gelée royale. Aucune.",
+      "3": "Les abeilles ont soif, souverain. Trouvez-leur de l'eau.",
+      "4": "J'échangerais de l'or contre un ruisseau maintenant."
+    },
+    "low_food": {
+      "1": "La clairière est nue. Les abeilles faiblissent.",
+      "2": "Sans fourrage, même une reine vacille. Plantez quelque chose.",
+      "3": "Ventres vides, ruches vides. Construisez une Prairie.",
+      "4": "Il nous faut à manger, souverain. Bientôt."
+    },
+    "low_energy": {
+      "1": "Le soleil est généreux, mais nul panneau pour le saisir.",
+      "2": "La chaleur solaire se perd. Posez un Panneau Solaire.",
+      "3": "L'énergie s'écoule sans être stockée. Construisez-moi un panneau.",
+      "4": "Sans chaleur, la cire refroidit. De l'énergie, je vous prie."
+    },
+    "low_honey": {
+      "1": "Nos réserves de miel sont honteusement maigres.",
+      "2": "Une ruche sans miel est une ruche sans nom.",
+      "3": "Construisez des ruches, souverain. Il nous faut du miel.",
+      "4": "Le miel s'épuise. Soignez plus. Plus vite."
+    },
+    "near_full": {
+      "1": "Les coffres se remplissent — nous perdons ce que nous ne pouvons garder.",
+      "2": "Le stockage déborde, souverain. Récoltez ou bâtissez un grenier.",
+      "3": "Chaque goutte au-dessus du bord est perdue. Agissez.",
+      "4": "Rayons pleins, récolte perdue. Récoltez maintenant."
+    },
+    "idle": {
+      "1": "Tout est calme. Les abeilles bourdonnent, le travail continue.",
+      "2": "Un royaume patient est sage, souverain.",
+      "3": "Je vois les rayons se remplir, lent comme miel, doux comme temps.",
+      "4": "Soignez un hex si vous voulez. Ou reposez-vous avec nous.",
+      "5": "Le temps même est notre récolte. Nous moissonnons la patience.",
+      "6": "La grille hexagonale respire. Écoutez.",
+      "7": "Les abeilles savent quoi faire. Il nous suffit de croire.",
+      "8": "Même au repos la colonie grandit. C'est le don des abeilles."
+    }
   }
 }

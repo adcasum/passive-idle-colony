@@ -200,7 +200,9 @@
     "streak_extended": "🔥 Sequência de {{days}} dias!",
     "quest_complete": "🎯 Missão completa: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} por cuidar",
-    "tend_capped": "Armazenamento de {{resource}} cheio"
+    "tend_capped": "Armazenamento de {{resource}} cheio",
+    "tend_sparkle": "✨ Brilho!",
+    "tend_chain": "Sequência ×{{length}}!"
   },
   "onboarding": {
     "skip": "Pular",
@@ -261,6 +263,75 @@
     "ends_in": "Termina em {{time}}",
     "fmt_dh": "{{d}}d {{h}}h",
     "fmt_hm": "{{h}}h {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Abre {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Um bosque vazio. Toque num hexágono e recomeçaremos.",
+      "2": "Escolha um hex, soberano. Até uma flor é um começo.",
+      "3": "Os favos calam. Coloque a primeira colmeia, eu imploro.",
+      "4": "Sem colmeia não há reino. Só memória."
+    },
+    "bloom_active": {
+      "1": "O Florescer chegou — cada favo canta ×{{mult}} mais alto.",
+      "2": "Pólen por toda parte. As colmeias bebem tudo.",
+      "3": "Enquanto durar o Florescer, cada hora é generosa.",
+      "4": "Há muito não sentia estação tão rica.",
+      "5": "Cuide agora, soberano — o ar é doce."
+    },
+    "near_bloom": {
+      "1": "Sinto as primeiras flores. O Florescer vem em horas.",
+      "2": "Logo as pétalas se abrem. Prepare-se para colher.",
+      "3": "O vento muda — o Florescer da Primavera se aproxima.",
+      "4": "Prepare os favos. O Florescer está perto."
+    },
+    "claim_ready": {
+      "1": "Os depósitos pesam de mel. Vai recolher?",
+      "2": "Horas de pólen aguardam sua mão, soberano.",
+      "3": "As colmeias fizeram seu trabalho. Sua vez.",
+      "4": "Uma coleta está pronta. Não a deixe fermentar.",
+      "5": "Os favos estão cheios. Esvazie-os e cresça."
+    },
+    "low_water": {
+      "1": "Nossos favos secam. Construa uma Fonte, ou tudo se perde.",
+      "2": "Água. Sem ela, não há geleia real. Nenhuma.",
+      "3": "As abelhas têm sede, soberano. Ache-lhes água.",
+      "4": "Trocaria ouro por um riacho agora."
+    },
+    "low_food": {
+      "1": "O bosque está nu. As abelhas enfraquecem.",
+      "2": "Sem forragem, até uma rainha hesita. Plante algo.",
+      "3": "Barrigas vazias, colmeias vazias. Construa uma Clareira.",
+      "4": "Precisamos de comida, soberano. Em breve."
+    },
+    "low_energy": {
+      "1": "O sol é generoso, mas não temos painéis para captá-lo.",
+      "2": "O calor solar se perde. Coloque um Painel Solar.",
+      "3": "A energia escapa sem ser guardada. Construa-me um painel.",
+      "4": "Sem calor, a cera esfria. Energia, por favor."
+    },
+    "low_honey": {
+      "1": "Nossas reservas de mel são vergonhosamente escassas.",
+      "2": "Uma colmeia sem mel é uma colmeia sem nome.",
+      "3": "Construa colmeias, soberano. Precisamos de mel.",
+      "4": "O mel escasseia. Cuide mais. Mais rápido."
+    },
+    "near_full": {
+      "1": "Os depósitos quase enchem — perdemos o que não guardamos.",
+      "2": "O armazém transborda, soberano. Recolha ou construa um celeiro.",
+      "3": "Cada gota acima da borda é desperdício. Aja logo.",
+      "4": "Favos cheios, colheita perdida. Recolha já."
+    },
+    "idle": {
+      "1": "Tudo está calmo. As abelhas zumbem, o trabalho continua.",
+      "2": "Um reino paciente é sábio, soberano.",
+      "3": "Vejo os favos encherem, lento como mel, doce como o tempo.",
+      "4": "Cuide de um hex se quiser. Ou descanse conosco.",
+      "5": "O tempo é nossa colheita. Colhemos paciência.",
+      "6": "A grade hexagonal respira. Escute.",
+      "7": "As abelhas sabem o que fazer. Só precisamos crer.",
+      "8": "Mesmo ociosa, a colônia cresce. Esse é o dom das abelhas."
+    }
   }
 }

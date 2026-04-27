@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
+import i18next from "i18next";
+
 import { Card } from "@/components/UI/Card";
 import { bloomStatus } from "@/lib/bloomEvent";
 
@@ -52,14 +54,38 @@ export function BloomBanner() {
     );
   }
 
+  // Inactive state: surface "next bloom on Tue 05:00 UTC" alongside the
+  // raw countdown so the event has a calendar handle, not just a ticking
+  // clock. Players plan around days of the week far better than around
+  // arbitrary hour counts.
+  const calendar = formatCalendar(status.startMs);
   return (
     <Card>
       <Text className="text-ink-mute text-xs">🌱 {t("bloom.inactive_title")}</Text>
       <Text className="text-ink text-sm mt-1">
         {t("bloom.inactive_body", { time: formatDuration(remainingMs, t) })}
       </Text>
+      <Text className="text-accent text-[11px] mt-1">
+        {t("bloom.calendar_label", { calendar })}
+      </Text>
     </Card>
   );
+}
+
+function formatCalendar(startMs: number): string {
+  // Use the active i18n locale so days-of-week are localized (e.g. "вт"
+  // for ru, "Tue" for en, "火" for ja). 05:00 UTC is rendered as the
+  // player's local time, so a player in UTC+3 sees "08:00".
+  const lang = i18next.language || "en";
+  const date = new Date(startMs);
+  const weekday = date.toLocaleDateString(lang, {
+    weekday: "short",
+  });
+  const time = date.toLocaleTimeString(lang, {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return `${weekday} ${time}`;
 }
 
 function formatDuration(ms: number, t: (k: string, opts?: Record<string, unknown>) => string): string {

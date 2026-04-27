@@ -200,7 +200,9 @@
     "streak_extended": "🔥 {{days}}-günlük seri!",
     "quest_complete": "🎯 Görev tamam: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} bakımdan",
-    "tend_capped": "{{resource}} depolaması dolu"
+    "tend_capped": "{{resource}} depolaması dolu",
+    "tend_sparkle": "✨ Parıltı!",
+    "tend_chain": "Zincir ×{{length}}!"
   },
   "onboarding": {
     "skip": "Atla",
@@ -261,6 +263,75 @@
     "ends_in": "{{time}} sonra biter",
     "fmt_dh": "{{d}}g {{h}}sa",
     "fmt_hm": "{{h}}sa {{m}}dk",
-    "fmt_m": "{{m}}dk"
+    "fmt_m": "{{m}}dk",
+    "calendar_label": "{{calendar}} açılır"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Boş koru. Bir hücreye dokun, yeniden başlayalım.",
+      "2": "Bir altıgen seç, hükümdar. Bir çiçek bile başlangıçtır.",
+      "3": "Petekler suskun. İlk kovanı yerleştir, yalvarırım.",
+      "4": "Tek kovan olmadan krallık yok. Sadece anı."
+    },
+    "bloom_active": {
+      "1": "Çiçeklenme geldi — her petek ×{{mult}} daha gür şarkı söyler.",
+      "2": "Her yer polen. Kovanlar her şeyi içer.",
+      "3": "Çiçeklenme sürdükçe her saat cömerttir.",
+      "4": "Uzun zamandır böyle bereketli mevsim hissetmemiştim.",
+      "5": "Şimdi bak, hükümdar — havanın kendisi tatlı."
+    },
+    "near_bloom": {
+      "1": "İlk çiçeklerin kokusunu alıyorum. Çiçeklenme saatler içinde gelecek.",
+      "2": "Yakında taç yapraklar açılır. Hasada hazırlan.",
+      "3": "Rüzgâr değişiyor — Bahar Çiçeklenmesi yaklaşıyor.",
+      "4": "Petekleri hazırla. Çiçeklenme yakın."
+    },
+    "claim_ready": {
+      "1": "Hazineler bal ile ağır. Toplayacak mısın?",
+      "2": "Saatler süren polen elini bekliyor, hükümdar.",
+      "3": "Kovanlar işini yaptı. Sıra sende.",
+      "4": "Bir hasat hazır. Mayalanmasına izin verme.",
+      "5": "Petekler dolu. Boşalt ve büyü."
+    },
+    "low_water": {
+      "1": "Petekler kuruyor. Bir Pınar inşa et, yoksa her şey kaybolur.",
+      "2": "Su. Onsuz arı sütü olmaz. Hiç.",
+      "3": "Arılar susamış, hükümdar. Onlara su bul.",
+      "4": "Şimdi altın karşılığı bir dere alırdım."
+    },
+    "low_food": {
+      "1": "Koru çıplak. Arılar zayıflıyor.",
+      "2": "Yem yoksa kraliçe bile sendeler. Bir şey ek.",
+      "3": "Boş karın, boş kovan. Bir Çayır inşa et.",
+      "4": "Yiyecek lazım, hükümdar. Yakında."
+    },
+    "low_energy": {
+      "1": "Güneş cömert, ama yakalayacak panelimiz yok.",
+      "2": "Güneş ısısı boşa gidiyor. Güneş Paneli yerleştir.",
+      "3": "Enerji depolanmadan akıp gidiyor. Bana bir panel inşa et.",
+      "4": "Sıcaklık olmadan mum soğur. Enerji, lütfen."
+    },
+    "low_honey": {
+      "1": "Bal stoklarımız utanılacak kadar az.",
+      "2": "Balsız kovan isimsiz kovandır.",
+      "3": "Kovan inşa et, hükümdar. Balımız olmalı.",
+      "4": "Bal azalıyor. Daha sık bak. Daha hızlı."
+    },
+    "near_full": {
+      "1": "Hazineler nerdeyse dolu — saklayamadığımızı kaybederiz.",
+      "2": "Depo taşıyor, hükümdar. Topla veya ambar inşa et.",
+      "3": "Kenardan taşan her damla israftır. Hızlıca harekete geç.",
+      "4": "Dolu petekler, kayıp hasat. Şimdi topla."
+    },
+    "idle": {
+      "1": "Her şey sakin. Arılar vızıldar, iş sürer.",
+      "2": "Sabırlı krallık bilgedir, hükümdar.",
+      "3": "Peteklerin dolduğunu görürüm, bal kadar yavaş, zaman kadar tatlı.",
+      "4": "İstersen bir altıgene bak. Ya da bizimle dinlen.",
+      "5": "Zamanın kendisi hasattır. Sabır biçeriz.",
+      "6": "Altıgen ızgara nefes alır. Dinle.",
+      "7": "Arılar ne yapacağını bilir. Sadece inanmalıyız.",
+      "8": "Boştayken bile koloni büyür. Bu arıların armağanıdır."
+    }
   }
 }

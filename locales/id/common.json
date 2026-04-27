@@ -200,7 +200,9 @@
     "streak_extended": "🔥 Streak {{days}} hari!",
     "quest_complete": "🎯 Misi selesai: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} dari merawat",
-    "tend_capped": "Penyimpanan {{resource}} penuh"
+    "tend_capped": "Penyimpanan {{resource}} penuh",
+    "tend_sparkle": "✨ Kilau!",
+    "tend_chain": "Rantai ×{{length}}!"
   },
   "onboarding": {
     "skip": "Lewati",
@@ -261,6 +263,75 @@
     "ends_in": "Berakhir dalam {{time}}",
     "fmt_dh": "{{d}}h {{h}}j",
     "fmt_hm": "{{h}}j {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Buka {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Hutan kosong. Ketuk satu sel, mari mulai lagi.",
+      "2": "Pilih sebuah hex, paduka. Bahkan satu bunga adalah awal.",
+      "3": "Sarang sunyi. Letakkan sarang pertama, mohon.",
+      "4": "Tanpa satu sarang, tiada kerajaan. Hanya kenangan."
+    },
+    "bloom_active": {
+      "1": "Mekar tiba — setiap sarang bernyanyi ×{{mult}} lebih nyaring.",
+      "2": "Serbuk sari di mana-mana. Sarang minum sepuasnya.",
+      "3": "Selama Mekar, setiap jam murah hati.",
+      "4": "Sudah lama tak kurasakan musim sekaya ini.",
+      "5": "Rawatlah sekarang, paduka — udara terasa manis."
+    },
+    "near_bloom": {
+      "1": "Kucium bunga pertama. Mekar tiba dalam beberapa jam.",
+      "2": "Sebentar lagi kelopak terbuka. Bersiaplah memanen.",
+      "3": "Angin berubah — Mekar Musim Semi mendekat.",
+      "4": "Siapkan sarang. Mekar dekat."
+    },
+    "claim_ready": {
+      "1": "Lumbung berat oleh madu. Akan kau ambil?",
+      "2": "Berjam-jam serbuk sari menunggu tanganmu, paduka.",
+      "3": "Sarang telah bekerja. Giliranmu.",
+      "4": "Sebuah panen siap. Jangan biarkan ia memfermentasi.",
+      "5": "Sarang penuh. Kosongkan dan tumbuh."
+    },
+    "low_water": {
+      "1": "Sarang kering. Bangun mata air, atau semua hilang.",
+      "2": "Air. Tanpanya, tiada royal jelly. Sama sekali.",
+      "3": "Lebah haus, paduka. Carikan air.",
+      "4": "Aku tukar emas demi sungai sekarang."
+    },
+    "low_food": {
+      "1": "Hutan gundul. Lebah melemah.",
+      "2": "Tanpa pakan, ratu pun goyah. Tanam sesuatu.",
+      "3": "Perut kosong, sarang kosong. Bangun Padang.",
+      "4": "Kami butuh makanan, paduka. Segera."
+    },
+    "low_energy": {
+      "1": "Matahari murah hati, tapi tiada panel menangkapnya.",
+      "2": "Hangat surya terbuang. Pasang Panel Surya.",
+      "3": "Energi mengalir tak tersimpan. Bangunkan panel.",
+      "4": "Tanpa hangat, lilin dingin. Energi, mohon."
+    },
+    "low_honey": {
+      "1": "Cadangan madu kami sungguh sedikit.",
+      "2": "Sarang tanpa madu adalah sarang tanpa nama.",
+      "3": "Bangun sarang, paduka. Kita harus punya madu.",
+      "4": "Madu menipis. Rawat lebih sering. Lebih cepat."
+    },
+    "near_full": {
+      "1": "Lumbung hampir penuh — kita kehilangan yang tak bisa kita simpan.",
+      "2": "Penyimpanan tumpah, paduka. Panen atau bangun lumbung.",
+      "3": "Setiap tetes di atas tepi terbuang. Bertindaklah.",
+      "4": "Sarang penuh, hasil hilang. Panen sekarang."
+    },
+    "idle": {
+      "1": "Semua tenang. Lebah berdengung, kerja berjalan.",
+      "2": "Kerajaan sabar adalah bijak, paduka.",
+      "3": "Kulihat sarang terisi, lambat seperti madu, manis seperti waktu.",
+      "4": "Rawat satu hex jika mau. Atau istirahatlah bersama kami.",
+      "5": "Waktu itu sendiri panen kita. Kita panen kesabaran.",
+      "6": "Kotak heksagon bernapas. Dengarkan.",
+      "7": "Lebah tahu apa yang harus dilakukan. Kita cukup percaya.",
+      "8": "Bahkan diam, koloni tumbuh. Itulah anugerah lebah."
+    }
   }
 }

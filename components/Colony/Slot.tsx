@@ -42,13 +42,17 @@ interface Props {
   /** When true, render a pulsing gold glow around the (empty) slot to
    *  cue a new player to tap here for their first build. */
   tutorialGlow?: boolean;
+  /** When true, this is the mini-event's currently-spotlighted slot:
+   *  render a cyan pulse so the player can find it at a glance. */
+  sparkle?: boolean;
   onPress: (index: number) => void;
 }
 
-export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
+export function Slot({ slot, index, tutorialGlow, sparkle, onPress }: Props) {
   const scale = useSharedValue(1);
   const wiggle = useSharedValue(0);
   const tutorialPulse = useSharedValue(0);
+  const sparklePulse = useSharedValue(0);
   const { t } = useTranslation();
   const { tend } = useTapToTend(index);
 
@@ -70,6 +74,24 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
     }
   }, [tutorialGlow, tutorialPulse]);
 
+  // Mini-event sparkle: faster, tighter pulse than tutorial — cyan, draws
+  // the eye but doesn't dominate the screen. Stops the moment the
+  // 10-min window ends or the targeted slot rotates away.
+  useEffect(() => {
+    if (sparkle) {
+      sparklePulse.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 450 }),
+          withTiming(0, { duration: 450 }),
+        ),
+        -1,
+        false,
+      );
+    } else {
+      sparklePulse.value = withTiming(0, { duration: 200 });
+    }
+  }, [sparkle, sparklePulse]);
+
   useEffect(() => {
     if (slot) {
       scale.value = 0.85;
@@ -89,6 +111,10 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
 
   const tutorialGlowStyle = useAnimatedStyle(() => ({
     opacity: tutorialPulse.value,
+  }));
+
+  const sparkleGlowStyle = useAnimatedStyle(() => ({
+    opacity: sparklePulse.value,
   }));
 
   const glow = slot ? KIND_GLOW[slot.kind] ?? "#FFC940" : null;
@@ -147,12 +173,19 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
         if (result.cappedOut) {
           toast.info(t("toast.tend_capped", { resource: t(`resources.${result.resource}`) }));
         } else {
-          toast.success(
-            t("toast.tend", {
-              amount: fmtNum(result.granted),
-              emoji: RESOURCE_EMOJI[result.resource],
-            }),
-          );
+          // Build a single line that shows resource + amount + (if any)
+          // a multiplier badge: e.g. "🍯+12 ×3 (Sparkle!)".
+          const base = t("toast.tend", {
+            amount: fmtNum(result.granted),
+            emoji: RESOURCE_EMOJI[result.resource],
+          });
+          let suffix = "";
+          if (result.sources.includes("mini")) {
+            suffix = `  ×${result.multiplier} ${t("toast.tend_sparkle")}`;
+          } else if (result.sources.includes("chain")) {
+            suffix = `  ×${result.multiplier} ${t("toast.tend_chain", { length: result.chainLength })}`;
+          }
+          toast.success(`${base}${suffix}`);
         }
       }
     }
@@ -215,6 +248,43 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
             tutorialGlowStyle,
           ]}
         />
+      ) : null}
+
+      {slot && sparkle ? (
+        // Mini-event spotlight. Cyan accent, slightly less alpha than
+        // the tutorial glow so the building emoji underneath stays
+        // readable. Inset border so the corners of the LinearGradient
+        // gradient don't clip it.
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderRadius: 16,
+              borderWidth: 2,
+              borderColor: "#7DD3FC",
+              backgroundColor: "#7DD3FC22",
+            },
+            sparkleGlowStyle,
+          ]}
+        />
+      ) : null}
+
+      {slot && sparkle ? (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: 4,
+            right: 4,
+          }}
+        >
+          <Text style={{ fontSize: 14 }}>✨</Text>
+        </View>
       ) : null}
 
       {slot && def ? (

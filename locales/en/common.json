@@ -200,7 +200,9 @@
     "streak_extended": "🔥 {{days}}-day streak!",
     "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} from tending",
-    "tend_capped": "{{resource}} storage is full"
+    "tend_capped": "{{resource}} storage is full",
+    "tend_sparkle": "✨ Sparkle!",
+    "tend_chain": "Chain ×{{length}}!"
   },
   "onboarding": {
     "skip": "Skip",
@@ -261,6 +263,75 @@
     "ends_in": "Ends in {{time}}",
     "fmt_dh": "{{d}}d {{h}}h",
     "fmt_hm": "{{h}}h {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Opens {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "An empty grove. Tap a tile and let us begin again.",
+      "2": "Choose a hex, sovereign. Even one bloom is a start.",
+      "3": "The combs are silent. Place the first hive — I beg you.",
+      "4": "Without a single hive, there is no kingdom. Only memory."
+    },
+    "bloom_active": {
+      "1": "The Bloom is upon us — every comb sings ×{{mult}} louder.",
+      "2": "Pollen everywhere. The hives drink it all.",
+      "3": "While the Bloom holds, every hour is generous.",
+      "4": "I have not felt a season this rich in a long time.",
+      "5": "Tend now, sovereign — the air itself is sweet."
+    },
+    "near_bloom": {
+      "1": "I smell the first flowers. The Bloom comes within hours.",
+      "2": "Soon the petals open. Be ready to gather.",
+      "3": "The wind shifts — Spring Bloom approaches.",
+      "4": "Prepare the combs. The Bloom is near."
+    },
+    "claim_ready": {
+      "1": "The vaults are heavy with honey. Will you collect?",
+      "2": "Hours of pollen await your hand, sovereign.",
+      "3": "The hives have done their work. Yours awaits.",
+      "4": "A claim is ready. Do not let it ferment.",
+      "5": "The combs are full. Empty them and grow."
+    },
+    "low_water": {
+      "1": "Our combs run dry. Build a Spring or all is lost.",
+      "2": "Water — without it, no royal jelly. None.",
+      "3": "The bees thirst, sovereign. Find them water.",
+      "4": "I would trade gold for a stream right now."
+    },
+    "low_food": {
+      "1": "The grove is bare. The bees grow weak.",
+      "2": "Without forage, even a queen falters. Plant something.",
+      "3": "Empty bellies, empty hives. Build a Glade.",
+      "4": "We need food, sovereign. Soon."
+    },
+    "low_energy": {
+      "1": "The sun is generous, but we have no panels to catch it.",
+      "2": "Solar warmth is wasted. Place a Solar Panel.",
+      "3": "Energy bleeds away unstored. Build me a panel.",
+      "4": "Without warmth, the wax cools. Energy, please."
+    },
+    "low_honey": {
+      "1": "Our honey reserves are shamefully thin.",
+      "2": "A hive without honey is a hive without name.",
+      "3": "Build hives, sovereign. We must have honey.",
+      "4": "Honey runs low. Tend more. Tend faster."
+    },
+    "near_full": {
+      "1": "The vaults near full — we lose what we cannot store.",
+      "2": "Storage spills, sovereign. Claim, or build me a granary.",
+      "3": "Every drop above the brim is wasted. Act soon.",
+      "4": "Full combs, lost yield. Claim now."
+    },
+    "idle": {
+      "1": "All is quiet. The bees hum, the work continues.",
+      "2": "A patient kingdom is a wise one, sovereign.",
+      "3": "I watch the combs fill, slow as honey, sweet as time.",
+      "4": "Tend a hex, if you wish. Or simply rest with us.",
+      "5": "Time itself is our crop. We harvest patience.",
+      "6": "The hex grid breathes. Listen.",
+      "7": "Bees know what to do. We need only believe.",
+      "8": "Even idle, the colony grows. That is the gift of bees."
+    }
   }
 }

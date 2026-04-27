@@ -13,8 +13,10 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { BloomBanner } from "@/components/Home/BloomBanner";
+import { HomeFloatingBees } from "@/components/Home/HomeFloatingBees";
 import { NarrativeHero } from "@/components/Home/NarrativeHero";
 import { NextActionCard } from "@/components/Home/NextActionCard";
+import { QueenVoice } from "@/components/Home/QueenVoice";
 import { QuestList } from "@/components/Home/QuestList";
 import { StreakBadge } from "@/components/Home/StreakBadge";
 import { Button } from "@/components/UI/Button";
@@ -39,10 +41,12 @@ export default function Home() {
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["top", "bottom"]}>
       <HoneycombPattern />
+      {connected ? <HomeFloatingBees count={3} /> : null}
       <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
         {connected ? (
           <>
             <NarrativeHero />
+            <QueenVoice />
             <BloomBanner />
             <NextActionCard />
             <StreakBadge />

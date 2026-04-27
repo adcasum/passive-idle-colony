@@ -50,7 +50,7 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
   const wiggle = useSharedValue(0);
   const tutorialPulse = useSharedValue(0);
   const { t } = useTranslation();
-  const { canTend, tend } = useTapToTend(index);
+  const { tend } = useTapToTend(index);
 
   // Pulse the tutorial glow when active. Two-step easing — fade in over
   // 700 ms, fade out over 700 ms — looped indefinitely until the player
@@ -133,8 +133,14 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
   // Tap on a built tile fires a small "tend" bonus (if off cooldown) AND
   // opens the build card. Tend is silent on cooldown — the card still
   // opens so the player can upgrade / demolish without friction.
+  //
+  // We always call tend() and let it perform its own cooldown check via
+  // useEngagementStore.getState(). Gating on the closure-captured
+  // `canTend` here would go stale once a cooldown expired without a
+  // re-render, so the first tap after the timer elapsed would fail to
+  // grant the bonus.
   const handlePress = () => {
-    if (slot && canTend) {
+    if (slot) {
       const result = tend();
       if (result) {
         haptic.tap();

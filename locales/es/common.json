@@ -52,7 +52,15 @@
     "next_action_storage_full": "El almacén está casi lleno — reclama o mejora el Almacén.",
     "next_action_idle": "Espera el próximo ciclo o construye más.",
     "intro_story_title": "El Último Apiario",
-    "intro_story_body": "Los polinizadores del mundo desaparecen. Una reina sobreviviente te ha elegido para reconstruir su colonia, hex a hex. Pronto otras reinas oirán de tu apiario y vendrán a competir en la Clasificación real."
+    "intro_story_body": "Los polinizadores del mundo desaparecen. Una reina sobreviviente te ha elegido para reconstruir su colonia, hex a hex. Pronto otras reinas oirán de tu apiario y vendrán a competir en la Clasificación real.",
+    "greeting": "Reina del Apiario {{name}}",
+    "greeting_anon": "Un apiario espera a su reina",
+    "level_progress_label": "{{current}}/{{next}} XP",
+    "level_full_label": "Corte Real alcanzada",
+    "rank_loading": "Leyendo los pergaminos reales…",
+    "stats_total_honey": "Miel total",
+    "stats_buildings_built": "Edificios construidos",
+    "stats_claims_made": "Recolecciones"
   },
   "colony": {
     "title": "Colmena",
@@ -213,13 +221,21 @@
     "reward_label": "Recompensa",
     "completed": "Hecho",
     "resets_at": "Reinicia a las {{time}}",
-    "all_done": "Misiones completas — bonus mañana."
+    "all_done": "Misiones completas — bonus mañana.",
+    "long_press_preview": "Mantén pulsada una celda para ver la producción",
+    "reward_honey": "+{{amount}} miel",
+    "in_progress": "{{current}}/{{target}}",
+    "claim_reward_button": "Reclamar recompensa"
   },
   "streak": {
     "label": "🔥 racha de {{days}} días",
     "label_zero": "Empieza una racha hoy",
     "day_short": "D{{day}}",
-    "next_reward": "Día {{day}}: cofre extra"
+    "next_reward": "Día {{day}}: cofre extra",
+    "title": "Racha de inicios",
+    "day_done": "✓",
+    "day_today": "Hoy",
+    "broken": "La racha se rompió ayer — empieza de nuevo hoy."
   },
   "urgency": {
     "storage_full_badge": "Almacén {{percent}}%",

@@ -17,6 +17,7 @@ import {
   canAfford,
   upgradeCost,
 } from "@/lib/colonyMath";
+import { onBuilt, onUpgraded } from "@/lib/engagementEvents";
 import { haptic } from "@/lib/haptics";
 import { toast } from "@/lib/toast";
 import { useColonyStore } from "@/store/colonyStore";
@@ -176,6 +177,7 @@ function BuildPicker({
                 onPress={() => {
                   if (place(slotIndex, k)) {
                     haptic.build();
+                    onBuilt();
                     toast.success(t("toast.built", { name }));
                     onClose();
                   } else {
@@ -286,6 +288,7 @@ function ExistingBuilding({
               onPress={() => {
                 if (upgrade(slotIndex)) {
                   haptic.upgrade();
+                  onUpgraded();
                   toast.success(
                     t("toast.upgraded", { name, level: building.level + 1 }),
                   );

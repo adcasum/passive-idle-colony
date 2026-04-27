@@ -52,7 +52,15 @@
     "next_action_storage_full": "Storage is almost full — claim or upgrade Storage.",
     "next_action_idle": "Wait for the next cycle, or build more.",
     "intro_story_title": "The Last Apiary",
-    "intro_story_body": "The world's pollinators are vanishing. A surviving queen has chosen you to rebuild her colony, hex by hex. Soon other queens will hear of your apiary and come to compete on the Royal Leaderboard."
+    "intro_story_body": "The world's pollinators are vanishing. A surviving queen has chosen you to rebuild her colony, hex by hex. Soon other queens will hear of your apiary and come to compete on the Royal Leaderboard.",
+    "greeting": "Queen of {{name}} Apiary",
+    "greeting_anon": "An apiary awaits a queen",
+    "level_progress_label": "{{current}}/{{next}} XP",
+    "level_full_label": "Royal Court reached",
+    "rank_loading": "Reading the royal scrolls…",
+    "stats_total_honey": "Lifetime honey",
+    "stats_buildings_built": "Buildings built",
+    "stats_claims_made": "Claims made"
   },
   "colony": {
     "title": "Hive",
@@ -210,16 +218,24 @@
     "upgrade_any": "Upgrade any building",
     "claim_today": "Claim today's honey",
     "beat_record": "Beat your previous claim record",
+    "long_press_preview": "Long-press a tile to preview production",
     "reward_label": "Reward",
+    "reward_honey": "+{{amount}} honey",
     "completed": "Done",
+    "in_progress": "{{current}}/{{target}}",
     "resets_at": "Resets at {{time}}",
-    "all_done": "All quests done — bonus tomorrow."
+    "all_done": "All quests done — bonus tomorrow.",
+    "claim_reward_button": "Claim quest reward"
   },
   "streak": {
     "label": "🔥 {{days}}-day streak",
     "label_zero": "Start a streak today",
+    "title": "Login streak",
     "day_short": "D{{day}}",
-    "next_reward": "Day {{day}}: bonus chest"
+    "day_done": "✓",
+    "day_today": "Today",
+    "next_reward": "Day {{day}}: bonus chest",
+    "broken": "Streak ended yesterday — start fresh today."
   },
   "urgency": {
     "storage_full_badge": "Storage {{percent}}%",

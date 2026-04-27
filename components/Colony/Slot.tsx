@@ -16,6 +16,7 @@ import {
   RESOURCE_EMOJI,
   getBuildingName,
 } from "@/constants/buildings";
+import { onLongPressedSlot } from "@/lib/engagementEvents";
 import { fmtNum } from "@/lib/format";
 import { buildingProductionPerHour, upgradeCost } from "@/lib/colonyMath";
 import { toast } from "@/lib/toast";
@@ -70,6 +71,9 @@ export function Slot({ slot, index, onPress }: Props) {
       toast.info(t("slot_preview.empty"));
       return;
     }
+    // Only count the quest after the player has actually surfaced production
+    // stats — long-pressing an empty tile is just a "what is this?" prompt.
+    onLongPressedSlot();
     const prod = buildingProductionPerHour(slot);
     const isMax = slot.level >= def.maxLevel;
     const next = isMax ? null : upgradeCost(slot.kind, slot.level);

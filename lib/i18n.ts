@@ -10,6 +10,13 @@ import es from "@/locales/es/common.json";
 import pt from "@/locales/pt/common.json";
 import zh from "@/locales/zh/common.json";
 import id from "@/locales/id/common.json";
+import hi from "@/locales/hi/common.json";
+import ja from "@/locales/ja/common.json";
+import ko from "@/locales/ko/common.json";
+import fr from "@/locales/fr/common.json";
+import de from "@/locales/de/common.json";
+import tr from "@/locales/tr/common.json";
+import vi from "@/locales/vi/common.json";
 
 export const SUPPORTED_LOCALES = [
   "en",
@@ -19,6 +26,13 @@ export const SUPPORTED_LOCALES = [
   "pt",
   "zh",
   "id",
+  "hi",
+  "ja",
+  "ko",
+  "fr",
+  "de",
+  "tr",
+  "vi",
 ] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
@@ -31,6 +45,13 @@ export const LOCALE_LABELS: Record<Locale, string> = {
   pt: "Português",
   zh: "中文",
   id: "Bahasa Indonesia",
+  hi: "हिन्दी",
+  ja: "日本語",
+  ko: "한국어",
+  fr: "Français",
+  de: "Deutsch",
+  tr: "Türkçe",
+  vi: "Tiếng Việt",
 };
 
 const STORAGE_KEY = "@pic/locale";
@@ -43,6 +64,13 @@ const RESOURCES = {
   pt: { common: pt },
   zh: { common: zh },
   id: { common: id },
+  hi: { common: hi },
+  ja: { common: ja },
+  ko: { common: ko },
+  fr: { common: fr },
+  de: { common: de },
+  tr: { common: tr },
+  vi: { common: vi },
 } as const;
 
 function pickInitialLocale(): Locale {

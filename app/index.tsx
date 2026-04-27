@@ -12,10 +12,16 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import { NarrativeHero } from "@/components/Home/NarrativeHero";
+import { NextActionCard } from "@/components/Home/NextActionCard";
+import { QuestList } from "@/components/Home/QuestList";
+import { StreakBadge } from "@/components/Home/StreakBadge";
 import { Button } from "@/components/UI/Button";
 import { Card, GradientCard } from "@/components/UI/Card";
 import { HoneycombPattern } from "@/components/UI/HoneycombPattern";
 import { WalletConnectButton } from "@/components/Shared/WalletConnectButton";
+import { useLoginStreak } from "@/hooks/useLoginStreak";
+import { useStorageWarning } from "@/hooks/useStorageWarning";
 import { useWallet } from "@/hooks/useWallet";
 
 const HERO_GRADIENT: [string, string] = ["#3D2A0E", "#1A140A"];
@@ -24,63 +30,134 @@ export default function Home() {
   const { connected } = useWallet();
   const { t } = useTranslation();
 
+  // Side-effects: record today's login + maybe surface storage-full warn.
+  // Both are idempotent within a single local day.
+  useLoginStreak();
+  useStorageWarning();
+
   return (
     <SafeAreaView className="flex-1 bg-bg" edges={["top", "bottom"]}>
       <HoneycombPattern />
       <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
-        <Hero />
+        {connected ? (
+          <>
+            <NarrativeHero />
+            <NextActionCard />
+            <StreakBadge />
+            <QuestList />
 
-        <Step
-          n={1}
-          title={t("home.step_connect_title")}
-          body={t("home.step_connect_desc")}
-        >
-          <WalletConnectButton />
-        </Step>
-
-        <Step
-          n={2}
-          title={t("home.step_build_title")}
-          body={t("home.step_build_desc")}
-        >
-          <Link href="/colony" asChild>
-            <Button label={t("home.step_build_cta")} variant="primary" disabled={!connected} />
-          </Link>
-        </Step>
-
-        <Step
-          n={3}
-          title={t("home.step_claim_title")}
-          body={t("home.step_claim_desc")}
-        >
-          <View className="flex-row gap-3">
-            <View className="flex-1">
-              <Link href="/rewards" asChild>
-                <Button label={t("home.rewards_button")} variant="secondary" disabled={!connected} />
-              </Link>
+            <View className="flex-row gap-3">
+              <View className="flex-1">
+                <Link href="/colony" asChild>
+                  <Button label={t("home.step_build_cta")} variant="primary" />
+                </Link>
+              </View>
+              <View className="flex-1">
+                <Link href="/rewards" asChild>
+                  <Button label={t("home.rewards_button")} variant="secondary" />
+                </Link>
+              </View>
             </View>
-            <View className="flex-1">
-              <Link href="/mint" asChild>
-                <Button label={t("home.skins_button")} variant="secondary" disabled={!connected} />
-              </Link>
-            </View>
-          </View>
-        </Step>
 
-        <View className="flex-row gap-3 mt-2">
+            <View className="flex-row gap-3">
+              <View className="flex-1">
+                <Link href="/mint" asChild>
+                  <Button label={t("home.skins_button")} variant="ghost" />
+                </Link>
+              </View>
+              <View className="flex-1">
+                <Link href="/leaderboard" asChild>
+                  <Button label={t("home.leaderboard_button")} variant="ghost" />
+                </Link>
+              </View>
+              <View className="flex-1">
+                <Link href="/profile" asChild>
+                  <Button label={t("home.profile_button")} variant="ghost" />
+                </Link>
+              </View>
+            </View>
+          </>
+        ) : (
+          <UnconnectedHome />
+        )}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+/**
+ * "Cold start" home rendered when the player has not yet connected a wallet.
+ * Keeps the original onboarding-flavor 3-step layout so the wallet pledge
+ * remains discoverable; once connected we swap to the engagement surface.
+ */
+function UnconnectedHome() {
+  const { t } = useTranslation();
+
+  return (
+    <>
+      <Hero />
+
+      <Card>
+        <Text className="text-accent text-xs font-bold tracking-widest uppercase mb-2">
+          ★ {t("home.intro_story_title")}
+        </Text>
+        <Text className="text-ink-dim leading-5">{t("home.intro_story_body")}</Text>
+      </Card>
+
+      <Step
+        n={1}
+        title={t("home.step_connect_title")}
+        body={t("home.step_connect_desc")}
+      >
+        <WalletConnectButton />
+      </Step>
+
+      <Step
+        n={2}
+        title={t("home.step_build_title")}
+        body={t("home.step_build_desc")}
+      >
+        <Link href="/colony" asChild>
+          <Button label={t("home.step_build_cta")} variant="primary" disabled />
+        </Link>
+      </Step>
+
+      <Step
+        n={3}
+        title={t("home.step_claim_title")}
+        body={t("home.step_claim_desc")}
+      >
+        <View className="flex-row gap-3">
           <View className="flex-1">
-            <Link href="/leaderboard" asChild>
-              <Button label={t("home.leaderboard_button")} variant="ghost" />
+            <Link href="/rewards" asChild>
+              <Button
+                label={t("home.rewards_button")}
+                variant="secondary"
+                disabled
+              />
             </Link>
           </View>
           <View className="flex-1">
-            <Link href="/profile" asChild>
-              <Button label={t("home.profile_button")} variant="ghost" />
+            <Link href="/mint" asChild>
+              <Button label={t("home.skins_button")} variant="secondary" disabled />
             </Link>
           </View>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </Step>
+
+      <View className="flex-row gap-3 mt-2">
+        <View className="flex-1">
+          <Link href="/leaderboard" asChild>
+            <Button label={t("home.leaderboard_button")} variant="ghost" />
+          </Link>
+        </View>
+        <View className="flex-1">
+          <Link href="/profile" asChild>
+            <Button label={t("home.profile_button")} variant="ghost" />
+          </Link>
+        </View>
+      </View>
+    </>
   );
 }
 

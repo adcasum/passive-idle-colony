@@ -52,7 +52,15 @@
     "next_action_storage_full": "仓库快满了 — 领取或升级仓库。",
     "next_action_idle": "等待下一周期或继续建造。",
     "intro_story_title": "最后的蜂场",
-    "intro_story_body": "世界上的传粉者正在消失。一位幸存的蜂后选中了你,逐格重建她的殖民地。很快其他蜂后会听闻你的蜂场,并在皇家排行榜上展开竞争。"
+    "intro_story_body": "世界上的传粉者正在消失。一位幸存的蜂后选中了你,逐格重建她的殖民地。很快其他蜂后会听闻你的蜂场,并在皇家排行榜上展开竞争。",
+    "greeting": "{{name}}蜂场的女王",
+    "greeting_anon": "蜂场正等待女王",
+    "level_progress_label": "{{current}}/{{next}} 经验",
+    "level_full_label": "已达皇家庭院",
+    "rank_loading": "正在阅读皇家卷轴…",
+    "stats_total_honey": "累计蜂蜜",
+    "stats_buildings_built": "已建建筑",
+    "stats_claims_made": "领取次数"
   },
   "colony": {
     "title": "蜂巢",
@@ -213,13 +221,21 @@
     "reward_label": "奖励",
     "completed": "完成",
     "resets_at": "{{time}} 重置",
-    "all_done": "全部完成 — 明天会有奖励。"
+    "all_done": "全部完成 — 明天会有奖励。",
+    "long_press_preview": "长按方格预览产量",
+    "reward_honey": "+{{amount}} 蜂蜜",
+    "in_progress": "{{current}}/{{target}}",
+    "claim_reward_button": "领取任务奖励"
   },
   "streak": {
     "label": "🔥 连续 {{days}} 天",
     "label_zero": "今天开始连续打卡",
     "day_short": "第{{day}}天",
-    "next_reward": "第 {{day}} 天:奖励宝箱"
+    "next_reward": "第 {{day}} 天:奖励宝箱",
+    "title": "连续登录",
+    "day_done": "✓",
+    "day_today": "今天",
+    "broken": "连击在昨天中断 — 今天重新开始。"
   },
   "urgency": {
     "storage_full_badge": "仓库 {{percent}}%",

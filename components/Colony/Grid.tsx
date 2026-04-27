@@ -3,11 +3,13 @@ import { useState } from "react";
 
 import { BuildingCard } from "@/components/Colony/BuildingCard";
 import { Slot } from "@/components/Colony/Slot";
+import { useMiniEvent } from "@/hooks/useMiniEvent";
 import { useColonyStore } from "@/store/colonyStore";
 
 export function Grid() {
   const slots = useColonyStore((s) => s.slots);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const miniEvent = useMiniEvent();
 
   const rows = [
     [0, 1, 2],
@@ -21,6 +23,7 @@ export function Grid() {
   // placed, the cue disappears forever for that colony.
   const hasAnyBuilding = slots.some((s) => s !== null);
   const tutorialIndex = hasAnyBuilding ? -1 : 4;
+  const sparkleIndex = miniEvent.active ? miniEvent.targetSlot : null;
 
   return (
     <View className="gap-2">
@@ -32,6 +35,7 @@ export function Grid() {
               slot={slots[i]}
               index={i}
               tutorialGlow={i === tutorialIndex}
+              sparkle={i === sparkleIndex}
               onPress={(idx) => setActiveIndex(idx)}
             />
           ))}

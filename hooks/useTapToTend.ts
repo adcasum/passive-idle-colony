@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 
 import { buildingProductionPerHour, maxStorage } from "@/lib/colonyMath";
+import { miniEventStatus } from "@/lib/miniEvent";
+import { recordTap } from "@/lib/tapChain";
 import { useColonyStore } from "@/store/colonyStore";
 import { useEngagementStore } from "@/store/engagementStore";
 import type { ResourceKind } from "@/types";
@@ -23,6 +25,12 @@ export interface TendResult {
   granted: number;
   resource: ResourceKind;
   cappedOut: boolean;
+  /** Final multiplier applied (chain × mini-event), 1 if neither matched. */
+  multiplier: number;
+  /** Source(s) of the multiplier, in the order they applied. */
+  sources: ("chain" | "mini")[];
+  /** Chain length at the moment of this tap, 1 if reset. */
+  chainLength: number;
 }
 
 export function useTapToTend(slotIndex: number) {
@@ -52,9 +60,25 @@ export function useTapToTend(slotIndex: number) {
     const { resource, amount } = buildingProductionPerHour(currentSlot);
     if (!resource || amount <= 0) return null;
 
+    // Stack chain × mini-event multiplicatively. Chain rewards rapid
+    // multi-tile tapping (×1 / ×1.5 / ×2). Mini-event is a single-slot
+    // 10-min spotlight (×3). A player who happens to chain *into* the
+    // spotlight gets the full ×6 stack — rare but earned.
+    const chain = recordTap(slotIndex, now);
+    const occupied = colony.slots
+      .map((s, i) => (s ? i : -1))
+      .filter((i) => i >= 0);
+    const event = miniEventStatus(now, occupied);
+    const eventBoost =
+      event.active && event.targetSlot === slotIndex ? event.multiplier : 1;
+    const multiplier = chain.multiplier * eventBoost;
+    const sources: ("chain" | "mini")[] = [];
+    if (chain.multiplier > 1) sources.push("chain");
+    if (eventBoost > 1) sources.push("mini");
+
     const cap = maxStorage(colony.slots);
     const currentValue = colony.resources[resource];
-    const desired = amount * TEND_FRACTION;
+    const desired = amount * TEND_FRACTION * multiplier;
     const granted = Math.min(desired, Math.max(0, cap - currentValue));
 
     recordTend(slotIndex, now);
@@ -62,13 +86,27 @@ export function useTapToTend(slotIndex: number) {
     if (granted <= 0) {
       // Resource at cap. Still consume the cooldown so player gets a
       // clear "cap reached" toast and doesn't keep tapping mindlessly.
-      return { granted: 0, resource, cappedOut: true };
+      return {
+        granted: 0,
+        resource,
+        cappedOut: true,
+        multiplier,
+        sources,
+        chainLength: chain.length,
+      };
     }
 
     useColonyStore.setState({
       resources: { ...colony.resources, [resource]: currentValue + granted },
     });
-    return { granted, resource, cappedOut: false };
+    return {
+      granted,
+      resource,
+      cappedOut: false,
+      multiplier,
+      sources,
+      chainLength: chain.length,
+    };
   }, [slotIndex, recordTend]);
 
   return {

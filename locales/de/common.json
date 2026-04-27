@@ -200,7 +200,9 @@
     "streak_extended": "🔥 {{days}}-Tage-Serie!",
     "quest_complete": "🎯 Quest erledigt: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} durch Pflege",
-    "tend_capped": "{{resource}}-Lager voll"
+    "tend_capped": "{{resource}}-Lager voll",
+    "tend_sparkle": "✨ Funkeln!",
+    "tend_chain": "Kette ×{{length}}!"
   },
   "onboarding": {
     "skip": "Überspringen",
@@ -261,6 +263,75 @@
     "ends_in": "Endet in {{time}}",
     "fmt_dh": "{{d}}T {{h}}Std",
     "fmt_hm": "{{h}}Std {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Öffnet {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Ein leerer Hain. Berühre eine Wabe, und wir beginnen aufs Neue.",
+      "2": "Wähl ein Hex, Souverän. Selbst eine Blume ist ein Anfang.",
+      "3": "Die Waben schweigen. Setze die erste Beute, ich bitte dich.",
+      "4": "Ohne eine Beute kein Reich. Nur Erinnerung."
+    },
+    "bloom_active": {
+      "1": "Die Blüte ist da — jede Wabe singt ×{{mult}} lauter.",
+      "2": "Pollen überall. Die Beuten trinken alles.",
+      "3": "Solange die Blüte hält, ist jede Stunde großzügig.",
+      "4": "So eine reiche Saison habe ich lange nicht gespürt.",
+      "5": "Pflege jetzt, Souverän — die Luft selbst ist süß."
+    },
+    "near_bloom": {
+      "1": "Ich rieche die ersten Blüten. Die Blüte kommt in Stunden.",
+      "2": "Bald öffnen sich die Blütenblätter. Bereite die Ernte vor.",
+      "3": "Der Wind wandelt sich — Frühlings-Blüte naht.",
+      "4": "Bereite die Waben. Die Blüte ist nah."
+    },
+    "claim_ready": {
+      "1": "Die Tresore wiegen schwer von Honig. Holst du ihn?",
+      "2": "Stunden Pollen warten auf deine Hand, Souverän.",
+      "3": "Die Beuten haben ihr Werk getan. Du bist dran.",
+      "4": "Eine Ernte ist bereit. Lass sie nicht gären.",
+      "5": "Die Waben sind voll. Leer sie und wachse."
+    },
+    "low_water": {
+      "1": "Unsere Waben dorren. Bau eine Quelle oder alles ist verloren.",
+      "2": "Wasser. Ohne dies kein Gelée Royale. Kein Tropfen.",
+      "3": "Die Bienen dürsten, Souverän. Finde ihnen Wasser.",
+      "4": "Ich tauschte Gold gegen einen Bach jetzt."
+    },
+    "low_food": {
+      "1": "Der Hain ist kahl. Die Bienen schwächeln.",
+      "2": "Ohne Futter wankt selbst eine Königin. Pflanze etwas.",
+      "3": "Leere Bäuche, leere Waben. Bau eine Lichtung.",
+      "4": "Wir brauchen Nahrung, Souverän. Bald."
+    },
+    "low_energy": {
+      "1": "Die Sonne ist großzügig, doch kein Panel fängt sie.",
+      "2": "Sonnenwärme verschwendet. Setz ein Solarpanel.",
+      "3": "Energie verfließt ungespeichert. Bau mir ein Panel.",
+      "4": "Ohne Wärme erkaltet das Wachs. Energie, bitte."
+    },
+    "low_honey": {
+      "1": "Unsere Honigvorräte sind beschämend dünn.",
+      "2": "Eine Beute ohne Honig ist eine Beute ohne Namen.",
+      "3": "Bau Beuten, Souverän. Wir müssen Honig haben.",
+      "4": "Der Honig schwindet. Pflege mehr. Schneller."
+    },
+    "near_full": {
+      "1": "Die Tresore sind fast voll — wir verlieren, was wir nicht lagern können.",
+      "2": "Lager läuft über, Souverän. Ernte oder bau eine Scheune.",
+      "3": "Jeder Tropfen über den Rand ist verschwendet. Handle bald.",
+      "4": "Volle Waben, verlorene Ernte. Ernte jetzt."
+    },
+    "idle": {
+      "1": "Alles ist still. Die Bienen summen, die Arbeit geht weiter.",
+      "2": "Ein geduldiges Reich ist weise, Souverän.",
+      "3": "Ich sehe die Waben füllen sich, langsam wie Honig, süß wie Zeit.",
+      "4": "Pflege ein Hex, wenn du magst. Oder ruh mit uns.",
+      "5": "Die Zeit selbst ist unsere Ernte. Wir ernten Geduld.",
+      "6": "Das Sechseckraster atmet. Hör hin.",
+      "7": "Die Bienen wissen, was zu tun ist. Wir müssen nur glauben.",
+      "8": "Selbst untätig wächst die Kolonie. Das ist das Geschenk der Bienen."
+    }
   }
 }

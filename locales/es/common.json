@@ -200,7 +200,9 @@
     "streak_extended": "🔥 Racha de {{days}} días!",
     "quest_complete": "🎯 Misión completa: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} por cuidar",
-    "tend_capped": "Almacén de {{resource}} lleno"
+    "tend_capped": "Almacén de {{resource}} lleno",
+    "tend_sparkle": "✨ ¡Destello!",
+    "tend_chain": "¡Cadena ×{{length}}!"
   },
   "onboarding": {
     "skip": "Saltar",
@@ -261,6 +263,75 @@
     "ends_in": "Termina en {{time}}",
     "fmt_dh": "{{d}}d {{h}}h",
     "fmt_hm": "{{h}}h {{m}}m",
-    "fmt_m": "{{m}}m"
+    "fmt_m": "{{m}}m",
+    "calendar_label": "Abre {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Una arboleda vacía. Toca un hexágono y empecemos de nuevo.",
+      "2": "Elige un hex, soberano. Hasta una flor es un comienzo.",
+      "3": "Los panales callan. Coloca la primera colmena, te lo ruego.",
+      "4": "Sin una colmena no hay reino. Solo memoria."
+    },
+    "bloom_active": {
+      "1": "El Florecimiento llegó — cada panal canta ×{{mult}} más fuerte.",
+      "2": "Polen por todas partes. Las colmenas lo beben todo.",
+      "3": "Mientras dure el Florecimiento, cada hora es generosa.",
+      "4": "Hace mucho que no sentía una estación tan rica.",
+      "5": "Cuida ahora, soberano — el aire mismo es dulce."
+    },
+    "near_bloom": {
+      "1": "Huelo las primeras flores. El Florecimiento vendrá en horas.",
+      "2": "Pronto se abrirán los pétalos. Prepárate para recolectar.",
+      "3": "El viento cambia — el Florecimiento de Primavera se acerca.",
+      "4": "Prepara los panales. El Florecimiento está cerca."
+    },
+    "claim_ready": {
+      "1": "Las bóvedas pesan de miel. ¿La recogerás?",
+      "2": "Horas de polen esperan tu mano, soberano.",
+      "3": "Las colmenas han trabajado. Tu turno.",
+      "4": "Una recolección está lista. No dejes que fermente.",
+      "5": "Los panales están llenos. Vacíalos y crece."
+    },
+    "low_water": {
+      "1": "Nuestros panales se secan. Construye un Manantial o todo se pierde.",
+      "2": "Agua. Sin ella no hay jalea real. Ninguna.",
+      "3": "Las abejas tienen sed, soberano. Encuéntrales agua.",
+      "4": "Cambiaría oro por un arroyo ahora mismo."
+    },
+    "low_food": {
+      "1": "La arboleda está desnuda. Las abejas se debilitan.",
+      "2": "Sin forraje, hasta una reina vacila. Planta algo.",
+      "3": "Vientres vacíos, colmenas vacías. Construye un Claro.",
+      "4": "Necesitamos comida, soberano. Pronto."
+    },
+    "low_energy": {
+      "1": "El sol es generoso, pero no tenemos paneles para atraparlo.",
+      "2": "El calor solar se desperdicia. Coloca un Panel Solar.",
+      "3": "La energía se escapa sin guardar. Constrúyeme un panel.",
+      "4": "Sin calor la cera se enfría. Energía, por favor."
+    },
+    "low_honey": {
+      "1": "Nuestras reservas de miel son vergonzosamente escasas.",
+      "2": "Una colmena sin miel es una colmena sin nombre.",
+      "3": "Construye colmenas, soberano. Debemos tener miel.",
+      "4": "La miel escasea. Cuida más. Más rápido."
+    },
+    "near_full": {
+      "1": "Las bóvedas se llenan — perdemos lo que no podemos guardar.",
+      "2": "El almacén se desborda, soberano. Recoge o construye un granero.",
+      "3": "Cada gota sobre el borde es desperdicio. Actúa pronto.",
+      "4": "Panales llenos, cosecha perdida. Recoge ya."
+    },
+    "idle": {
+      "1": "Todo está tranquilo. Las abejas zumban, el trabajo continúa.",
+      "2": "Un reino paciente es uno sabio, soberano.",
+      "3": "Veo llenarse los panales, lento como miel, dulce como el tiempo.",
+      "4": "Cuida un hex si quieres. O descansa con nosotras.",
+      "5": "El tiempo mismo es nuestra cosecha. Recogemos paciencia.",
+      "6": "La cuadrícula hexagonal respira. Escucha.",
+      "7": "Las abejas saben qué hacer. Solo debemos creer.",
+      "8": "Incluso en reposo la colonia crece. Ese es el don de las abejas."
+    }
   }
 }

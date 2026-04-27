@@ -200,7 +200,9 @@
     "streak_extended": "🔥 chuỗi {{days}} ngày!",
     "quest_complete": "🎯 Nhiệm vụ xong: {{name}} (+{{reward}})",
     "tend": "{{emoji}}+{{amount}} từ chăm sóc",
-    "tend_capped": "Kho {{resource}} đầy"
+    "tend_capped": "Kho {{resource}} đầy",
+    "tend_sparkle": "✨ Lấp lánh!",
+    "tend_chain": "Chuỗi ×{{length}}!"
   },
   "onboarding": {
     "skip": "Bỏ qua",
@@ -261,6 +263,75 @@
     "ends_in": "Kết thúc trong {{time}}",
     "fmt_dh": "{{d}}ng {{h}}g",
     "fmt_hm": "{{h}}g {{m}}p",
-    "fmt_m": "{{m}}p"
+    "fmt_m": "{{m}}p",
+    "calendar_label": "Mở {{calendar}}"
+  },
+  "queen": {
+    "first_build": {
+      "1": "Khu rừng trống. Chạm một ô và chúng ta bắt đầu lại.",
+      "2": "Chọn một hex, thưa chủ nhân. Một bông hoa cũng là khởi đầu.",
+      "3": "Tổ ong im lặng. Đặt tổ đầu tiên, tôi van người.",
+      "4": "Không có một tổ nào, không có vương quốc. Chỉ ký ức."
+    },
+    "bloom_active": {
+      "1": "Sự Nở đã đến — mỗi tổ hát to gấp ×{{mult}}.",
+      "2": "Phấn hoa khắp nơi. Tổ ong uống tất cả.",
+      "3": "Trong khi Sự Nở còn, mỗi giờ đều hào phóng.",
+      "4": "Lâu rồi tôi không cảm nhận một mùa giàu có đến vậy.",
+      "5": "Hãy chăm sóc ngay, thưa chủ nhân — không khí ngọt ngào."
+    },
+    "near_bloom": {
+      "1": "Tôi ngửi thấy hoa đầu tiên. Sự Nở đến trong vài giờ.",
+      "2": "Sắp có cánh hoa nở. Hãy chuẩn bị thu hoạch.",
+      "3": "Gió đổi chiều — Sự Nở Mùa Xuân đang đến gần.",
+      "4": "Chuẩn bị tổ ong. Sự Nở đã gần kề."
+    },
+    "claim_ready": {
+      "1": "Kho nặng mật ong. Người sẽ thu hái chứ?",
+      "2": "Hàng giờ phấn hoa đang chờ tay người, thưa chủ nhân.",
+      "3": "Tổ ong đã làm xong việc. Đến lượt người.",
+      "4": "Một mẻ đã sẵn sàng. Đừng để nó lên men.",
+      "5": "Tổ ong đầy. Hãy đổ và lớn lên."
+    },
+    "low_water": {
+      "1": "Tổ ong khô cạn. Xây Suối nếu không tất cả mất.",
+      "2": "Nước. Không có nó, không có sữa ong chúa. Không hề.",
+      "3": "Ong khát, thưa chủ nhân. Hãy tìm nước cho chúng.",
+      "4": "Bây giờ tôi sẽ đổi vàng lấy một dòng suối."
+    },
+    "low_food": {
+      "1": "Khu rừng trơ trọi. Ong yếu dần.",
+      "2": "Không có thức ăn, ong chúa cũng lảo đảo. Trồng gì đó đi.",
+      "3": "Bụng đói, tổ trống. Xây một Bãi Cỏ.",
+      "4": "Chúng ta cần thức ăn, thưa chủ nhân. Sớm thôi."
+    },
+    "low_energy": {
+      "1": "Mặt trời hào phóng, nhưng không có tấm pin nào để bắt.",
+      "2": "Hơi ấm mặt trời lãng phí. Đặt một Tấm Pin Mặt Trời.",
+      "3": "Năng lượng trôi đi không lưu trữ. Hãy xây cho tôi một tấm pin.",
+      "4": "Không có hơi ấm, sáp nguội. Năng lượng, xin hãy."
+    },
+    "low_honey": {
+      "1": "Kho mật ong của chúng ta đáng xấu hổ.",
+      "2": "Tổ ong không mật là tổ ong không tên.",
+      "3": "Xây tổ ong, thưa chủ nhân. Phải có mật ong.",
+      "4": "Mật ong đang cạn. Chăm sóc nhiều hơn. Nhanh hơn."
+    },
+    "near_full": {
+      "1": "Kho gần đầy — mất những gì không thể chứa.",
+      "2": "Kho tràn, thưa chủ nhân. Hãy thu hoạch hoặc xây kho.",
+      "3": "Mỗi giọt vượt mép đều lãng phí. Hãy hành động.",
+      "4": "Tổ đầy, mùa lỡ. Thu hoạch ngay."
+    },
+    "idle": {
+      "1": "Tất cả yên ả. Ong vo ve, công việc tiếp tục.",
+      "2": "Vương quốc kiên nhẫn là vương quốc khôn ngoan.",
+      "3": "Tôi xem tổ đầy dần, chậm như mật, ngọt như thời gian.",
+      "4": "Chăm sóc một hex nếu muốn. Hoặc nghỉ cùng chúng tôi.",
+      "5": "Thời gian chính là mùa thu hoạch. Chúng ta gặt sự kiên nhẫn.",
+      "6": "Lưới lục giác đang thở. Hãy lắng nghe.",
+      "7": "Ong biết phải làm gì. Chúng ta chỉ cần tin.",
+      "8": "Dù nhàn rỗi, tổ vẫn lớn. Đó là quà tặng của ong."
+    }
   }
 }

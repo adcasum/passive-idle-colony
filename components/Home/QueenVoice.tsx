@@ -82,7 +82,7 @@ export function QueenVoice() {
             lineHeight: 20,
           }}
         >
-          {t(line.key)}
+          {t(line.key, line.params)}
         </Text>
       </View>
     </Animated.View>

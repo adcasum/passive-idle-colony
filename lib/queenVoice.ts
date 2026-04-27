@@ -9,7 +9,7 @@
  * window — repetition shatters the illusion.
  */
 
-import { bloomStatus } from "@/lib/bloomEvent";
+import { BLOOM_MULTIPLIER, bloomStatus } from "@/lib/bloomEvent";
 
 import type { ResourceKind, Resources } from "@/types";
 
@@ -69,6 +69,12 @@ export interface QueenLine {
   /** Stable identifier across renders (context + index). */
   id: string;
   context: QueenContext;
+  /**
+   * Interpolation params for `t(key, params)`. Some lines (e.g.
+   * `queen.bloom_active.1`) reference numeric placeholders like
+   * `{{mult}}` and need values to render correctly.
+   */
+  params?: Record<string, string | number>;
 }
 
 /**
@@ -105,11 +111,28 @@ export function pickLine(
   const seed = hashString(context);
   const bucket = Math.floor(now / rotationMs);
   const idx = ((bucket + seed) % total + total) % total;
+  // Some lines reference numeric placeholders that need values from the
+  // single source of truth in their respective modules. Keep this map
+  // tight — the more variables we hand to a queen line, the easier it
+  // is to drop one and ship a half-formatted string.
+  const params = paramsFor(context);
   return {
     key: `queen.${context}.${idx + 1}`,
     id: `${context}:${idx}`,
     context,
+    ...(params ? { params } : {}),
   };
+}
+
+function paramsFor(
+  context: QueenContext,
+): Record<string, string | number> | undefined {
+  if (context === "bloom_active") {
+    // queen.bloom_active.1 references `{{mult}}`. Format to one
+    // decimal so a 1.5 reads "1.5" not "1.4999999".
+    return { mult: BLOOM_MULTIPLIER.toFixed(1) };
+  }
+  return undefined;
 }
 
 function hashString(s: string): number {

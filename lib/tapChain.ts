@@ -41,13 +41,18 @@ export function recordTap(slotIndex: number, now: number = Date.now()): ChainRes
   const sameSlot = lastSlot === slotIndex;
 
   if (lastSlot === null || sameSlot || elapsed > WINDOW_MS) {
+    // Capture "did we break an active streak" BEFORE we mutate
+    // `lastSlot` below, otherwise the read of `lastSlot` afterwards is
+    // always non-null and `reset` would never reflect a window-expiry
+    // break (only same-slot taps).
+    const wasReset = lastSlot !== null && (sameSlot || elapsed > WINDOW_MS);
     chainLength = 1;
     lastSlot = slotIndex;
     lastAt = now;
     return {
       multiplier: 1,
       length: 1,
-      reset: lastSlot !== null && sameSlot,
+      reset: wasReset,
     };
   }
 

@@ -52,7 +52,15 @@
     "next_action_storage_full": "Estoque quase cheio — colete ou melhore o Estoque.",
     "next_action_idle": "Espere o próximo ciclo ou construa mais.",
     "intro_story_title": "O Último Apiário",
-    "intro_story_body": "Os polinizadores do mundo estão desaparecendo. Uma rainha sobrevivente escolheu você para reconstruir sua colônia, hex por hex. Em breve outras rainhas ouvirão sobre seu apiário e virão competir no Ranking real."
+    "intro_story_body": "Os polinizadores do mundo estão desaparecendo. Uma rainha sobrevivente escolheu você para reconstruir sua colônia, hex por hex. Em breve outras rainhas ouvirão sobre seu apiário e virão competir no Ranking real.",
+    "greeting": "Rainha do Apiário {{name}}",
+    "greeting_anon": "Um apiário espera por uma rainha",
+    "level_progress_label": "{{current}}/{{next}} XP",
+    "level_full_label": "Corte Real alcançada",
+    "rank_loading": "Lendo os pergaminhos reais…",
+    "stats_total_honey": "Mel total",
+    "stats_buildings_built": "Construções",
+    "stats_claims_made": "Coletas feitas"
   },
   "colony": {
     "title": "Colmeia",
@@ -213,13 +221,21 @@
     "reward_label": "Recompensa",
     "completed": "Pronto",
     "resets_at": "Reinicia às {{time}}",
-    "all_done": "Missões completas — bônus amanhã."
+    "all_done": "Missões completas — bônus amanhã.",
+    "long_press_preview": "Pressione e segure uma célula para ver a produção",
+    "reward_honey": "+{{amount}} mel",
+    "in_progress": "{{current}}/{{target}}",
+    "claim_reward_button": "Receber recompensa"
   },
   "streak": {
     "label": "🔥 sequência {{days}} dias",
     "label_zero": "Comece uma sequência hoje",
     "day_short": "D{{day}}",
-    "next_reward": "Dia {{day}}: baú extra"
+    "next_reward": "Dia {{day}}: baú extra",
+    "title": "Sequência de logins",
+    "day_done": "✓",
+    "day_today": "Hoje",
+    "broken": "A sequência terminou ontem — recomece hoje."
   },
   "urgency": {
     "storage_full_badge": "Estoque {{percent}}%",

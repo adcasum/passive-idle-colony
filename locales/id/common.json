@@ -52,7 +52,15 @@
     "next_action_storage_full": "Penyimpanan hampir penuh — klaim atau tingkatkan Storage.",
     "next_action_idle": "Tunggu siklus berikutnya atau bangun lebih banyak.",
     "intro_story_title": "Apiari Terakhir",
-    "intro_story_body": "Penyerbuk dunia menghilang. Seekor ratu yang selamat memilih kamu untuk membangun kembali koloninya, sel demi sel. Tak lama, ratu lain akan mendengar tentang apiarimu dan datang bersaing di Papan Peringkat Kerajaan."
+    "intro_story_body": "Penyerbuk dunia menghilang. Seekor ratu yang selamat memilih kamu untuk membangun kembali koloninya, sel demi sel. Tak lama, ratu lain akan mendengar tentang apiarimu dan datang bersaing di Papan Peringkat Kerajaan.",
+    "greeting": "Ratu Apiari {{name}}",
+    "greeting_anon": "Sebuah apiari menanti ratunya",
+    "level_progress_label": "{{current}}/{{next}} XP",
+    "level_full_label": "Istana Kerajaan tercapai",
+    "rank_loading": "Membaca gulungan kerajaan…",
+    "stats_total_honey": "Total madu",
+    "stats_buildings_built": "Bangunan dibangun",
+    "stats_claims_made": "Klaim selesai"
   },
   "colony": {
     "title": "Sarang",
@@ -213,13 +221,21 @@
     "reward_label": "Hadiah",
     "completed": "Selesai",
     "resets_at": "Reset jam {{time}}",
-    "all_done": "Semua misi selesai — bonus besok."
+    "all_done": "Semua misi selesai — bonus besok.",
+    "long_press_preview": "Tekan lama sel untuk melihat produksi",
+    "reward_honey": "+{{amount}} madu",
+    "in_progress": "{{current}}/{{target}}",
+    "claim_reward_button": "Klaim hadiah misi"
   },
   "streak": {
     "label": "🔥 streak {{days}} hari",
     "label_zero": "Mulai streak hari ini",
     "day_short": "H{{day}}",
-    "next_reward": "Hari {{day}}: peti bonus"
+    "next_reward": "Hari {{day}}: peti bonus",
+    "title": "Beruntun login",
+    "day_done": "✓",
+    "day_today": "Hari ini",
+    "broken": "Beruntun terputus kemarin — mulai lagi hari ini."
   },
   "urgency": {
     "storage_full_badge": "Penyimpanan {{percent}}%",

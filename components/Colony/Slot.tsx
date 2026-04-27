@@ -16,6 +16,7 @@ import {
   RESOURCE_EMOJI,
   getBuildingName,
 } from "@/constants/buildings";
+import { onLongPressedSlot } from "@/lib/engagementEvents";
 import { fmtNum } from "@/lib/format";
 import { buildingProductionPerHour, upgradeCost } from "@/lib/colonyMath";
 import { toast } from "@/lib/toast";
@@ -66,6 +67,7 @@ export function Slot({ slot, index, onPress }: Props) {
   // Long-press preview: surface the building's stats without forcing the user
   // through the full bottom-sheet (and without triggering build/upgrade).
   const handleLongPress = () => {
+    onLongPressedSlot();
     if (!slot || !def) {
       toast.info(t("slot_preview.empty"));
       return;

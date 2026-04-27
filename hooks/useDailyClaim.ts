@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { CLAIM_COOLDOWN_HOURS, RESOURCE_EMOJI } from "@/constants/buildings";
+import { onClaimed } from "@/lib/engagementEvents";
 import { fmtNum } from "@/lib/format";
 import { haptic } from "@/lib/haptics";
 import { scheduleClaimReadyNotification } from "@/lib/notifications";
@@ -48,6 +49,7 @@ export function useDailyClaim() {
     }
     const result = claim();
     recordClaim(result);
+    onClaimed(result.cappedAt.honey);
     haptic.claim();
     // Surface the actual amounts that were just credited so the UI feels alive.
     // Use cappedAt (post-cap delta) — produced is the uncapped raw figure and

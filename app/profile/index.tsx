@@ -8,6 +8,7 @@ import { Card } from "@/components/UI/Card";
 import { WalletConnectButton } from "@/components/Shared/WalletConnectButton";
 import { LanguagePicker } from "@/components/Profile/LanguagePicker";
 import { useColonyStore } from "@/store/colonyStore";
+import { useEngagementStore } from "@/store/engagementStore";
 import { useRewardsStore } from "@/store/rewardsStore";
 import { useWallet } from "@/hooks/useWallet";
 import { CLUSTER, RPC_URL } from "@/lib/solana";
@@ -17,6 +18,7 @@ export default function ProfileScreen() {
   const { address, solBalance, balanceLoading } = useWallet();
   const resetColony = useColonyStore((s) => s.reset);
   const resetRewards = useRewardsStore((s) => s.reset);
+  const resetEngagement = useEngagementStore((s) => s.reset);
   const { t } = useTranslation();
 
   return (
@@ -91,6 +93,7 @@ export default function ProfileScreen() {
                     onPress: () => {
                       resetColony();
                       resetRewards();
+                      resetEngagement();
                     },
                   },
                 ],

@@ -174,17 +174,23 @@ export function Slot({ slot, index, tutorialGlow, sparkle, onPress }: Props) {
           toast.info(t("toast.tend_capped", { resource: t(`resources.${result.resource}`) }));
         } else {
           // Build a single line that shows resource + amount + (if any)
-          // a multiplier badge: e.g. "🍯+12 ×3 (Sparkle!)".
+          // a multiplier badge. We always render the combined multiplier
+          // once, then list every source label that contributed — so a
+          // chain-into-sparkle reads as "×6 ✨ Sparkle! Chain ×5!" not
+          // misattributing the whole stack to one source.
           const base = t("toast.tend", {
             amount: fmtNum(result.granted),
             emoji: RESOURCE_EMOJI[result.resource],
           });
-          let suffix = "";
+          const labels: string[] = [];
           if (result.sources.includes("mini")) {
-            suffix = `  ×${result.multiplier} ${t("toast.tend_sparkle")}`;
-          } else if (result.sources.includes("chain")) {
-            suffix = `  ×${result.multiplier} ${t("toast.tend_chain", { length: result.chainLength })}`;
+            labels.push(t("toast.tend_sparkle"));
           }
+          if (result.sources.includes("chain")) {
+            labels.push(t("toast.tend_chain", { length: result.chainLength }));
+          }
+          const suffix =
+            labels.length > 0 ? `  ×${result.multiplier} ${labels.join(" ")}` : "";
           toast.success(`${base}${suffix}`);
         }
       }

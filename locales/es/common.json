@@ -27,7 +27,7 @@
     "step_build_desc": "Coloca colmenas en una cuadrícula 3×3. Producen miel, energía, comida y agua incluso con la app cerrada.",
     "step_build_cta": "Entrar a la colmena",
     "step_claim_title": "Reclama recompensas diarias",
-    "step_claim_desc": "Los recursos se acumulan hasta 48 horas. Reclama cada 12 horas y desbloquea skins cNFT únicos al mejorar edificios.",
+    "step_claim_desc": "Los recursos se acumulan hasta 48 horas. Reclama cada 8 horas y desbloquea skins cNFT únicos al mejorar edificios.",
     "rewards_button": "Bóveda de miel",
     "skins_button": "Forjar regalia",
     "leaderboard_button": "Clasificación real",
@@ -208,7 +208,7 @@
     "get_started": "Empezar",
     "page1_title": "Bienvenido, portador de la reina.",
     "page1_body": "Tu reina te ha elegido para reconstruir su colmena. Coloca edificios en una cuadrícula 3×3; producen miel incluso mientras duermes.",
-    "page2_title": "Reclama cada 12 horas.",
+    "page2_title": "Reclama cada 8 horas.",
     "page2_body": "Los recursos se acumulan hasta 48 horas. Mantén pulsada cualquier celda para ver producción. Toca para construir o mejorar.",
     "page3_title": "Compite y forja.",
     "page3_body": "Sube en la Clasificación real, completa misiones diarias y forja skins cNFT para tus colmenas que viven en tu billetera."

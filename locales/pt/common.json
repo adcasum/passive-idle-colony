@@ -27,7 +27,7 @@
     "step_build_desc": "Posicione colmeias numa grade 3×3. Produzem mel, energia, comida e água — mesmo com o app fechado.",
     "step_build_cta": "Entrar na colmeia",
     "step_claim_title": "Receba recompensas diárias",
-    "step_claim_desc": "Recursos acumulam até 48 horas. Receba a cada 12 horas e desbloqueie skins cNFT únicos ao melhorar prédios.",
+    "step_claim_desc": "Recursos acumulam até 48 horas. Receba a cada 8 horas e desbloqueie skins cNFT únicos ao melhorar prédios.",
     "rewards_button": "Cofre de mel",
     "skins_button": "Forjar regalia",
     "leaderboard_button": "Ranking real",
@@ -208,7 +208,7 @@
     "get_started": "Começar",
     "page1_title": "Bem-vindo, portador da rainha.",
     "page1_body": "Sua rainha escolheu você para reconstruir a colmeia dela. Coloque prédios numa grade 3×3; produzem mel mesmo enquanto você dorme.",
-    "page2_title": "Colete a cada 12 horas.",
+    "page2_title": "Colete a cada 8 horas.",
     "page2_body": "Recursos acumulam até 48 horas. Mantenha pressionada qualquer célula para ver produção. Toque para construir ou melhorar.",
     "page3_title": "Compita e forje.",
     "page3_body": "Suba no Ranking real, complete missões diárias e forje skins cNFT para suas colmeias que vivem na sua carteira."

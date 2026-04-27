@@ -27,7 +27,7 @@
     "step_build_desc": "Stöcke auf einem 3×3-Raster platzieren. Sie produzieren Honig, Energie, Nahrung und Wasser — auch bei geschlossener App.",
     "step_build_cta": "Zum Bienenstock",
     "step_claim_title": "Tägliche Belohnung",
-    "step_claim_desc": "Ressourcen sammeln sich bis zu 48 Stunden. Alle 12 Stunden ernten und cNFT-Skins freischalten.",
+    "step_claim_desc": "Ressourcen sammeln sich bis zu 48 Stunden. Alle 8 Stunden ernten und cNFT-Skins freischalten.",
     "rewards_button": "Honigtresor",
     "skins_button": "Königliche Insignien",
     "leaderboard_button": "Königliche Rangliste",
@@ -208,7 +208,7 @@
     "get_started": "Loslegen",
     "page1_title": "Willkommen, Königinnenträger.",
     "page1_body": "Deine Königin hat dich erwählt, ihren Stock wieder aufzubauen. Platziere Gebäude auf 3×3-Raster — sie produzieren Honig auch im Schlaf.",
-    "page2_title": "Alle 12 Stunden ernten.",
+    "page2_title": "Alle 8 Stunden ernten.",
     "page2_body": "Ressourcen sammeln bis 48h. Lange drücken für Vorschau. Tippen zum Bauen/Ausbauen.",
     "page3_title": "Wettkampf & Schmieden.",
     "page3_body": "Steige auf der Königlichen Rangliste, erfülle Quests, schmiede cNFT-Skins für deine Stöcke."

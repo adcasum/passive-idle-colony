@@ -27,7 +27,7 @@
     "step_build_desc": "Place hives on a 3×3 grid. They produce honey, energy, food and water — even when the app is closed.",
     "step_build_cta": "Enter the Hive",
     "step_claim_title": "Claim daily rewards",
-    "step_claim_desc": "Resources accumulate up to 48 hours. Claim every 12 hours and unlock unique cNFT skins as you upgrade buildings.",
+    "step_claim_desc": "Resources accumulate up to 48 hours. Claim every 8 hours and unlock unique cNFT skins as you upgrade buildings.",
     "rewards_button": "Honey Vault",
     "skins_button": "Forge Regalia",
     "leaderboard_button": "Royal Leaderboard",
@@ -208,7 +208,7 @@
     "get_started": "Get started",
     "page1_title": "Welcome, queen-bearer.",
     "page1_body": "Your queen has chosen you to rebuild her hive. Place buildings on a 3×3 grid; they produce honey even when you sleep.",
-    "page2_title": "Claim every 12 hours.",
+    "page2_title": "Claim every 8 hours.",
     "page2_body": "Resources accumulate up to 48 hours. Long-press any cell to preview production. Tap any cell to build or upgrade.",
     "page3_title": "Compete & forge.",
     "page3_body": "Climb the Royal Leaderboard, complete daily quests, and forge cNFT skins for your hives that live in your wallet."

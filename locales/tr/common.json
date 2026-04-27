@@ -27,7 +27,7 @@
     "step_build_desc": "3×3 ızgaraya kovan yerleştir. Bal, enerji, gıda ve su üretirler — uygulama kapalı bile olsa.",
     "step_build_cta": "Kovana gir",
     "step_claim_title": "Günlük ödüllerini al",
-    "step_claim_desc": "Kaynaklar 48 saate kadar birikir. Her 12 saatte bir topla, yükselttikçe cNFT skinleri aç.",
+    "step_claim_desc": "Kaynaklar 48 saate kadar birikir. Her 8 saatte bir topla, yükselttikçe cNFT skinleri aç.",
     "rewards_button": "Bal Kasası",
     "skins_button": "Kraliyet Süsleri",
     "leaderboard_button": "Kraliyet Sıralaması",
@@ -208,7 +208,7 @@
     "get_started": "Başla",
     "page1_title": "Hoş geldin, kraliçe taşıyıcısı.",
     "page1_body": "Kraliçen seni kovanını yeniden inşa etmen için seçti. 3×3 ızgaraya bina yerleştir; uyurken bile bal üretirler.",
-    "page2_title": "Her 12 saatte topla.",
+    "page2_title": "Her 8 saatte topla.",
     "page2_body": "Kaynaklar 48 saate kadar birikir. Önizleme için uzun bas. İnşa/yükseltme için dokun.",
     "page3_title": "Yarış ve dök.",
     "page3_body": "Kraliyet Sıralamasında yüksel, görevleri tamamla, cüzdanında yaşayan cNFT skinler dök."

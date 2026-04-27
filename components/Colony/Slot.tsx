@@ -188,22 +188,23 @@ export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
       ) : null}
 
       {!slot && tutorialGlow ? (
+        // Rendered INSIDE the parent so the parent's `overflow-hidden`
+        // (used to clip the LinearGradient on built tiles) doesn't clip
+        // the glow. We use an inset border + a translucent gold fill
+        // for the pulse cue rather than an outer shadow.
         <Animated.View
           pointerEvents="none"
           style={[
             {
               position: "absolute",
-              top: -2,
-              left: -2,
-              right: -2,
-              bottom: -2,
-              borderRadius: 18,
-              borderWidth: 2,
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderRadius: 16,
+              borderWidth: 3,
               borderColor: "#FFC940",
-              shadowColor: "#FFC940",
-              shadowOpacity: 0.9,
-              shadowRadius: 12,
-              shadowOffset: { width: 0, height: 0 },
+              backgroundColor: "#FFC94022",
             },
             tutorialGlowStyle,
           ]}

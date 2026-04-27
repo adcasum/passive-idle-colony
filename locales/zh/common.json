@@ -27,7 +27,7 @@
     "step_build_desc": "在 3×3 网格上放置蜂巢。它们能产出蜂蜜、能量、食物和水 — 应用关闭时也照样运行。",
     "step_build_cta": "进入蜂巢",
     "step_claim_title": "领取每日奖励",
-    "step_claim_desc": "资源最多累积 48 小时。每 12 小时领取,升级建筑可解锁独特的 cNFT 皮肤。",
+    "step_claim_desc": "资源最多累积 48 小时。每 8 小时领取,升级建筑可解锁独特的 cNFT 皮肤。",
     "rewards_button": "蜂蜜库",
     "skins_button": "锻造徽章",
     "leaderboard_button": "皇家排行榜",
@@ -208,7 +208,7 @@
     "get_started": "开始",
     "page1_title": "欢迎,蜂后的承载者。",
     "page1_body": "蜂后选中你重建蜂巢。在 3×3 网格上放置建筑;它们在你睡觉时也会产蜜。",
-    "page2_title": "每 12 小时领取一次。",
+    "page2_title": "每 8 小时领取一次。",
     "page2_body": "资源最多累积 48 小时。长按格子查看产量,点击建造或升级。",
     "page3_title": "竞争与锻造。",
     "page3_body": "登顶皇家排行榜,完成每日任务,为你的蜂巢锻造永久存放在钱包中的 cNFT 皮肤。"

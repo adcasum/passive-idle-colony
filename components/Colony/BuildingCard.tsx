@@ -1,4 +1,4 @@
-import { Modal, Pressable, ScrollView, Text, View } from "react-native";
+import { Alert, Modal, Pressable, ScrollView, Text, View } from "react-native";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -320,10 +320,26 @@ function ExistingBuilding({
         variant="ghost"
         label={t("build_picker.demolish_button")}
         onPress={() => {
-          haptic.demolish();
-          demolish(slotIndex);
-          toast.info(t("toast.demolished", { name }));
-          onClose();
+          // Demolish is destructive (resources do not refund), so always
+          // require an extra confirmation — accidental long-press to demolish
+          // was reported as a real foot-gun by playtesters.
+          Alert.alert(
+            t("build_picker.demolish_confirm_title", { name }),
+            t("build_picker.demolish_confirm_body"),
+            [
+              { text: t("common.cancel"), style: "cancel" },
+              {
+                text: t("build_picker.demolish_confirm_yes"),
+                style: "destructive",
+                onPress: () => {
+                  haptic.demolish();
+                  demolish(slotIndex);
+                  toast.info(t("toast.demolished", { name }));
+                  onClose();
+                },
+              },
+            ],
+          );
         }}
       />
       <Button

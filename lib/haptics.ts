@@ -39,4 +39,7 @@ export const haptic = {
   /** Error pattern. Anything that failed. */
   error: () =>
     safe(Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)),
+
+  /** Soft tap for the per-tile tap-to-tend bonus. */
+  tap: () => safe(Haptics.selectionAsync()),
 };

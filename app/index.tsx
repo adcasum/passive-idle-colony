@@ -12,6 +12,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
+import { BloomBanner } from "@/components/Home/BloomBanner";
 import { NarrativeHero } from "@/components/Home/NarrativeHero";
 import { NextActionCard } from "@/components/Home/NextActionCard";
 import { QuestList } from "@/components/Home/QuestList";
@@ -42,6 +43,7 @@ export default function Home() {
         {connected ? (
           <>
             <NarrativeHero />
+            <BloomBanner />
             <NextActionCard />
             <StreakBadge />
             <QuestList />

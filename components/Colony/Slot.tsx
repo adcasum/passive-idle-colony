@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  withRepeat,
   withSequence,
   withSpring,
   withTiming,
@@ -19,7 +20,9 @@ import {
 import { onLongPressedSlot } from "@/lib/engagementEvents";
 import { fmtNum } from "@/lib/format";
 import { buildingProductionPerHour, upgradeCost } from "@/lib/colonyMath";
+import { haptic } from "@/lib/haptics";
 import { toast } from "@/lib/toast";
+import { useTapToTend } from "@/hooks/useTapToTend";
 import type { Slot as SlotType } from "@/types";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -36,13 +39,36 @@ const KIND_GLOW: Record<string, string> = {
 interface Props {
   slot: SlotType;
   index: number;
+  /** When true, render a pulsing gold glow around the (empty) slot to
+   *  cue a new player to tap here for their first build. */
+  tutorialGlow?: boolean;
   onPress: (index: number) => void;
 }
 
-export function Slot({ slot, index, onPress }: Props) {
+export function Slot({ slot, index, tutorialGlow, onPress }: Props) {
   const scale = useSharedValue(1);
   const wiggle = useSharedValue(0);
+  const tutorialPulse = useSharedValue(0);
   const { t } = useTranslation();
+  const { tend } = useTapToTend(index);
+
+  // Pulse the tutorial glow when active. Two-step easing — fade in over
+  // 700 ms, fade out over 700 ms — looped indefinitely until the player
+  // builds and the prop flips off.
+  useEffect(() => {
+    if (tutorialGlow) {
+      tutorialPulse.value = withRepeat(
+        withSequence(
+          withTiming(1, { duration: 700 }),
+          withTiming(0, { duration: 700 }),
+        ),
+        -1,
+        false,
+      );
+    } else {
+      tutorialPulse.value = withTiming(0, { duration: 200 });
+    }
+  }, [tutorialGlow, tutorialPulse]);
 
   useEffect(() => {
     if (slot) {
@@ -59,6 +85,10 @@ export function Slot({ slot, index, onPress }: Props) {
 
   const animStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }, { rotate: `${wiggle.value}rad` }],
+  }));
+
+  const tutorialGlowStyle = useAnimatedStyle(() => ({
+    opacity: tutorialPulse.value,
   }));
 
   const glow = slot ? KIND_GLOW[slot.kind] ?? "#FFC940" : null;
@@ -100,10 +130,39 @@ export function Slot({ slot, index, onPress }: Props) {
     );
   };
 
+  // Tap on a built tile fires a small "tend" bonus (if off cooldown) AND
+  // opens the build card. Tend is silent on cooldown — the card still
+  // opens so the player can upgrade / demolish without friction.
+  //
+  // We always call tend() and let it perform its own cooldown check via
+  // useEngagementStore.getState(). Gating on the closure-captured
+  // `canTend` here would go stale once a cooldown expired without a
+  // re-render, so the first tap after the timer elapsed would fail to
+  // grant the bonus.
+  const handlePress = () => {
+    if (slot) {
+      const result = tend();
+      if (result) {
+        haptic.tap();
+        if (result.cappedOut) {
+          toast.info(t("toast.tend_capped", { resource: t(`resources.${result.resource}`) }));
+        } else {
+          toast.success(
+            t("toast.tend", {
+              amount: fmtNum(result.granted),
+              emoji: RESOURCE_EMOJI[result.resource],
+            }),
+          );
+        }
+      }
+    }
+    onPress(index);
+  };
+
   return (
     <AnimatedPressable
       style={animStyle}
-      onPress={() => onPress(index)}
+      onPress={handlePress}
       onLongPress={handleLongPress}
       delayLongPress={350}
       onPressIn={() => {
@@ -131,6 +190,30 @@ export function Slot({ slot, index, onPress }: Props) {
             bottom: 0,
           }}
           pointerEvents="none"
+        />
+      ) : null}
+
+      {!slot && tutorialGlow ? (
+        // Rendered INSIDE the parent so the parent's `overflow-hidden`
+        // (used to clip the LinearGradient on built tiles) doesn't clip
+        // the glow. We use an inset border + a translucent gold fill
+        // for the pulse cue rather than an outer shadow.
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              borderRadius: 16,
+              borderWidth: 3,
+              borderColor: "#FFC940",
+              backgroundColor: "#FFC94022",
+            },
+            tutorialGlowStyle,
+          ]}
         />
       ) : null}
 

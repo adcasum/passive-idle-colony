@@ -27,7 +27,7 @@
     "step_build_desc": "Letakkan sarang lebah di kisi 3×3. Mereka memproduksi madu, energi, makanan, dan air — bahkan saat aplikasi ditutup.",
     "step_build_cta": "Masuk ke Sarang",
     "step_claim_title": "Klaim hadiah harian",
-    "step_claim_desc": "Sumber daya terkumpul hingga 48 jam. Klaim setiap 12 jam dan buka skin cNFT unik saat meningkatkan bangunan.",
+    "step_claim_desc": "Sumber daya terkumpul hingga 48 jam. Klaim setiap 8 jam dan buka skin cNFT unik saat meningkatkan bangunan.",
     "rewards_button": "Brankas Madu",
     "skins_button": "Tempa Regalia",
     "leaderboard_button": "Papan Peringkat Kerajaan",
@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% produksi koloni / level",
     "production_storage": "+{{cap}} kapasitas / level",
     "current_research": "+{{percent}}% produksi global",
-    "current_storage": "+{{cap}} kapasitas"
+    "current_storage": "+{{cap}} kapasitas",
+    "demolish_confirm_title": "Hancurkan {{name}}?",
+    "demolish_confirm_body": "Sumber daya yang digunakan tidak akan dikembalikan. Tindakan ini tidak bisa dibatalkan.",
+    "demolish_confirm_yes": "Hancurkan"
   },
   "slot_preview": {
     "empty": "Sel kosong — sentuh untuk membangun",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Sarang kelaparan — energi atau air kurang.",
     "rank_up": "🏆 Kamu naik ke #{{rank}}!",
     "streak_extended": "🔥 Streak {{days}} hari!",
-    "quest_complete": "🎯 Misi selesai: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Misi selesai: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} dari merawat",
+    "tend_capped": "Penyimpanan {{resource}} penuh"
   },
   "onboarding": {
     "skip": "Lewati",
@@ -203,7 +208,7 @@
     "get_started": "Mulai",
     "page1_title": "Selamat datang, pembawa ratu.",
     "page1_body": "Ratu memilih kamu untuk membangun ulang sarangnya. Letakkan bangunan di kisi 3×3; mereka tetap memproduksi madu saat kamu tidur.",
-    "page2_title": "Klaim setiap 12 jam.",
+    "page2_title": "Klaim setiap 8 jam.",
     "page2_body": "Sumber daya terkumpul hingga 48 jam. Tekan lama sel mana saja untuk pratinjau. Sentuh untuk membangun atau upgrade.",
     "page3_title": "Bersaing & menempa.",
     "page3_body": "Naiki Papan Peringkat Kerajaan, selesaikan misi harian, dan tempa skin cNFT untuk sarangmu yang tinggal di dompetmu."
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud belum dikonfigurasi.",
     "wallet_required": "Hubungkan dompet untuk melanjutkan."
+  },
+  "bloom": {
+    "active_title": "Mekar Musim Semi aktif!",
+    "active_body": "Semua sarang menghasilkan ×{{mult}} selama mekar.",
+    "inactive_title": "Mekar berikutnya",
+    "inactive_body": "Buka dalam {{time}} — produksi ×1.5 selama 24j.",
+    "ends_in": "Berakhir dalam {{time}}",
+    "fmt_dh": "{{d}}h {{h}}j",
+    "fmt_hm": "{{h}}j {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

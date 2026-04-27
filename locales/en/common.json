@@ -27,7 +27,7 @@
     "step_build_desc": "Place hives on a 3×3 grid. They produce honey, energy, food and water — even when the app is closed.",
     "step_build_cta": "Enter the Hive",
     "step_claim_title": "Claim daily rewards",
-    "step_claim_desc": "Resources accumulate up to 48 hours. Claim every 12 hours and unlock unique cNFT skins as you upgrade buildings.",
+    "step_claim_desc": "Resources accumulate up to 48 hours. Claim every 8 hours and unlock unique cNFT skins as you upgrade buildings.",
     "rewards_button": "Honey Vault",
     "skins_button": "Forge Regalia",
     "leaderboard_button": "Royal Leaderboard",
@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% colony production / level",
     "production_storage": "+{{cap}} max cap / level",
     "current_research": "+{{percent}}% global production",
-    "current_storage": "+{{cap}} max cap"
+    "current_storage": "+{{cap}} max cap",
+    "demolish_confirm_title": "Demolish {{name}}?",
+    "demolish_confirm_body": "Resources spent will not be refunded. This cannot be undone.",
+    "demolish_confirm_yes": "Demolish"
   },
   "slot_preview": {
     "empty": "Empty slot — tap to build",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Hives starving — energy or water is too low.",
     "rank_up": "🏆 You climbed to #{{rank}}!",
     "streak_extended": "🔥 {{days}}-day streak!",
-    "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} from tending",
+    "tend_capped": "{{resource}} storage is full"
   },
   "onboarding": {
     "skip": "Skip",
@@ -203,7 +208,7 @@
     "get_started": "Get started",
     "page1_title": "Welcome, queen-bearer.",
     "page1_body": "Your queen has chosen you to rebuild her hive. Place buildings on a 3×3 grid; they produce honey even when you sleep.",
-    "page2_title": "Claim every 12 hours.",
+    "page2_title": "Claim every 8 hours.",
     "page2_body": "Resources accumulate up to 48 hours. Long-press any cell to preview production. Tap any cell to build or upgrade.",
     "page3_title": "Compete & forge.",
     "page3_body": "Climb the Royal Leaderboard, complete daily quests, and forge cNFT skins for your hives that live in your wallet."
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud is not configured.",
     "wallet_required": "Connect your wallet to continue."
+  },
+  "bloom": {
+    "active_title": "Spring Bloom is active!",
+    "active_body": "All hives produce {{mult}}× while the bloom lasts.",
+    "inactive_title": "Next Spring Bloom",
+    "inactive_body": "Opens in {{time}} — production ×1.5 for 24h.",
+    "ends_in": "Ends in {{time}}",
+    "fmt_dh": "{{d}}d {{h}}h",
+    "fmt_hm": "{{h}}h {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

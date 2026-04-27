@@ -124,23 +124,85 @@ export function capResources(r: Resources, cap: number): Resources {
 }
 
 /**
+ * Compute the multiplicative bloom boost averaged over the [startMs, endMs]
+ * accrual window. Returns a single scalar that, when multiplied with the
+ * base per-hour rate, yields the time-weighted bloom-adjusted rate.
+ *
+ * Implementation walks the bloom cycles overlapping the window. A 5-day
+ * cycle means at most ~ceil(MAX_OFFLINE_HOURS / 120h) + 1 cycles = 2 to
+ * iterate — cheap, exact, no per-tick simulation needed.
+ */
+function bloomBoostOverWindow(startMs: number, endMs: number): number {
+  if (endMs <= startMs) return 1;
+  const totalMs = endMs - startMs;
+
+  // Walk forward from the last cycle that started on/before startMs, to the
+  // first cycle that ends on/after endMs. We re-implement the schedule
+  // here (rather than calling bloomStatus repeatedly) to make the math
+  // explicit and testable.
+  const dayIndex = (ms: number) => Math.floor(ms / 86_400_000);
+  const startDay = dayIndex(startMs);
+  const offsetIntoCycle =
+    ((startDay - EPOCH_DAY_INDEX) % CYCLE_DAYS_FOR_BLOOM + CYCLE_DAYS_FOR_BLOOM) %
+    CYCLE_DAYS_FOR_BLOOM;
+  let cursorCycleStart = startDay - offsetIntoCycle;
+
+  let boostedMs = 0;
+  // Iterate cycles until we pass endMs. Bound the loop conservatively.
+  for (let safety = 0; safety < 16; safety += 1) {
+    const winStart =
+      cursorCycleStart * 86_400_000 + WINDOW_START_HOUR_UTC_FOR_BLOOM * 3_600_000;
+    const winEnd = winStart + WINDOW_HOURS_FOR_BLOOM * 3_600_000;
+
+    if (winStart >= endMs) break;
+    if (winEnd > startMs) {
+      const overlapStart = Math.max(winStart, startMs);
+      const overlapEnd = Math.min(winEnd, endMs);
+      if (overlapEnd > overlapStart) {
+        boostedMs += overlapEnd - overlapStart;
+      }
+    }
+    cursorCycleStart += CYCLE_DAYS_FOR_BLOOM;
+  }
+
+  const baseMs = totalMs - boostedMs;
+  return (baseMs + boostedMs * BLOOM_MULTIPLIER_FOR_BLOOM) / totalMs;
+}
+
+// Mirror constants from lib/bloomEvent.ts so colonyMath stays free of
+// the import cycle (colonyMath is imported by Home / hooks; bloomEvent
+// imports nothing from here). Kept in sync via tests.
+const EPOCH_DAY_INDEX = 19_723;
+const CYCLE_DAYS_FOR_BLOOM = 5;
+const WINDOW_HOURS_FOR_BLOOM = 24;
+const WINDOW_START_HOUR_UTC_FOR_BLOOM = 5;
+const BLOOM_MULTIPLIER_FOR_BLOOM = 1.5;
+
+/**
  * Compute pending production accumulated since `lastClaimAt`,
  * limited to MAX_OFFLINE_HOURS, but NOT yet capped by storage.
+ *
+ * Applies the Spring Bloom multiplier (1.5×) to the fraction of the
+ * accrual window that overlapped a bloom event.
  */
 export function computePending(
   state: Pick<ColonyState, "slots" | "lastClaimAt">,
   now: number,
-): { hours: number; produced: Resources } {
+): { hours: number; produced: Resources; bloomBoost: number } {
   const elapsedMs = Math.max(0, now - state.lastClaimAt);
-  const hours = Math.min(elapsedMs / 3_600_000, MAX_OFFLINE_HOURS);
+  const cappedMs = Math.min(elapsedMs, MAX_OFFLINE_HOURS * 3_600_000);
+  const hours = cappedMs / 3_600_000;
   const perHour = colonyProductionPerHour(state.slots);
+  const startMs = now - cappedMs;
+  const bloomBoost = bloomBoostOverWindow(startMs, now);
   return {
     hours,
+    bloomBoost,
     produced: {
-      honey: perHour.honey * hours,
-      energy: perHour.energy * hours,
-      food: perHour.food * hours,
-      water: perHour.water * hours,
+      honey: perHour.honey * hours * bloomBoost,
+      energy: perHour.energy * hours * bloomBoost,
+      food: perHour.food * hours * bloomBoost,
+      water: perHour.water * hours * bloomBoost,
     },
   };
 }

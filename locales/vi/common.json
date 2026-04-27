@@ -27,7 +27,7 @@
     "step_build_desc": "Đặt tổ ong trên lưới 3×3. Chúng sản xuất mật, năng lượng, thức ăn và nước — kể cả khi đóng app.",
     "step_build_cta": "Vào Tổ Ong",
     "step_claim_title": "Nhận thưởng hàng ngày",
-    "step_claim_desc": "Tài nguyên tích lũy đến 48 giờ. Nhận mỗi 12 giờ và mở khóa skin cNFT độc đáo.",
+    "step_claim_desc": "Tài nguyên tích lũy đến 48 giờ. Nhận mỗi 8 giờ và mở khóa skin cNFT độc đáo.",
     "rewards_button": "Kho Mật",
     "skins_button": "Rèn Trang sức Hoàng gia",
     "leaderboard_button": "Bảng Xếp hạng Hoàng gia",
@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% sản xuất / cấp",
     "production_storage": "+{{cap}} kho tối đa / cấp",
     "current_research": "+{{percent}}% sản xuất toàn cầu",
-    "current_storage": "+{{cap}} kho tối đa"
+    "current_storage": "+{{cap}} kho tối đa",
+    "demolish_confirm_title": "Phá hủy {{name}}?",
+    "demolish_confirm_body": "Tài nguyên đã sử dụng sẽ không được hoàn trả. Không thể hoàn tác.",
+    "demolish_confirm_yes": "Phá hủy"
   },
   "slot_preview": {
     "empty": "Ô trống — chạm để xây",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Tổ đói — năng lượng hoặc nước quá ít.",
     "rank_up": "🏆 Bạn lên #{{rank}}!",
     "streak_extended": "🔥 chuỗi {{days}} ngày!",
-    "quest_complete": "🎯 Nhiệm vụ xong: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Nhiệm vụ xong: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} từ chăm sóc",
+    "tend_capped": "Kho {{resource}} đầy"
   },
   "onboarding": {
     "skip": "Bỏ qua",
@@ -203,7 +208,7 @@
     "get_started": "Bắt đầu",
     "page1_title": "Chào mừng, người mang nữ hoàng.",
     "page1_body": "Nữ hoàng đã chọn bạn xây lại tổ ong. Đặt công trình trên lưới 3×3; chúng làm mật ngay cả khi bạn ngủ.",
-    "page2_title": "Nhận mỗi 12 giờ.",
+    "page2_title": "Nhận mỗi 8 giờ.",
     "page2_body": "Tài nguyên tích đến 48 giờ. Nhấn lâu để xem trước. Chạm để xây/nâng cấp.",
     "page3_title": "Cạnh tranh & rèn.",
     "page3_body": "Leo Bảng Xếp hạng Hoàng gia, hoàn thành nhiệm vụ ngày, rèn skin cNFT cho tổ."
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud chưa được cấu hình.",
     "wallet_required": "Kết nối ví để tiếp tục."
+  },
+  "bloom": {
+    "active_title": "Mùa hoa nở mùa xuân đang diễn ra!",
+    "active_body": "Tất cả tổ ong sản xuất ×{{mult}} trong khi hoa nở.",
+    "inactive_title": "Mùa hoa nở tiếp theo",
+    "inactive_body": "Mở trong {{time}} — sản lượng ×1.5 trong 24 giờ.",
+    "ends_in": "Kết thúc trong {{time}}",
+    "fmt_dh": "{{d}}ng {{h}}g",
+    "fmt_hm": "{{h}}g {{m}}p",
+    "fmt_m": "{{m}}p"
   }
 }

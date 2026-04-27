@@ -27,7 +27,7 @@
     "step_build_desc": "Placez des ruches sur une grille 3×3. Elles produisent miel, énergie, nourriture et eau — même app fermée.",
     "step_build_cta": "Entrer dans la Ruche",
     "step_claim_title": "Récoltez les récompenses quotidiennes",
-    "step_claim_desc": "Les ressources s'accumulent jusqu'à 48 heures. Réclamez toutes les 12 heures et débloquez des skins cNFT uniques.",
+    "step_claim_desc": "Les ressources s'accumulent jusqu'à 48 heures. Réclamez toutes les 8 heures et débloquez des skins cNFT uniques.",
     "rewards_button": "Coffre à miel",
     "skins_button": "Forger les Insignes",
     "leaderboard_button": "Classement Royal",
@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% production colonie / niveau",
     "production_storage": "+{{cap}} capacité max / niveau",
     "current_research": "+{{percent}}% production globale",
-    "current_storage": "+{{cap}} capacité max"
+    "current_storage": "+{{cap}} capacité max",
+    "demolish_confirm_title": "Démolir {{name}} ?",
+    "demolish_confirm_body": "Les ressources dépensées ne seront pas remboursées. Action irréversible.",
+    "demolish_confirm_yes": "Démolir"
   },
   "slot_preview": {
     "empty": "Emplacement vide — appuyez pour bâtir",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Ruches affamées — énergie ou eau trop basse.",
     "rank_up": "🏆 Vous êtes monté au #{{rank}}!",
     "streak_extended": "🔥 série de {{days}} jours!",
-    "quest_complete": "🎯 Quête terminée: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Quête terminée: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} en soignant",
+    "tend_capped": "Stock de {{resource}} plein"
   },
   "onboarding": {
     "skip": "Passer",
@@ -203,7 +208,7 @@
     "get_started": "Commencer",
     "page1_title": "Bienvenue, porteur de reine.",
     "page1_body": "Votre reine vous a choisi pour reconstruire sa ruche. Placez des bâtiments sur une grille 3×3; ils produisent du miel même quand vous dormez.",
-    "page2_title": "Récoltez toutes les 12 heures.",
+    "page2_title": "Récoltez toutes les 8 heures.",
     "page2_body": "Les ressources s'accumulent jusqu'à 48 heures. Appui long pour aperçu. Toucher pour bâtir/améliorer.",
     "page3_title": "Rivalisez & forgez.",
     "page3_body": "Grimpez le Classement Royal, terminez les quêtes, forgez des skins cNFT pour vos ruches."
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud non configuré.",
     "wallet_required": "Connectez votre portefeuille pour continuer."
+  },
+  "bloom": {
+    "active_title": "Floraison de printemps active !",
+    "active_body": "Toutes les ruches produisent ×{{mult}} pendant la floraison.",
+    "inactive_title": "Prochaine floraison",
+    "inactive_body": "Ouvre dans {{time}} — production ×1.5 pendant 24h.",
+    "ends_in": "Se termine dans {{time}}",
+    "fmt_dh": "{{d}}j {{h}}h",
+    "fmt_hm": "{{h}}h {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

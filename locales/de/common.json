@@ -27,7 +27,7 @@
     "step_build_desc": "Stöcke auf einem 3×3-Raster platzieren. Sie produzieren Honig, Energie, Nahrung und Wasser — auch bei geschlossener App.",
     "step_build_cta": "Zum Bienenstock",
     "step_claim_title": "Tägliche Belohnung",
-    "step_claim_desc": "Ressourcen sammeln sich bis zu 48 Stunden. Alle 12 Stunden ernten und cNFT-Skins freischalten.",
+    "step_claim_desc": "Ressourcen sammeln sich bis zu 48 Stunden. Alle 8 Stunden ernten und cNFT-Skins freischalten.",
     "rewards_button": "Honigtresor",
     "skins_button": "Königliche Insignien",
     "leaderboard_button": "Königliche Rangliste",
@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% Produktion / Stufe",
     "production_storage": "+{{cap}} Kapazität / Stufe",
     "current_research": "+{{percent}}% Globale Produktion",
-    "current_storage": "+{{cap}} Kapazität"
+    "current_storage": "+{{cap}} Kapazität",
+    "demolish_confirm_title": "{{name}} abreißen?",
+    "demolish_confirm_body": "Eingesetzte Ressourcen werden nicht erstattet. Dies kann nicht rückgängig gemacht werden.",
+    "demolish_confirm_yes": "Abreißen"
   },
   "slot_preview": {
     "empty": "Leerer Platz — antippen zum Bauen",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Bienen hungern — Energie oder Wasser zu wenig.",
     "rank_up": "🏆 Du bist auf #{{rank}} aufgestiegen!",
     "streak_extended": "🔥 {{days}}-Tage-Serie!",
-    "quest_complete": "🎯 Quest erledigt: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Quest erledigt: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} durch Pflege",
+    "tend_capped": "{{resource}}-Lager voll"
   },
   "onboarding": {
     "skip": "Überspringen",
@@ -203,7 +208,7 @@
     "get_started": "Loslegen",
     "page1_title": "Willkommen, Königinnenträger.",
     "page1_body": "Deine Königin hat dich erwählt, ihren Stock wieder aufzubauen. Platziere Gebäude auf 3×3-Raster — sie produzieren Honig auch im Schlaf.",
-    "page2_title": "Alle 12 Stunden ernten.",
+    "page2_title": "Alle 8 Stunden ernten.",
     "page2_body": "Ressourcen sammeln bis 48h. Lange drücken für Vorschau. Tippen zum Bauen/Ausbauen.",
     "page3_title": "Wettkampf & Schmieden.",
     "page3_body": "Steige auf der Königlichen Rangliste, erfülle Quests, schmiede cNFT-Skins für deine Stöcke."
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud nicht konfiguriert.",
     "wallet_required": "Wallet verbinden, um fortzufahren."
+  },
+  "bloom": {
+    "active_title": "Frühlingsblüte aktiv!",
+    "active_body": "Alle Bienenstöcke produzieren ×{{mult}} während der Blüte.",
+    "inactive_title": "Nächste Frühlingsblüte",
+    "inactive_body": "Öffnet in {{time}} — Produktion ×1.5 für 24 Std.",
+    "ends_in": "Endet in {{time}}",
+    "fmt_dh": "{{d}}T {{h}}Std",
+    "fmt_hm": "{{h}}Std {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

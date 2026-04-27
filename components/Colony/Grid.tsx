@@ -15,6 +15,13 @@ export function Grid() {
     [6, 7, 8],
   ];
 
+  // First-build tutorial: when the grid is completely empty, highlight
+  // the centre slot with a pulsing glow so a brand-new player has an
+  // unmistakable cue for "tap here to start". Once any building is
+  // placed, the cue disappears forever for that colony.
+  const hasAnyBuilding = slots.some((s) => s !== null);
+  const tutorialIndex = hasAnyBuilding ? -1 : 4;
+
   return (
     <View className="gap-2">
       {rows.map((row, r) => (
@@ -24,6 +31,7 @@ export function Grid() {
               key={i}
               slot={slots[i]}
               index={i}
+              tutorialGlow={i === tutorialIndex}
               onPress={(idx) => setActiveIndex(idx)}
             />
           ))}

@@ -172,7 +172,7 @@ function bloomBoostOverWindow(startMs: number, endMs: number): number {
 // Mirror constants from lib/bloomEvent.ts so colonyMath stays free of
 // the import cycle (colonyMath is imported by Home / hooks; bloomEvent
 // imports nothing from here). Kept in sync via tests.
-const EPOCH_DAY_INDEX = 19_722;
+const EPOCH_DAY_INDEX = 19_723;
 const CYCLE_DAYS_FOR_BLOOM = 5;
 const WINDOW_HOURS_FOR_BLOOM = 24;
 const WINDOW_START_HOUR_UTC_FOR_BLOOM = 5;

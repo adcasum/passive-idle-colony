@@ -14,7 +14,7 @@
  * one bloom on average; long enough that it doesn't feel constant.
  */
 
-const EPOCH_DAY_INDEX = 19_722; // 2024-01-01 UTC, baseline for the modulo cycle.
+const EPOCH_DAY_INDEX = 19_723; // 2024-01-01 UTC, baseline for the modulo cycle.
 const CYCLE_DAYS = 5;
 const WINDOW_HOURS = 24;
 const WINDOW_START_HOUR_UTC = 5;

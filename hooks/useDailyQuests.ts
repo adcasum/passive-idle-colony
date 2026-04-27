@@ -90,9 +90,15 @@ export function useDailyQuests() {
   }, [questDay, setQuestState, resetShownToastsForNewDay]);
 
   // Auto-flip completed=true once progress reaches target.
+  // We pull `quests` from the latest store snapshot (not the React render
+  // closure) because on the day-rollover render, this effect runs in the
+  // SAME pass as the rollover effect above — the closure still holds
+  // yesterday's quests while the store has already been reset to fresh.
+  // Reading via getState() ensures we never auto-complete a fresh quest.
   useEffect(() => {
+    const latest = useEngagementStore.getState().quests;
     for (const def of QUEST_DEFS) {
-      const cur = quests[def.id];
+      const cur = latest[def.id];
       if (cur && !cur.completed && cur.progress >= def.target) {
         markQuestComplete(def.id);
       }

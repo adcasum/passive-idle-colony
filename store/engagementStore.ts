@@ -142,7 +142,13 @@ export const useEngagementStore = create<EngagementStore>()(
 
       markQuestComplete: (id) => {
         const cur = get().quests[id];
-        if (!cur) return;
+        // Defense-in-depth: refuse to flag a fresh quest (progress=0) as
+        // completed. Without this, a stale-closure read from a hook that
+        // sees yesterday's progress could mark today's freshly-rolled
+        // quest as Done with a 0% progress bar. Quest targets are always
+        // >= 1 in QUEST_DEFS, so requiring strictly positive progress is
+        // safe and never blocks legitimate completions.
+        if (!cur || cur.progress <= 0) return;
         set({
           quests: {
             ...get().quests,

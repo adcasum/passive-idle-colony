@@ -28,7 +28,7 @@ export const BASE_RESOURCE_CAP = 200;
 export const MAX_OFFLINE_HOURS = 48;
 
 /** Cooldown between claims (hours). */
-export const CLAIM_COOLDOWN_HOURS = 12;
+export const CLAIM_COOLDOWN_HOURS = 8;
 
 export const BUILDINGS: Record<BuildingKind, BuildingDefinition> = {
   bee_hive: {

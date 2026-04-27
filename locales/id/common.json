@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% produksi koloni / level",
     "production_storage": "+{{cap}} kapasitas / level",
     "current_research": "+{{percent}}% produksi global",
-    "current_storage": "+{{cap}} kapasitas"
+    "current_storage": "+{{cap}} kapasitas",
+    "demolish_confirm_title": "Hancurkan {{name}}?",
+    "demolish_confirm_body": "Sumber daya yang digunakan tidak akan dikembalikan. Tindakan ini tidak bisa dibatalkan.",
+    "demolish_confirm_yes": "Hancurkan"
   },
   "slot_preview": {
     "empty": "Sel kosong — sentuh untuk membangun",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Sarang kelaparan — energi atau air kurang.",
     "rank_up": "🏆 Kamu naik ke #{{rank}}!",
     "streak_extended": "🔥 Streak {{days}} hari!",
-    "quest_complete": "🎯 Misi selesai: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Misi selesai: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} dari merawat",
+    "tend_capped": "Penyimpanan {{resource}} penuh"
   },
   "onboarding": {
     "skip": "Lewati",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud belum dikonfigurasi.",
     "wallet_required": "Hubungkan dompet untuk melanjutkan."
+  },
+  "bloom": {
+    "active_title": "Mekar Musim Semi aktif!",
+    "active_body": "Semua sarang menghasilkan ×{{mult}} selama mekar.",
+    "inactive_title": "Mekar berikutnya",
+    "inactive_body": "Buka dalam {{time}} — produksi ×1.5 selama 24j.",
+    "ends_in": "Berakhir dalam {{time}}",
+    "fmt_dh": "{{d}}h {{h}}j",
+    "fmt_hm": "{{h}}j {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

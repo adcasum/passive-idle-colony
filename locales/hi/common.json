@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% कॉलोनी उत्पादन / स्तर",
     "production_storage": "+{{cap}} अधिकतम कैप / स्तर",
     "current_research": "+{{percent}}% वैश्विक उत्पादन",
-    "current_storage": "+{{cap}} अधिकतम कैप"
+    "current_storage": "+{{cap}} अधिकतम कैप",
+    "demolish_confirm_title": "{{name}} को गिराएं?",
+    "demolish_confirm_body": "खर्च किए गए संसाधन वापस नहीं मिलेंगे। यह क्रिया रद्द नहीं की जा सकती।",
+    "demolish_confirm_yes": "गिराएं"
   },
   "slot_preview": {
     "empty": "खाली स्लॉट — बनाने के लिए टैप करें",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ छत्ते भूखे — ऊर्जा या पानी बहुत कम है।",
     "rank_up": "🏆 आप #{{rank}} पर पहुँचे!",
     "streak_extended": "🔥 {{days}}-दिन की लकीर!",
-    "quest_complete": "🎯 मिशन पूरा: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 मिशन पूरा: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} देखभाल से",
+    "tend_capped": "{{resource}} भंडार भरा है"
   },
   "onboarding": {
     "skip": "छोड़ें",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "क्लाउड कॉन्फ़िगर नहीं है।",
     "wallet_required": "जारी रखने के लिए अपना वॉलेट कनेक्ट करें।"
+  },
+  "bloom": {
+    "active_title": "वसंत खिलना सक्रिय है!",
+    "active_body": "खिलने के दौरान सभी छत्ते ×{{mult}} उत्पादन करते हैं।",
+    "inactive_title": "अगला वसंत खिलना",
+    "inactive_body": "{{time}} में खुलता है — 24 घंटे के लिए ×1.5 उत्पादन।",
+    "ends_in": "{{time}} में समाप्त",
+    "fmt_dh": "{{d}}दिन {{h}}घंटे",
+    "fmt_hm": "{{h}}घ {{m}}मि",
+    "fmt_m": "{{m}}मि"
   }
 }

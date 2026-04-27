@@ -55,6 +55,13 @@ export interface EngagementStore {
   /** Persisted lifetime upgrade counter. */
   upgradesDone: number;
 
+  /**
+   * Per-slot last-tend timestamp (ms). Used to enforce the
+   * tap-to-tend cooldown so players can't spam the tile for
+   * unbounded resources. Keyed by slot index 0..8.
+   */
+  tendCooldowns: Record<number, number>;
+
   // Mutations
   recordLogin: (todayLocal: string) => void;
   setQuestState: (
@@ -68,6 +75,7 @@ export interface EngagementStore {
   recordClaim: (honey: number) => void;
   recordBuild: () => void;
   recordUpgrade: () => void;
+  recordTend: (slotIndex: number, atMs: number) => void;
   reset: () => void;
 }
 
@@ -82,6 +90,7 @@ const initialState: Omit<
   | "recordClaim"
   | "recordBuild"
   | "recordUpgrade"
+  | "recordTend"
   | "reset"
 > = {
   streak: 0,
@@ -94,6 +103,7 @@ const initialState: Omit<
   lifetimeHoneyClaimed: 0,
   buildingsBuilt: 0,
   upgradesDone: 0,
+  tendCooldowns: {},
 };
 
 /** Day-difference between two YYYY-MM-DD local strings. */
@@ -177,6 +187,10 @@ export const useEngagementStore = create<EngagementStore>()(
 
       recordBuild: () => set({ buildingsBuilt: get().buildingsBuilt + 1 }),
       recordUpgrade: () => set({ upgradesDone: get().upgradesDone + 1 }),
+
+      recordTend: (slotIndex, atMs) => {
+        set({ tendCooldowns: { ...get().tendCooldowns, [slotIndex]: atMs } });
+      },
 
       reset: () => set({ ...initialState }),
     }),

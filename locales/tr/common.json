@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% koloni üretimi / seviye",
     "production_storage": "+{{cap}} maks kapasite / seviye",
     "current_research": "+{{percent}}% küresel üretim",
-    "current_storage": "+{{cap}} maks kapasite"
+    "current_storage": "+{{cap}} maks kapasite",
+    "demolish_confirm_title": "{{name}} yıkılsın mı?",
+    "demolish_confirm_body": "Harcanan kaynaklar iade edilmez. Bu işlem geri alınamaz.",
+    "demolish_confirm_yes": "Yık"
   },
   "slot_preview": {
     "empty": "Boş yuva — inşa etmek için dokun",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Kovanlar aç — enerji veya su çok az.",
     "rank_up": "🏆 #{{rank}}'e tırmandın!",
     "streak_extended": "🔥 {{days}}-günlük seri!",
-    "quest_complete": "🎯 Görev tamam: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Görev tamam: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} bakımdan",
+    "tend_capped": "{{resource}} depolaması dolu"
   },
   "onboarding": {
     "skip": "Atla",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Bulut yapılandırılmadı.",
     "wallet_required": "Devam etmek için cüzdanını bağla."
+  },
+  "bloom": {
+    "active_title": "İlkbahar Çiçeklenmesi aktif!",
+    "active_body": "Çiçeklenme süresince tüm kovanlar ×{{mult}} üretir.",
+    "inactive_title": "Bir sonraki çiçeklenme",
+    "inactive_body": "{{time}} içinde açılır — 24 saat boyunca ×1.5 üretim.",
+    "ends_in": "{{time}} sonra biter",
+    "fmt_dh": "{{d}}g {{h}}sa",
+    "fmt_hm": "{{h}}sa {{m}}dk",
+    "fmt_m": "{{m}}dk"
   }
 }

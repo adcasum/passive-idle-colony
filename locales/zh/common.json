@@ -172,7 +172,10 @@
     "production_research": "每级 +{{percent}}% 殖民地产量",
     "production_storage": "每级 +{{cap}} 上限",
     "current_research": "+{{percent}}% 全局产量",
-    "current_storage": "+{{cap}} 上限"
+    "current_storage": "+{{cap}} 上限",
+    "demolish_confirm_title": "拆除 {{name}}？",
+    "demolish_confirm_body": "已花费的资源不会返还。此操作无法撤销。",
+    "demolish_confirm_yes": "拆除"
   },
   "slot_preview": {
     "empty": "空格 — 点击建造",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ 蜂群挨饿 — 能量或水不足。",
     "rank_up": "🏆 你升至第 {{rank}} 名!",
     "streak_extended": "🔥 连续 {{days}} 天!",
-    "quest_complete": "🎯 任务完成:{{name}}(+{{reward}})"
+    "quest_complete": "🎯 任务完成:{{name}}(+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} 来自照料",
+    "tend_capped": "{{resource}} 存储已满"
   },
   "onboarding": {
     "skip": "跳过",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "云端未配置。",
     "wallet_required": "请先连接钱包以继续。"
+  },
+  "bloom": {
+    "active_title": "春季花期进行中！",
+    "active_body": "花期期间所有蜂巢产量×{{mult}}。",
+    "inactive_title": "下次花期",
+    "inactive_body": "{{time}}后开启 — 产量×1.5持续24小时。",
+    "ends_in": "{{time}}后结束",
+    "fmt_dh": "{{d}}天 {{h}}小时",
+    "fmt_hm": "{{h}}小时 {{m}}分",
+    "fmt_m": "{{m}}分"
   }
 }

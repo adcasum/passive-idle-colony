@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% 콜로니 생산 / 레벨",
     "production_storage": "+{{cap}} 최대 한도 / 레벨",
     "current_research": "+{{percent}}% 전체 생산",
-    "current_storage": "+{{cap}} 최대 한도"
+    "current_storage": "+{{cap}} 최대 한도",
+    "demolish_confirm_title": "{{name}}을(를) 철거할까요?",
+    "demolish_confirm_body": "소비된 자원은 환불되지 않습니다. 되돌릴 수 없습니다.",
+    "demolish_confirm_yes": "철거"
   },
   "slot_preview": {
     "empty": "빈 슬롯 — 탭하여 건설",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ 벌집 굶주림 — 에너지나 물이 부족.",
     "rank_up": "🏆 #{{rank}}로 상승!",
     "streak_extended": "🔥 {{days}}일 연속!",
-    "quest_complete": "🎯 퀘스트 완료: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 퀘스트 완료: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} 돌봄으로",
+    "tend_capped": "{{resource}} 저장고 가득 참"
   },
   "onboarding": {
     "skip": "건너뛰기",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "클라우드 미설정.",
     "wallet_required": "계속하려면 지갑 연결."
+  },
+  "bloom": {
+    "active_title": "봄 개화 진행 중!",
+    "active_body": "개화 동안 모든 벌집 생산 ×{{mult}}.",
+    "inactive_title": "다음 봄 개화",
+    "inactive_body": "{{time}} 후 시작 — 24시간 ×1.5 생산.",
+    "ends_in": "{{time}} 후 종료",
+    "fmt_dh": "{{d}}일 {{h}}시간",
+    "fmt_hm": "{{h}}시간 {{m}}분",
+    "fmt_m": "{{m}}분"
   }
 }

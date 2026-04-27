@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% production colonie / niveau",
     "production_storage": "+{{cap}} capacité max / niveau",
     "current_research": "+{{percent}}% production globale",
-    "current_storage": "+{{cap}} capacité max"
+    "current_storage": "+{{cap}} capacité max",
+    "demolish_confirm_title": "Démolir {{name}} ?",
+    "demolish_confirm_body": "Les ressources dépensées ne seront pas remboursées. Action irréversible.",
+    "demolish_confirm_yes": "Démolir"
   },
   "slot_preview": {
     "empty": "Emplacement vide — appuyez pour bâtir",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Ruches affamées — énergie ou eau trop basse.",
     "rank_up": "🏆 Vous êtes monté au #{{rank}}!",
     "streak_extended": "🔥 série de {{days}} jours!",
-    "quest_complete": "🎯 Quête terminée: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Quête terminée: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} en soignant",
+    "tend_capped": "Stock de {{resource}} plein"
   },
   "onboarding": {
     "skip": "Passer",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud non configuré.",
     "wallet_required": "Connectez votre portefeuille pour continuer."
+  },
+  "bloom": {
+    "active_title": "Floraison de printemps active !",
+    "active_body": "Toutes les ruches produisent ×{{mult}} pendant la floraison.",
+    "inactive_title": "Prochaine floraison",
+    "inactive_body": "Ouvre dans {{time}} — production ×1.5 pendant 24h.",
+    "ends_in": "Se termine dans {{time}}",
+    "fmt_dh": "{{d}}j {{h}}h",
+    "fmt_hm": "{{h}}h {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

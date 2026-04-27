@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% виробництва колонії за рівень",
     "production_storage": "+{{cap}} макс. ліміту за рівень",
     "current_research": "+{{percent}}% до виробництва колонії",
-    "current_storage": "+{{cap}} до макс. ліміту"
+    "current_storage": "+{{cap}} до макс. ліміту",
+    "demolish_confirm_title": "Знести {{name}}?",
+    "demolish_confirm_body": "Витрачені ресурси не повернуться. Дію не можна скасувати.",
+    "demolish_confirm_yes": "Знести"
   },
   "slot_preview": {
     "empty": "Порожня клітинка — натисни, щоб збудувати",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Бджоли голодують — мало енергії або води.",
     "rank_up": "🏆 Ти піднявся на #{{rank}}!",
     "streak_extended": "🔥 Серія {{days}} днів!",
-    "quest_complete": "🎯 Завдання виконано: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Завдання виконано: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} за догляд",
+    "tend_capped": "Сховище {{resource}} заповнене"
   },
   "onboarding": {
     "skip": "Пропустити",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Хмара не налаштована.",
     "wallet_required": "Підключи гаманець, щоб продовжити."
+  },
+  "bloom": {
+    "active_title": "Весняне цвітіння!",
+    "active_body": "Усі вулики виробляють ×{{mult}} поки цвітіння активне.",
+    "inactive_title": "Наступне цвітіння",
+    "inactive_body": "Відкриється через {{time}} — виробництво ×1.5 на 24г.",
+    "ends_in": "Закінчиться через {{time}}",
+    "fmt_dh": "{{d}}д {{h}}г",
+    "fmt_hm": "{{h}}г {{m}}хв",
+    "fmt_m": "{{m}}хв"
   }
 }

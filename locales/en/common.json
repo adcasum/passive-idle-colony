@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% colony production / level",
     "production_storage": "+{{cap}} max cap / level",
     "current_research": "+{{percent}}% global production",
-    "current_storage": "+{{cap}} max cap"
+    "current_storage": "+{{cap}} max cap",
+    "demolish_confirm_title": "Demolish {{name}}?",
+    "demolish_confirm_body": "Resources spent will not be refunded. This cannot be undone.",
+    "demolish_confirm_yes": "Demolish"
   },
   "slot_preview": {
     "empty": "Empty slot — tap to build",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Hives starving — energy or water is too low.",
     "rank_up": "🏆 You climbed to #{{rank}}!",
     "streak_extended": "🔥 {{days}}-day streak!",
-    "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Quest complete: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} from tending",
+    "tend_capped": "{{resource}} storage is full"
   },
   "onboarding": {
     "skip": "Skip",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "Cloud is not configured.",
     "wallet_required": "Connect your wallet to continue."
+  },
+  "bloom": {
+    "active_title": "Spring Bloom is active!",
+    "active_body": "All hives produce {{mult}}× while the bloom lasts.",
+    "inactive_title": "Next Spring Bloom",
+    "inactive_body": "Opens in {{time}} — production ×1.5 for 24h.",
+    "ends_in": "Ends in {{time}}",
+    "fmt_dh": "{{d}}d {{h}}h",
+    "fmt_hm": "{{h}}h {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

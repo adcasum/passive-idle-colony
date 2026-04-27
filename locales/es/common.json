@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% producción de colonia / nivel",
     "production_storage": "+{{cap}} cap. máx. / nivel",
     "current_research": "+{{percent}}% producción global",
-    "current_storage": "+{{cap}} cap. máx."
+    "current_storage": "+{{cap}} cap. máx.",
+    "demolish_confirm_title": "¿Demoler {{name}}?",
+    "demolish_confirm_body": "Los recursos gastados no se devolverán. No se puede deshacer.",
+    "demolish_confirm_yes": "Demoler"
   },
   "slot_preview": {
     "empty": "Celda vacía — toca para construir",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ Las colmenas pasan hambre — energía o agua bajas.",
     "rank_up": "🏆 ¡Subiste a #{{rank}}!",
     "streak_extended": "🔥 Racha de {{days}} días!",
-    "quest_complete": "🎯 Misión completa: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 Misión completa: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} por cuidar",
+    "tend_capped": "Almacén de {{resource}} lleno"
   },
   "onboarding": {
     "skip": "Saltar",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "La nube no está configurada.",
     "wallet_required": "Conecta tu billetera para continuar."
+  },
+  "bloom": {
+    "active_title": "¡Floración de primavera activa!",
+    "active_body": "Todas las colmenas producen ×{{mult}} durante la floración.",
+    "inactive_title": "Próxima floración",
+    "inactive_body": "Abre en {{time}} — producción ×1.5 por 24h.",
+    "ends_in": "Termina en {{time}}",
+    "fmt_dh": "{{d}}d {{h}}h",
+    "fmt_hm": "{{h}}h {{m}}m",
+    "fmt_m": "{{m}}m"
   }
 }

@@ -172,7 +172,10 @@
     "production_research": "+{{percent}}% コロニー生産 / レベル",
     "production_storage": "+{{cap}} 最大保管 / レベル",
     "current_research": "+{{percent}}% 全体生産",
-    "current_storage": "+{{cap}} 最大保管"
+    "current_storage": "+{{cap}} 最大保管",
+    "demolish_confirm_title": "{{name}}を解体しますか？",
+    "demolish_confirm_body": "使用した資源は返還されません。この操作は取り消せません。",
+    "demolish_confirm_yes": "解体"
   },
   "slot_preview": {
     "empty": "空きスロット — タップして建設",
@@ -195,7 +198,9 @@
     "starvation_warn": "⚠️ 巣が飢えています — エネルギーまたは水が不足。",
     "rank_up": "🏆 #{{rank}}に上昇!",
     "streak_extended": "🔥 {{days}}日連続!",
-    "quest_complete": "🎯 クエスト完了: {{name}} (+{{reward}})"
+    "quest_complete": "🎯 クエスト完了: {{name}} (+{{reward}})",
+    "tend": "{{emoji}}+{{amount}} 手入れから",
+    "tend_capped": "{{resource}}の保管庫が満杯"
   },
   "onboarding": {
     "skip": "スキップ",
@@ -247,5 +252,15 @@
   "errors": {
     "cloud_disabled": "クラウド未設定。",
     "wallet_required": "続行するにはウォレット接続を。"
+  },
+  "bloom": {
+    "active_title": "春の開花が進行中！",
+    "active_body": "開花中、すべての巣の生産が×{{mult}}になります。",
+    "inactive_title": "次の春の開花",
+    "inactive_body": "{{time}}後に開始 — 24時間×1.5生産。",
+    "ends_in": "{{time}}後に終了",
+    "fmt_dh": "{{d}}日{{h}}時間",
+    "fmt_hm": "{{h}}時間{{m}}分",
+    "fmt_m": "{{m}}分"
   }
 }

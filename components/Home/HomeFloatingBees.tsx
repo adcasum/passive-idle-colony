@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { Dimensions, Text, View } from "react-native";
+import { Text, useWindowDimensions, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -20,9 +20,14 @@ import Animated, {
  * timers), so it's effectively free even on low-end Android.
  */
 export function HomeFloatingBees({ count = 3 }: { count?: number }) {
+  // useWindowDimensions reacts to rotation / split-screen — Dimensions.get
+  // captured-once would leave bees flying off the wrong edge after a
+  // device rotation.
+  const { width } = useWindowDimensions();
   // Memoize per-bee config so re-renders don't reseed the animations.
+  // Re-key on width so a rotation builds fresh travel ranges; we accept
+  // a one-time animation reset on rotation as a fair price for accuracy.
   const config = useMemo(() => {
-    const w = Dimensions.get("window").width;
     return Array.from({ length: count }, (_, i) => ({
       id: i,
       // Stagger starting Y so they don't all share a horizon line.
@@ -30,12 +35,12 @@ export function HomeFloatingBees({ count = 3 }: { count?: number }) {
       // Each bee gets its own period and direction.
       durationMs: 14_000 + Math.random() * 9_000,
       delayMs: i * 1_500 + Math.random() * 2_000,
-      rangePx: w + 80,
+      rangePx: width + 80,
       reversed: i % 2 === 1,
       // Vertical bob amplitude
       bob: 10 + Math.random() * 8,
     }));
-  }, [count]);
+  }, [count, width]);
 
   return (
     <View

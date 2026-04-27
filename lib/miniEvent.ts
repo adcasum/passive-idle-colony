@@ -37,11 +37,22 @@ export interface MiniEventStatus {
   multiplier: number;
 }
 
+const SLOT_COUNT = 9;
+
 /**
  * Compute the current mini-event status. Caller must pass `occupiedSlots`
  * — the indices (0..8) of slots that have a building. We pick the
  * targeted slot from this set so the highlight never lands on an empty
  * tile (which would confuse the player and grant nothing).
+ *
+ * Stability: the target is computed by hashing the cell's start time to
+ * a slot index in 0..8 and then walking forward (mod 9) until we find
+ * an occupied slot. This means building a new tile *during* an active
+ * window only shifts the spotlight when the new tile lands on the
+ * currently-walked-over indices — a much smaller surface than the
+ * naive "index into the sorted occupied list" approach, which would
+ * jump the spotlight every time the player built in a slot below the
+ * current target.
  */
 export function miniEventStatus(
   now: number,
@@ -62,30 +73,33 @@ export function miniEventStatus(
     };
   }
 
-  // Pick a deterministic slot from the occupied set based on the grid
-  // cell's start time. Different cells -> different slots (typically).
+  const occupiedSet = new Set(occupiedSlots);
   const seed = Math.floor(cellStart / GRID_MS);
-  const idx = Math.abs(hash32(seed)) % occupiedSlots.length;
+  const startIdx = Math.abs(hash32(seed)) % SLOT_COUNT;
+  let targetSlot: number | null = null;
+  for (let step = 0; step < SLOT_COUNT; step++) {
+    const candidate = (startIdx + step) % SLOT_COUNT;
+    if (occupiedSet.has(candidate)) {
+      targetSlot = candidate;
+      break;
+    }
+  }
   return {
     active: true,
     startMs,
     endMs,
-    targetSlot: occupiedSlots[idx],
+    targetSlot,
     multiplier: MINI_EVENT_MULTIPLIER,
   };
 }
 
 /**
- * Time until the *next* event window starts (whether one is currently
- * active or not). Used by callers that want to display "next sparkle in
- * 14m" when the current window is closed.
+ * Time until the *next* event window starts. The next start is always
+ * exactly one grid cell after the current cell's start, regardless of
+ * whether we're currently inside the active window or in the quiet tail.
  */
 export function nextEventStartMs(now: number): number {
   const cellStart = Math.floor(now / GRID_MS) * GRID_MS;
-  if (now < cellStart + ACTIVE_MS) {
-    // Currently active — next is one full grid cell away.
-    return cellStart + GRID_MS;
-  }
   return cellStart + GRID_MS;
 }
 

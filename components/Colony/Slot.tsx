@@ -67,11 +67,13 @@ export function Slot({ slot, index, onPress }: Props) {
   // Long-press preview: surface the building's stats without forcing the user
   // through the full bottom-sheet (and without triggering build/upgrade).
   const handleLongPress = () => {
-    onLongPressedSlot();
     if (!slot || !def) {
       toast.info(t("slot_preview.empty"));
       return;
     }
+    // Only count the quest after the player has actually surfaced production
+    // stats — long-pressing an empty tile is just a "what is this?" prompt.
+    onLongPressedSlot();
     const prod = buildingProductionPerHour(slot);
     const isMax = slot.level >= def.maxLevel;
     const next = isMax ? null : upgradeCost(slot.kind, slot.level);

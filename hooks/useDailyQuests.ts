@@ -81,8 +81,11 @@ export function useDailyQuests() {
     if (questDay !== today) {
       const fresh: Record<string, QuestProgress> = {};
       for (const def of QUEST_DEFS) fresh[def.id] = blankProgress();
-      setQuestState(today, fresh);
+      // Order matters: `setQuestState` synchronously bumps `questDay` to
+      // `today`, which would defeat `resetShownToastsForNewDay`'s own
+      // `questDay !== today` guard. Clear day-scoped toasts FIRST.
       resetShownToastsForNewDay(today);
+      setQuestState(today, fresh);
     }
   }, [questDay, setQuestState, resetShownToastsForNewDay]);
 

@@ -16,10 +16,12 @@
  *   - Re-tapping the same slot resets the streak (you actually have to
  *     move around).
  *
- * The cap intentionally matches the mini-event multiplier (×3 with no
- * stacking) so the maximum sustained boost when tend + chain + mini
- * align is ×3 (mini wins; chain is *or*-merged, not multiplied — see
- * useTapToTend).
+ * Stacking with mini-event: in `useTapToTend` the chain multiplier and
+ * the mini-event spotlight multiplier are *multiplied*, not or-merged.
+ * Maximum aligned boost is therefore ×2 (chain at length ≥5) × ×3
+ * (mini-event spotlight) = ×6, but only when the player happens to be
+ * mid-chain and the next tap lands on the spotlighted slot during its
+ * 10-minute window — rare and rewarded.
  */
 
 const WINDOW_MS = 2_000;
